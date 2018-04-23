@@ -224,14 +224,14 @@
 <li>解压到指定的目录：tar -zxvf apache-tomcat-8.5.29.tar.gz -C /usr/tomcat</li>
 <li>执行命令：cd /usr/tomcat/apache-tomcat-8.5.29</li>
 <li><p>修改端口（也可以不操作），cd conf/,然后执行 vim server.xml,修改8080端口为9999，如下图：</p>
-<p><img src="/assets/blogImg/tomcat_port.jpg" alt="tomcat_port"></p>
+<p><img src="/assets/blogImg/tomcat_port.JPG" alt="tomcat_port"></p>
 </li>
 <li><p>启动tomcat 服务，执行命令 cd ../bin—&gt;./startup.sh</p>
 </li>
 <li>验证是否启动成功，执行命令：curl localhost:9999,如果正常返回html，说明成功了。</li>
 <li><p>配置外网访问，需要在ECS配置入网规则，允许外网访问9999端口通过。操作过程：</p>
 <p>控制台–&gt;实例–&gt;管理–&gt;本实例安全组–&gt;安全组列表–&gt;配置规则–&gt;入方向–&gt;添加安全组规则，如下图:</p>
-<p><img src="/assets/blogImg/add_security_group.jpg" alt="tomcat_port"></p>
+<p><img src="/assets/blogImg/add_security_group.JPG" alt="add_security_group"></p>
 <p>点击确定，添加安全组成功后，就可以通过外网ip:9999访问tomcat了。</p>
 <h2 id="mysql安装和配置"><a href="#mysql安装和配置" class="headerlink" title="mysql安装和配置"></a>mysql安装和配置</h2></li>
 <li>检查一下原来是否安装过mysql,执行命令：yum list installed |grep mysql,如果结果为空，说明还没有安装，如果已经安装了，就卸载重新安装。</li>
