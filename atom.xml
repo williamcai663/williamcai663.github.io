@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2018-04-22T14:17:50.232Z</updated>
+  <updated>2018-04-23T05:16:24.911Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -16,27 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hexo_trouble</title>
-    <link href="http://caixw.cn/2018/04/22/hexo-trouble/"/>
-    <id>http://caixw.cn/2018/04/22/hexo-trouble/</id>
-    <published>2018-04-22T14:17:50.000Z</published>
-    <updated>2018-04-22T14:17:50.232Z</updated>
+    <title>阿里云ECS服务器java环境搭建</title>
+    <link href="http://caixw.cn/2018/04/23/config-aliyun-ECS/"/>
+    <id>http://caixw.cn/2018/04/23/config-aliyun-ECS/</id>
+    <published>2018-04-23T05:16:23.000Z</published>
+    <updated>2018-04-23T05:16:24.911Z</updated>
     
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://caixw.cn/2018/04/22/config-aliyun-ECS/"/>
-    <id>http://caixw.cn/2018/04/22/config-aliyun-ECS/</id>
-    <published>2018-04-22T11:22:18.461Z</published>
-    <updated>2018-04-23T05:10:49.775Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="阿里云ECS服务器java环境搭建"><a href="#阿里云ECS服务器java环境搭建" class="headerlink" title="阿里云ECS服务器java环境搭建"></a>阿里云ECS服务器java环境搭建</h1><h2 id="jdk-配置"><a href="#jdk-配置" class="headerlink" title="jdk 配置"></a>jdk 配置</h2><ul>
+    <content type="html"><![CDATA[<h2 id="jdk-配置"><a href="#jdk-配置" class="headerlink" title="jdk 配置"></a>jdk 配置</h2><ul>
 <li>下载jdk 到指定的目录 /temp</li>
 <li>解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java</li>
 <li>执行命令：cd /usr/java/jdk1.8.0_161</li>
@@ -91,7 +77,25 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;阿里云ECS服务器java环境搭建&quot;&gt;&lt;a href=&quot;#阿里云ECS服务器java环境搭建&quot; class=&quot;headerlink&quot; title=&quot;阿里云ECS服务器java环境搭建&quot;&gt;&lt;/a&gt;阿里云ECS服务器java环境搭建&lt;/h1&gt;&lt;h2 id=&quot;jdk-配
+      &lt;h2 id=&quot;jdk-配置&quot;&gt;&lt;a href=&quot;#jdk-配置&quot; class=&quot;headerlink&quot; title=&quot;jdk 配置&quot;&gt;&lt;/a&gt;jdk 配置&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;下载jdk 到指定的目录 /temp&lt;/li&gt;
+&lt;li&gt;解压到指定的目录：tar -zxvf j
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo_trouble</title>
+    <link href="http://caixw.cn/2018/04/22/hexo-trouble/"/>
+    <id>http://caixw.cn/2018/04/22/hexo-trouble/</id>
+    <published>2018-04-22T14:17:50.000Z</published>
+    <updated>2018-04-22T14:17:50.232Z</updated>
+    
+    <summary type="html">
     
     </summary>
     
