@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2018-04-23T05:16:24.911Z</updated>
+  <updated>2018-04-24T04:20:21.644Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>intellij idea 2018 激活</title>
+    <link href="http://caixw.cn/2018/04/24/active-idea2018/"/>
+    <id>http://caixw.cn/2018/04/24/active-idea2018/</id>
+    <published>2018-04-24T04:18:22.000Z</published>
+    <updated>2018-04-24T04:20:21.644Z</updated>
+    
+    <content type="html"><![CDATA[<p>首次启动的时候，选择license server ，输入下方链接：<br><a href="http://xdouble.cn:8888/" target="_blank" rel="external">http://xdouble.cn:8888/</a><br>点击activate即可</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首次启动的时候，选择license server ，输入下方链接：&lt;br&gt;&lt;a href=&quot;http://xdouble.cn:8888/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://xdouble.cn:8888/&lt;/a&gt;&lt;br&gt;点击ac
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>阿里云ECS服务器java环境搭建</title>
