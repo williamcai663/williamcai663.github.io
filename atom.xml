@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2018-04-24T04:20:21.644Z</updated>
+  <updated>2018-04-24T04:55:57.641Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>compiler error 解决办法</title>
+    <link href="http://caixw.cn/2018/04/24/java-compiler-error/"/>
+    <id>http://caixw.cn/2018/04/24/java-compiler-error/</id>
+    <published>2018-04-24T04:22:17.000Z</published>
+    <updated>2018-04-24T04:55:57.641Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>编译项目，报Error:java: Compilation failed: internal java compiler error。
+原因是项目中jdk版本配置不一致，配成一致即可解决问题。
+</code></pre><ul>
+<li><p>查看项目的jdk（Ctrl+Alt+shift+S）</p>
+<p>  File -&gt;Project Structure-&gt;Project Settings -&gt;Project </p>
+<p>  <img src="/assets/blogImg/project_jdk.JPG" alt="project_jdk"></p>
+</li>
+<li><p>查看工程的jdk（Ctrl+Alt+shift+S）</p>
+<p>  File -&gt;Project Structure-&gt;Project Settings -&gt;module </p>
+<p>  <img src="/assets/blogImg/module_jdk.JPG" alt="module_jdk"></p>
+</li>
+<li><p>查看idea中java配置（Ctrl+Alt+S）</p>
+<p>  File -&gt;Settings&gt;Build,Execution,Deployment&gt;Compiler&gt;Java Compiler </p>
+<p>  <img src="/assets/blogImg/idea_jdk.jpg" alt="idea_jdk"></p>
+<p>  报错的原因就在这里，idea软件环境中Java版本的配置和之前项目的配置不一样，设置成一样的即可解决该问题。</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;编译项目，报Error:java: Compilation failed: internal java compiler error。
+原因是项目中jdk版本配置不一致，配成一致即可解决问题。
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;查看项目的jd
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>intellij idea 2018 激活</title>
