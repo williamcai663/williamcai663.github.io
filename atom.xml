@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2018-05-05T14:40:15.010Z</updated>
+  <updated>2018-06-04T15:07:35.325Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git的简单使用</title>
+    <link href="http://caixw.cn/2018/06/04/20180604/"/>
+    <id>http://caixw.cn/2018/06/04/20180604/</id>
+    <published>2018-06-04T14:43:16.000Z</published>
+    <updated>2018-06-04T15:07:35.325Z</updated>
+    
+    <content type="html"><![CDATA[<p>###如果没有初始化的项目，可以通过以下步骤：</p>
+<pre><code>$echo &quot;# kotlinPrimary&quot; &gt;&gt; README.md
+$git init
+$git add README.md
+$git commit -m &quot;first commit&quot;
+$git remote add origin git@github.com:williamcai663/$kotlinPrimary.git
+$git push -u origin master
+</code></pre><p>这样就可以把项目推到库中并生成且提交到master</p>
+<p>###如果存在一个库的项目，直接执行如下命令：<br>    $git remote add origin git@github.com:williamcai663/kotlinPrimary.git<br>    $git push -u origin master</p>
+<p>###如果想从master上开一个develop分支，可以执行如下：<br>    $git checkout -b develop<br>-b 的作用就是创建并切换到develop分支<br>这个新开的分支并没有关联到远程分支，创建远程分支并提交到远程，执行 git push origin develop<br>这样远程就有了一个分支，并且与远程的分支develop没有关联上，<br>可以通过执行如下命令：</p>
+<pre><code>$git branch --set-upstream-to=origin/develop develop
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###如果没有初始化的项目，可以通过以下步骤：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$echo &amp;quot;# kotlinPrimary&amp;quot; &amp;gt;&amp;gt; README.md
+$git init
+$git add README.md
+$git commit -m &amp;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu搭建elasticsearch和使用</title>
+    <link href="http://caixw.cn/2018/05/06/20180506elasticsearch/"/>
+    <id>http://caixw.cn/2018/05/06/20180506elasticsearch/</id>
+    <published>2018-05-06T06:53:26.000Z</published>
+    <updated>2018-05-06T14:58:21.483Z</updated>
+    
+    <content type="html"><![CDATA[<p>參考 ：<a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;參考 ：&lt;a href=&quot;http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.ruanyifeng.com/blog/201
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>elasticsearch的安裝</title>
