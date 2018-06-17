@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2018-06-17T02:44:57.807Z</updated>
+  <updated>2018-06-17T02:52:46.340Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>201806171029</title>
+    <title>分库分表总结</title>
     <link href="http://caixw.cn/2018/06/17/201806171029/"/>
     <id>http://caixw.cn/2018/06/17/201806171029/</id>
     <published>2018-06-17T02:29:37.000Z</published>
-    <updated>2018-06-17T02:44:57.807Z</updated>
+    <updated>2018-06-17T02:52:46.340Z</updated>
     
     <content type="html"><![CDATA[<h2 id="为什么要分库分表"><a href="#为什么要分库分表" class="headerlink" title="为什么要分库分表"></a>为什么要分库分表</h2><p>当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个个体的压力，缩短响应时间，提高性能。<br>分库分表，顾名思义，是两个操作。<br>分库，拆分成多个数据库，分表，拆分成多张表。<br>常见方式有：单库单表-&gt;单库多表-&gt;多库多表。</p>
 <h2 id="如何进行数据拆分"><a href="#如何进行数据拆分" class="headerlink" title="如何进行数据拆分"></a>如何进行数据拆分</h2><p>最简单的方式就是按照ID将数据分配到不同的库不同的表中。<br>当你创建一条记录时，就会根据生成的ID计算这条数据放到哪个库哪张表里去。</p>
