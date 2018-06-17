@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2018-06-17T02:37:16.216Z</updated>
+  <updated>2018-06-17T02:44:57.807Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -20,10 +20,9 @@
     <link href="http://caixw.cn/2018/06/17/201806171029/"/>
     <id>http://caixw.cn/2018/06/17/201806171029/</id>
     <published>2018-06-17T02:29:37.000Z</published>
-    <updated>2018-06-17T02:37:16.216Z</updated>
+    <updated>2018-06-17T02:44:57.807Z</updated>
     
-    <content type="html"><![CDATA[<p>#分库分表</p>
-<h2 id="为什么要分库分表"><a href="#为什么要分库分表" class="headerlink" title="为什么要分库分表"></a>为什么要分库分表</h2><p>当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个个体的压力，缩短响应时间，提高性能。<br>分库分表，顾名思义，是两个操作。<br>分库，拆分成多个数据库，分表，拆分成多张表。<br>常见方式有：单库单表-&gt;单库多表-&gt;多库多表。</p>
+    <content type="html"><![CDATA[<h2 id="为什么要分库分表"><a href="#为什么要分库分表" class="headerlink" title="为什么要分库分表"></a>为什么要分库分表</h2><p>当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个个体的压力，缩短响应时间，提高性能。<br>分库分表，顾名思义，是两个操作。<br>分库，拆分成多个数据库，分表，拆分成多张表。<br>常见方式有：单库单表-&gt;单库多表-&gt;多库多表。</p>
 <h2 id="如何进行数据拆分"><a href="#如何进行数据拆分" class="headerlink" title="如何进行数据拆分"></a>如何进行数据拆分</h2><p>最简单的方式就是按照ID将数据分配到不同的库不同的表中。<br>当你创建一条记录时，就会根据生成的ID计算这条数据放到哪个库哪张表里去。</p>
 <h2 id="分库分表路由规则"><a href="#分库分表路由规则" class="headerlink" title="分库分表路由规则"></a>分库分表路由规则</h2><p>假如有16个库（从00库到15库），每个库有64张表，那一共就是有1024张表（从0000-1023）<br>对应的路由规则：<br>dbRule=id%1024%64<br>tbRule=id%1024<br>那么对应的库为dbName_dbRule<br>对应的表为：tbName_tbRule</p>
 <h3 id="常见的方式"><a href="#常见的方式" class="headerlink" title="常见的方式"></a>常见的方式</h3><ul>
@@ -40,8 +39,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;#分库分表&lt;/p&gt;
-&lt;h2 id=&quot;为什么要分库分表&quot;&gt;&lt;a href=&quot;#为什么要分库分表&quot; class=&quot;headerlink&quot; title=&quot;为什么要分库分表&quot;&gt;&lt;/a&gt;为什么要分库分表&lt;/h2&gt;&lt;p&gt;当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单
+      &lt;h2 id=&quot;为什么要分库分表&quot;&gt;&lt;a href=&quot;#为什么要分库分表&quot; class=&quot;headerlink&quot; title=&quot;为什么要分库分表&quot;&gt;&lt;/a&gt;为什么要分库分表&lt;/h2&gt;&lt;p&gt;当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个
     
     </summary>
     
