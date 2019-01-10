@@ -149,6 +149,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hexo-trouble" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/22/hexo-trouble/">hexo deploy 提示 permission denied的解决方法</a>
+    </h1>
+  
+
+        <a href="/2018/04/22/hexo-trouble/" class="archive-article-date">
+  	<time datetime="2018-04-22T14:17:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>出现的问题</p>
+<p>  hexo deploy ,提示Error: Permission denied (publikey),如下图：</p>
+<p> <img src="assets/blogImg/public_key_error.JPG" alt="error"></p>
+</li>
+<li><p>查看用户配置的ssh的public key 是否存在</p>
+<p>  执行命令： ssh -vT git@github.com,结果如下：</p>
+<p><img src="assets/blogImg/testkeyfailue.JPG" alt="testkeyfailue"></p>
+<p>  提示 permission denied<br>  进入 cd ~/.ssh,查看没有 id_rsa id_rsa_pub ,所以需要生成public_key。</p>
+</li>
+<li><p>生成publish key</p>
+<p>使用Git Bash生成新的ssh key。</p>
+</li>
+</ul>
+<p>$ cd ~  #保证当前路径在”~”下</p>
+<p>$ ssh-keygen -t rsa -C “xxxxxx@yy.com”  #建议填写自己真实有效的邮箱地址</p>
+<p>Generating public/private rsa key pair.</p>
+<p>Enter file in which to save the key (/c/Users/xxxx_000/.ssh/id_rsa):   #不填直接回车</p>
+<p>Enter passphrase (empty for no passphrase):   #输入密码（可以为空）</p>
+<p>Enter same passphrase again:   #再次确认密码（可以为空）</p>
+<p>成功的生成如下提示：</p>
+<p> <img src="assets/blogImg/generatekey.JPG" alt="testkeyfailue"></p>
+<ul>
+<li>添加 ssh key 到 Github</li>
+</ul>
+<p>登录GitHub系统；点击右上角账号头像的“▼”→Settings→SSH and GPG keys→New SSH key<br>进入c:/Users/xxxx_000/.ssh/目录下，打开id_rsa.pub文件，全选复制公钥内容。<br>把复制的内容放入key中，Title 自定义，点击确定。</p>
+<ul>
+<li>验证public key 是否生效</li>
+</ul>
+<p>再次执行 $ ssh -vT “xxxxxx@yy.com”,成功了提示 success,效果如下：</p>
+<p> <img src="assets/blogImg/testsuccess.JPG" alt="testsuccess"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/22/hexo-trouble/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-postFor2017041601" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -490,7 +574,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 William Cai
+    		&copy; 2019 William Cai
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
