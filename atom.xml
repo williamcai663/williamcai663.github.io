@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-01-10T14:00:50.101Z</updated>
+  <updated>2019-02-11T14:04:53.965Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读《深入理解Java虚拟机有感》之1</title>
+    <link href="http://caixw.cn/2019/02/11/20190211love/"/>
+    <id>http://caixw.cn/2019/02/11/20190211love/</id>
+    <published>2019-02-11T13:33:58.000Z</published>
+    <updated>2019-02-11T14:04:53.965Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>理解java虚拟机的理由</li>
+</ul>
+<p>   (1) 理解jvm运行原理，可以编写高质量的代码。</p>
+<p>   (2) jvm 接管了内存，好处是可以不用担心内存释放的问题，但是出现内存泄漏的情况，就必须<br>   深入理解jvm,才能更好的定位和解决问题。</p>
+<p>   (3) jvm 未来朝着模块化和支持多核方向发展，编写lamda函数式编程可以更好的支持多核，理解jvm<br>   有助于知其然，知其所以然。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;理解java虚拟机的理由&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;   (1) 理解jvm运行原理，可以编写高质量的代码。&lt;/p&gt;
+&lt;p&gt;   (2) jvm 接管了内存，好处是可以不用担心内存释放的问题，但是出现内存泄漏的情况，就必须&lt;br&gt;   深入理解jvm,才能更好
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>经典老歌，久听不厌</title>
