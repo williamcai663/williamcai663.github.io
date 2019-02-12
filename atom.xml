@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-02-11T14:04:53.965Z</updated>
+  <updated>2019-02-12T14:30:30.494Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -16,11 +16,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>读《深入理解Java虚拟机有感》之2</title>
+    <link href="http://caixw.cn/2019/02/12/20190212love/"/>
+    <id>http://caixw.cn/2019/02/12/20190212love/</id>
+    <published>2019-02-12T14:21:29.000Z</published>
+    <updated>2019-02-12T14:30:30.494Z</updated>
+    
+    <content type="html"><![CDATA[<p>java把内存的分配和回收交给了虚拟机，工程师不用自己手动释放内存，这样就带来了一个不好的事情，一旦发生内存异常和溢出，如果对jvm<br>内存原理不够精通的话，排查问题就是一件痛苦的工作。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;java把内存的分配和回收交给了虚拟机，工程师不用自己手动释放内存，这样就带来了一个不好的事情，一旦发生内存异常和溢出，如果对jvm&lt;br&gt;内存原理不够精通的话，排查问题就是一件痛苦的工作。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>读《深入理解Java虚拟机有感》之1</title>
     <link href="http://caixw.cn/2019/02/11/20190211love/"/>
     <id>http://caixw.cn/2019/02/11/20190211love/</id>
     <published>2019-02-11T13:33:58.000Z</published>
-    <updated>2019-02-11T14:04:53.965Z</updated>
+    <updated>2019-02-12T12:39:03.974Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>理解java虚拟机的理由</li>
@@ -28,6 +50,7 @@
 <p>   (1) 理解jvm运行原理，可以编写高质量的代码。</p>
 <p>   (2) jvm 接管了内存，好处是可以不用担心内存释放的问题，但是出现内存泄漏的情况，就必须<br>   深入理解jvm,才能更好的定位和解决问题。</p>
 <p>   (3) jvm 未来朝着模块化和支持多核方向发展，编写lamda函数式编程可以更好的支持多核，理解jvm<br>   有助于知其然，知其所以然。</p>
+<p>   (4) 目前显卡的算术运算能力，并行能力已经远远超过了CPU，在图形领域以外发掘显卡的潜力是近几年计算机发展的方向之一。Java的项目Sumatra就是提供GPU和APU运算能力的工具，以后她将直接提供java语言层面的API。</p>
 ]]></content>
     
     <summary type="html">
