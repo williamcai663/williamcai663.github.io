@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-02-12T14:30:30.494Z</updated>
+  <updated>2019-02-14T15:15:12.012Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>读《深入理解Java虚拟机》有感之3</title>
+    <link href="http://caixw.cn/2019/02/14/20190214love/"/>
+    <id>http://caixw.cn/2019/02/14/20190214love/</id>
+    <published>2019-02-14T14:52:09.000Z</published>
+    <updated>2019-02-14T15:15:12.012Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li><p>虚拟机栈</p>
+<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError 异常；如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。</p>
+</li>
+<li><p>本地方法栈</p>
+</li>
+</ul>
+<p>其作用与虚拟机栈基本相似，区别是虚拟机栈为虚拟机执行java方法服务，二本地方法栈则为虚拟机使用到Native方法服务；与虚拟机方法栈一样，本地方法栈也会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<ul>
+<li>Java 堆</li>
+</ul>
+<p>Java堆主要为类和数组实例分配内存；如果堆是可以扩展的，如果堆中没有内存分配，并且堆也无法扩展时，将会抛出OutOfMemoryError异常；</p>
+<ul>
+<li>方法区</li>
+</ul>
+<p>该区又称”永久代”，主要存储已被虚拟机加载的类信息，常量，静态变量，JIT编译后的代码等数据。当方法区无法完成内存分配要求，也将抛出<br>OutOfMemoryError异常。</p>
+<ul>
+<li>运行时常量池</li>
+</ul>
+<p>运行时常量池是方法区的一部分，用于存放编译期生成的各种字面量和符号引用。既然运行时常量池是方法区的一部分，自然就会收到方法区内存的限制，当常量池无法再申请到内存时会抛出OutOfMemoryError异常。</p>
+<ul>
+<li>直接内存</li>
+</ul>
+<p>直接内存是jvm之外的内存，受到本机内存的限制，如果分配的内存无法满足时，就会抛出OutOfMemoryError异常。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;虚拟机栈&lt;/p&gt;
+&lt;p&gt;如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError 异常；如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>读《深入理解Java虚拟机有感》之2</title>

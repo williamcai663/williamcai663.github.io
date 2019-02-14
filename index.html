@@ -149,6 +149,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20190214love" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/14/20190214love/">读《深入理解Java虚拟机》有感之3</a>
+    </h1>
+  
+
+        <a href="/2019/02/14/20190214love/" class="archive-article-date">
+  	<time datetime="2019-02-14T14:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>虚拟机栈</p>
+<p>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError 异常；如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。</p>
+</li>
+<li><p>本地方法栈</p>
+</li>
+</ul>
+<p>其作用与虚拟机栈基本相似，区别是虚拟机栈为虚拟机执行java方法服务，二本地方法栈则为虚拟机使用到Native方法服务；与虚拟机方法栈一样，本地方法栈也会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<ul>
+<li>Java 堆</li>
+</ul>
+<p>Java堆主要为类和数组实例分配内存；如果堆是可以扩展的，如果堆中没有内存分配，并且堆也无法扩展时，将会抛出OutOfMemoryError异常；</p>
+<ul>
+<li>方法区</li>
+</ul>
+<p>该区又称”永久代”，主要存储已被虚拟机加载的类信息，常量，静态变量，JIT编译后的代码等数据。当方法区无法完成内存分配要求，也将抛出<br>OutOfMemoryError异常。</p>
+<ul>
+<li>运行时常量池</li>
+</ul>
+<p>运行时常量池是方法区的一部分，用于存放编译期生成的各种字面量和符号引用。既然运行时常量池是方法区的一部分，自然就会收到方法区内存的限制，当常量池无法再申请到内存时会抛出OutOfMemoryError异常。</p>
+<ul>
+<li>直接内存</li>
+</ul>
+<p>直接内存是jvm之外的内存，受到本机内存的限制，如果分配的内存无法满足时，就会抛出OutOfMemoryError异常。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/14/20190214love/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-20190212love" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -656,76 +733,6 @@ $git push -u origin master
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/29/20180429/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-java-compiler-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/24/java-compiler-error/">compiler error 解决办法</a>
-    </h1>
-  
-
-        <a href="/2018/04/24/java-compiler-error/" class="archive-article-date">
-  	<time datetime="2018-04-24T04:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-24</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code>编译项目，报Error:java: Compilation failed: internal java compiler error。
-原因是项目中jdk版本配置不一致，配成一致即可解决问题。
-</code></pre><ul>
-<li><p>查看项目的jdk（Ctrl+Alt+shift+S）</p>
-<p>  File -&gt;Project Structure-&gt;Project Settings -&gt;Project </p>
-<p>  <img src="/assets/blogImg/project_jdk.JPG" alt="project_jdk"></p>
-</li>
-<li><p>查看工程的jdk（Ctrl+Alt+shift+S）</p>
-<p>  File -&gt;Project Structure-&gt;Project Settings -&gt;module </p>
-<p>  <img src="/assets/blogImg/module_jdk.JPG" alt="module_jdk"></p>
-</li>
-<li><p>查看idea中java配置（Ctrl+Alt+S）</p>
-<p>  File -&gt;Settings&gt;Build,Execution,Deployment&gt;Compiler&gt;Java Compiler </p>
-<p>  <img src="/assets/blogImg/idea_jdk.jpg" alt="idea_jdk"></p>
-<p>  报错的原因就在这里，idea软件环境中Java版本的配置和之前项目的配置不一样，设置成一样的即可解决该问题。</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/24/java-compiler-error/">展开全文 >></a>
         </p>
       
 
