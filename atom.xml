@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-02-20T15:09:47.917Z</updated>
+  <updated>2019-03-24T01:41:49.444Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jconsole 查看springboot 项目</title>
+    <link href="http://caixw.cn/2019/03/24/2019032401/"/>
+    <id>http://caixw.cn/2019/03/24/2019032401/</id>
+    <published>2019-03-24T01:19:11.000Z</published>
+    <updated>2019-03-24T01:41:49.444Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>需要在启动参数里配置如下：</li>
+<li><p> -Dcom.sun.management.jmxremote.authenticate=”false”<br> -Dcom.sun.management.jmxremote.ssl=”false”<br> -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=”6017”</p>
+</li>
+</ul>
+<ul>
+<li><p>ctrl+r启动 jconsole ,如下图所示：</p>
+<p>– 登录界面</p>
+<p><img src="/assets/blogImg/jconsole_login.JPG" alt="jconsole_login"></p>
+</li>
+</ul>
+<p> – 登录后的面板</p>
+<p> <img src="/assets/blogImg/jconsole_board.JPG" alt="jconsole_board"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;需要在启动参数里配置如下：&lt;/li&gt;
+&lt;li&gt;&lt;p&gt; -Dcom.sun.management.jmxremote.authenticate=”false”&lt;br&gt; -Dcom.sun.management.jmxremote.ssl=”false”&lt;br&gt; -
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>读《深入理解Java虚拟机》有感之4</title>
@@ -619,28 +654,6 @@ $git commit -m &amp;
     <summary type="html">
     
       &lt;p&gt; 今天从万网买了一个域名，配置了域名解析，指向了github Pages 库，但是通过域名登陆后，老是解析不成功，&lt;br&gt;原因可能是没有实名认证，访问的域名被安全局锁定。没办法，最多要等3天，期待好消息。同时要感谢我的&lt;a href=&quot;hellomypastor.net&quot;&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>纪念一下，第一次发博客</title>
-    <link href="http://caixw.cn/2016/12/18/firstPoster20161218/"/>
-    <id>http://caixw.cn/2016/12/18/firstPoster20161218/</id>
-    <published>2016-12-18T15:37:17.000Z</published>
-    <updated>2016-12-19T15:27:02.888Z</updated>
-    
-    <content type="html"><![CDATA[<p>个人的博客第一篇内容，mark 一下，希望以后继续坚持下去。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;个人的博客第一篇内容，mark 一下，希望以后继续坚持下去。&lt;/p&gt;
-
     
     </summary>
     
