@@ -6,27 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://caixw.cn">
-  <title>elasticsearch的安裝 | 发现新大陆</title>
+  <title>diskpart的使用 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="– 1.检查jdk安装
-执行命令：java -version如果有java相关信息，说明已经安装。如果没有安装的话，执行命令：yum -y install  java-1.8.0-openjdk– 2.下载elasticsearch安装包
-执行命令：
-wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
+  <meta name="description" content="mount a disk to  another disk&amp;gt; diskpart
+&amp;gt; list vol  /*list all volume*/
+&amp;gt; select vol=3
+&amp;gt; remove 
+&amp;gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/
+remove mount&amp;gt; diskpart
+&amp;gt; list vo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="elasticsearch的安裝">
-<meta property="og:url" content="http://caixw.cn/2018/05/05/20180505elasticsearch/index.html">
+<meta property="og:title" content="diskpart的使用">
+<meta property="og:url" content="http://caixw.cn/2019/09/03/2019090301/index.html">
 <meta property="og:site_name" content="发现新大陆">
-<meta property="og:description" content="– 1.检查jdk安装
-执行命令：java -version如果有java相关信息，说明已经安装。如果没有安装的话，执行命令：yum -y install  java-1.8.0-openjdk– 2.下载elasticsearch安装包
-执行命令：
-wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
-<meta property="og:updated_time" content="2018-05-05T14:40:15.011Z">
+<meta property="og:description" content="mount a disk to  another disk&amp;gt; diskpart
+&amp;gt; list vol  /*list all volume*/
+&amp;gt; select vol=3
+&amp;gt; remove 
+&amp;gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/
+remove mount&amp;gt; diskpart
+&amp;gt; list vo">
+<meta property="og:updated_time" content="2019-09-03T14:35:31.130Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="elasticsearch的安裝">
-<meta name="twitter:description" content="– 1.检查jdk安装
-执行命令：java -version如果有java相关信息，说明已经安装。如果没有安装的话，执行命令：yum -y install  java-1.8.0-openjdk– 2.下载elasticsearch安装包
-执行命令：
-wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
+<meta name="twitter:title" content="diskpart的使用">
+<meta name="twitter:description" content="mount a disk to  another disk&amp;gt; diskpart
+&amp;gt; list vol  /*list all volume*/
+&amp;gt; select vol=3
+&amp;gt; remove 
+&amp;gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/
+remove mount&amp;gt; diskpart
+&amp;gt; list vo">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
   
@@ -160,50 +169,34 @@ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20180505elasticsearch" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2019090301" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      elasticsearch的安裝
+      diskpart的使用
     </h1>
   
 
-        <a href="/2018/05/05/20180505elasticsearch/" class="archive-article-date">
-  	<time datetime="2018-05-05T13:58:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
+        <a href="/2019/09/03/2019090301/" class="archive-article-date">
+  	<time datetime="2019-09-03T14:17:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>– 1.检查jdk安装</p>
-<p>执行命令：java -version<br>如果有java相关信息，说明已经安装。<br>如果没有安装的话，执行命令：yum -y install  java-1.8.0-openjdk<br>– 2.下载elasticsearch安装包</p>
-<p>执行命令：</p>
-<pre><code>wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.4/elasticsearch-2.3.4.tar.gz
-</code></pre><p>– 3.解压和配置elasticsearch</p>
-<p>解压执行：tar -zxvf elasticsearch-2.3.4.tar.gz<br>执行：cd elasticsearch-2.3.4 &amp;&amp; cd bin &amp;&amp; ./elasticsearch<br>执行之后，会出现问题提示：</p>
-<pre><code>Exception in thread &quot;main&quot; java.lang.RuntimeException: don&apos;t run elasticsearch as root.
-    at org.elasticsearch.bootstrap.Bootstrap.initializeNatives(Bootstrap.java:93)
-    at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:144)
-    at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:285)
-    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:35)
-    Refer to the log for complete error details. 
-</code></pre><p>– 4.解决办法</p>
-<p>需要创建elasearch用户和用户组<br>创建组： groupadd elasearch<br>创建对应的用户： useradd elasearch -g elasearch -p rootsearch<br>回到elasticsearch-2.3.4的上级目录执行以下命令：<br>chown -R elasearch:elasearch elasticsearch-2.3.4/<br>切换到elasearch用户： su elasearch<br>进入bin目录执行 ：./elasticsearch -d<br>成功后，执行命令： curl localhost:9200,结果如下：</p>
-<pre><code>{
-&quot;name&quot; : &quot;Thog&quot;,
-&quot;cluster_name&quot; : &quot;elasticsearch&quot;,
-&quot;version&quot; : {
-&quot;number&quot; : &quot;2.3.4&quot;,
-&quot;build_hash&quot; : &quot;e455fd0c13dceca8dbbdbb1665d068ae55dabe3f&quot;,
-&quot;build_timestamp&quot; : &quot;2016-06-30T11:24:31Z&quot;,
-&quot;build_snapshot&quot; : false,
-&quot;lucene_version&quot; : &quot;5.5.0&quot;
-},
-&quot;tagline&quot; : &quot;You Know, for Search&quot;
-}
+        <h3 id="mount-a-disk-to-another-disk"><a href="#mount-a-disk-to-another-disk" class="headerlink" title="mount a disk to  another disk"></a>mount a disk to  another disk</h3><pre><code>&gt; diskpart
+&gt; list vol  /*list all volume*/
+&gt; select vol=3
+&gt; remove 
+&gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/
+</code></pre><h3 id="remove-mount"><a href="#remove-mount" class="headerlink" title="remove mount"></a>remove mount</h3><pre><code>&gt; diskpart
+&gt; list vol
+&gt; remove mount=c:\mnt
+&gt; select vol=3
+&gt; assign mount=f:
 </code></pre>
       
 
@@ -283,7 +276,7 @@ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2018/05/05/20180505elasticsearch/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2019/09/03/2019090301/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -297,18 +290,9 @@ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
   
 <nav id="article-nav">
   
-    <a href="/2018/05/06/20180506elasticsearch/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ubuntu搭建elasticsearch和使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/29/20180429/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">互联网+和+互联网的理解</div>
+    <a href="/2019/03/24/2019032402/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot调度任务</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -321,7 +305,7 @@ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20180505elasticsearch" data-title="elasticsearch的安裝" data-url="http://caixw.cn/2018/05/05/20180505elasticsearch/"></div>
+	<div class="ds-thread" data-thread-key="2019090301" data-title="diskpart的使用" data-url="http://caixw.cn/2019/09/03/2019090301/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -343,7 +327,7 @@ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/d">
 
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-20180505elasticsearch" data-title="elasticsearch的安裝" data-url="http://caixw.cn/2018/05/05/20180505elasticsearch/"></div>
+    <div class="ds-thread" data-thread-key="post-2019090301" data-title="diskpart的使用" data-url="http://caixw.cn/2019/09/03/2019090301/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">

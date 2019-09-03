@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-03-24T13:35:45.670Z</updated>
+  <updated>2019-09-03T14:35:31.130Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>diskpart的使用</title>
+    <link href="http://caixw.cn/2019/09/03/2019090301/"/>
+    <id>http://caixw.cn/2019/09/03/2019090301/</id>
+    <published>2019-09-03T14:17:45.000Z</published>
+    <updated>2019-09-03T14:35:31.130Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="mount-a-disk-to-another-disk"><a href="#mount-a-disk-to-another-disk" class="headerlink" title="mount a disk to  another disk"></a>mount a disk to  another disk</h3><pre><code>&gt; diskpart
+&gt; list vol  /*list all volume*/
+&gt; select vol=3
+&gt; remove 
+&gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/
+</code></pre><h3 id="remove-mount"><a href="#remove-mount" class="headerlink" title="remove mount"></a>remove mount</h3><pre><code>&gt; diskpart
+&gt; list vol
+&gt; remove mount=c:\mnt
+&gt; select vol=3
+&gt; assign mount=f:
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;mount-a-disk-to-another-disk&quot;&gt;&lt;a href=&quot;#mount-a-disk-to-another-disk&quot; class=&quot;headerlink&quot; title=&quot;mount a disk to  another disk&quot;&gt;&lt;/a&gt;m
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>springboot调度任务</title>
@@ -68,7 +96,7 @@ public class EnvironmentTestController {
     <link href="http://caixw.cn/2019/03/24/2019032401/"/>
     <id>http://caixw.cn/2019/03/24/2019032401/</id>
     <published>2019-03-24T01:19:11.000Z</published>
-    <updated>2019-03-24T01:41:49.444Z</updated>
+    <updated>2019-03-24T01:41:49.445Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>需要在启动参数里配置如下：</li>
@@ -326,7 +354,7 @@ public class EnvironmentTestController {
     <link href="http://caixw.cn/2018/06/04/20180604/"/>
     <id>http://caixw.cn/2018/06/04/20180604/</id>
     <published>2018-06-04T14:43:16.000Z</published>
-    <updated>2018-06-04T15:07:35.325Z</updated>
+    <updated>2018-06-04T15:07:35.326Z</updated>
     
     <content type="html"><![CDATA[<p>###如果没有初始化的项目，可以通过以下步骤：</p>
 <pre><code>$echo &quot;# kotlinPrimary&quot; &gt;&gt; README.md
@@ -359,7 +387,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2018/05/06/20180506elasticsearch/"/>
     <id>http://caixw.cn/2018/05/06/20180506elasticsearch/</id>
     <published>2018-05-06T06:53:26.000Z</published>
-    <updated>2018-05-06T14:58:21.483Z</updated>
+    <updated>2018-05-06T14:58:21.484Z</updated>
     
     <content type="html"><![CDATA[<p>參考 ：<a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html</a></p>
 ]]></content>
@@ -378,7 +406,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2018/05/05/20180505elasticsearch/"/>
     <id>http://caixw.cn/2018/05/05/20180505elasticsearch/</id>
     <published>2018-05-05T13:58:46.000Z</published>
-    <updated>2018-05-05T14:40:15.010Z</updated>
+    <updated>2018-05-05T14:40:15.011Z</updated>
     
     <content type="html"><![CDATA[<p>– 1.检查jdk安装</p>
 <p>执行命令：java -version<br>如果有java相关信息，说明已经安装。<br>如果没有安装的话，执行命令：yum -y install  java-1.8.0-openjdk<br>– 2.下载elasticsearch安装包</p>
@@ -423,7 +451,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2018/04/29/20180429/"/>
     <id>http://caixw.cn/2018/04/29/20180429/</id>
     <published>2018-04-29T10:34:20.000Z</published>
-    <updated>2018-04-30T14:32:46.092Z</updated>
+    <updated>2018-04-30T14:32:46.093Z</updated>
     
     <content type="html"><![CDATA[<p>近年，“互联网+”成为了一个热门词，涌现出了很多互联网+企业，比如“互联网+零售”成就了淘宝和京东，“互联网+信息”成就了谷歌和百度、“互联网+内容”成就了乐视和优酷。现在“互联网+”已经被提升到了国家战略的高度、国务院也制定了“互联网+”行动计划，催生了各行各业的“互联网+”创新大潮。但是，如今的BATJ等互联网巨头已经非常强大，单一的“互联网+平台”模式很难生存和发展空间；相反，很多传统企业由于有实体和渠道支撑，业务向互联网延伸和模式创新就相对容易很多，因此，“+互联网”也就是“传统企业+互联网”成为了新的方向和潮流。但是传统企业互联网转型存在人才、技术及运营模式等方面的短板和不足，在转型的过程中，会遇到各种问题和挑战；因此需要搭建一个平台，通过这个平台实现互联网转型企业间的“分享、交流、合作”，即让转型成功的典范企业分享成功经验和问题挑战，转型企业之间能够通过这个平台进行更直接的交流和更有效的沟通，通过交流找到彼此之间的业务合作机会，从而促成这些企业之间的跨界合作。</p>
 ]]></content>
@@ -442,7 +470,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2018/04/24/java-compiler-error/"/>
     <id>http://caixw.cn/2018/04/24/java-compiler-error/</id>
     <published>2018-04-24T04:22:17.000Z</published>
-    <updated>2018-04-24T04:55:57.641Z</updated>
+    <updated>2018-04-24T04:55:57.642Z</updated>
     
     <content type="html"><![CDATA[<pre><code>编译项目，报Error:java: Compilation failed: internal java compiler error。
 原因是项目中jdk版本配置不一致，配成一致即可解决问题。
@@ -503,7 +531,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2018/04/23/config-aliyun-ECS/"/>
     <id>http://caixw.cn/2018/04/23/config-aliyun-ECS/</id>
     <published>2018-04-23T05:16:23.000Z</published>
-    <updated>2018-04-23T05:16:24.911Z</updated>
+    <updated>2018-04-23T05:16:24.912Z</updated>
     
     <content type="html"><![CDATA[<h2 id="jdk-配置"><a href="#jdk-配置" class="headerlink" title="jdk 配置"></a>jdk 配置</h2><ul>
 <li>下载jdk 到指定的目录 /temp</li>
@@ -576,7 +604,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2018/04/22/hexo-trouble/"/>
     <id>http://caixw.cn/2018/04/22/hexo-trouble/</id>
     <published>2018-04-22T14:17:50.000Z</published>
-    <updated>2018-04-24T01:50:03.629Z</updated>
+    <updated>2018-04-24T01:50:03.630Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li><p>出现的问题</p>
@@ -630,7 +658,7 @@ $git commit -m &amp;
     <link href="http://caixw.cn/2017/04/16/postFor2017041601/"/>
     <id>http://caixw.cn/2017/04/16/postFor2017041601/</id>
     <published>2017-04-16T11:04:13.000Z</published>
-    <updated>2017-04-16T11:22:56.166Z</updated>
+    <updated>2017-04-16T11:22:56.167Z</updated>
     
     <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="600" height="450" src="//music.163.com/outchain/player?type=0&id=364919830&auto=1&height=430"></iframe>    ]]></content>
     
@@ -663,29 +691,6 @@ $git commit -m &amp;
     
     
       <category term="心得体会" scheme="http://caixw.cn/tags/%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>年轻程序员和大龄程序员</title>
-    <link href="http://caixw.cn/2016/12/21/20161221post1/"/>
-    <id>http://caixw.cn/2016/12/21/20161221post1/</id>
-    <published>2016-12-21T13:49:11.000Z</published>
-    <updated>2016-12-21T13:57:27.697Z</updated>
-    
-    <content type="html"><![CDATA[<p>这个时代很残酷也相对公平，残酷的地方在于世界的变化之快容不得人有片刻懈怠，公平的地方在于：不论你是年轻还是年老，都要靠实力说话。那些被时代抛弃的永远都是跑得比较慢甚至在原地徘徊的人，即所谓工作十年却只有一年的工作经验。</p>
-<p>年轻程序员的优势在于年轻和激情， 大龄程序员的优势在于阅历和经验。所以，年轻程序员不要有跨越年龄阶段的焦虑，大龄程序员也不要觉得年轻人抢了自己的饭碗。每个年龄段都要有自己要解决和面临的问题，认清自己内心真正的需求和渴望，再去寻找适合自己的栖身之欸打怪升级，才是当务之急。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这个时代很残酷也相对公平，残酷的地方在于世界的变化之快容不得人有片刻懈怠，公平的地方在于：不论你是年轻还是年老，都要靠实力说话。那些被时代抛弃的永远都是跑得比较慢甚至在原地徘徊的人，即所谓工作十年却只有一年的工作经验。&lt;/p&gt;
-&lt;p&gt;年轻程序员的优势在于年轻和激情， 大龄程
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
