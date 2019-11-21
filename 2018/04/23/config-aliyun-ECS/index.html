@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
   <title>阿里云ECS服务器java环境搭建 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jdk 配置
-下载jdk 到指定的目录 /temp
-解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java
-执行命令：cd /usr/java/jdk1.8.0_161
-配置环境变量 ，执行 vim /etc/profile
-在/etc/profile末尾加上
-  export JAVA_HOME=/usr/java/jdk1.8.0_">
+  <meta name="description" content="jdk 配置 下载jdk 到指定的目录 /temp 解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java 执行命令：cd /usr/java/jdk1.8.0_161 配置环境变量 ，执行 vim /etc/profile 在/etc/profile末尾加上   export JAVA_HOME=/usr/java/jdk1.8.0_">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里云ECS服务器java环境搭建">
 <meta property="og:url" content="http://caixw.cn/2018/04/23/config-aliyun-ECS/index.html">
 <meta property="og:site_name" content="发现新大陆">
-<meta property="og:description" content="jdk 配置
-下载jdk 到指定的目录 /temp
-解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java
-执行命令：cd /usr/java/jdk1.8.0_161
-配置环境变量 ，执行 vim /etc/profile
-在/etc/profile末尾加上
-  export JAVA_HOME=/usr/java/jdk1.8.0_">
+<meta property="og:description" content="jdk 配置 下载jdk 到指定的目录 /temp 解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java 执行命令：cd /usr/java/jdk1.8.0_161 配置环境变量 ，执行 vim /etc/profile 在/etc/profile末尾加上   export JAVA_HOME=/usr/java/jdk1.8.0_">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://caixw.cn/assets/blogImg/jdk8.jpg">
 <meta property="og:image" content="http://caixw.cn/assets/blogImg/tomcat_port.JPG">
 <meta property="og:image" content="http://caixw.cn/assets/blogImg/add_security_group.JPG">
-<meta property="og:updated_time" content="2018-04-23T05:16:24.912Z">
+<meta property="og:updated_time" content="2018-04-23T05:16:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云ECS服务器java环境搭建">
-<meta name="twitter:description" content="jdk 配置
-下载jdk 到指定的目录 /temp
-解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java
-执行命令：cd /usr/java/jdk1.8.0_161
-配置环境变量 ，执行 vim /etc/profile
-在/etc/profile末尾加上
-  export JAVA_HOME=/usr/java/jdk1.8.0_">
+<meta name="twitter:description" content="jdk 配置 下载jdk 到指定的目录 /temp 解压到指定的目录：tar -zxvf jdk-8u161-linux-x64.tar.gz -C /usr/java 执行命令：cd /usr/java/jdk1.8.0_161 配置环境变量 ，执行 vim /etc/profile 在/etc/profile末尾加上   export JAVA_HOME=/usr/java/jdk1.8.0_">
 <meta name="twitter:image" content="http://caixw.cn/assets/blogImg/jdk8.jpg">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
@@ -46,13 +30,13 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -224,7 +208,7 @@
 <p>点击确定，添加安全组成功后，就可以通过外网ip:9999访问tomcat了。</p>
 <h2 id="mysql安装和配置"><a href="#mysql安装和配置" class="headerlink" title="mysql安装和配置"></a>mysql安装和配置</h2></li>
 <li>检查一下原来是否安装过mysql,执行命令：yum list installed |grep mysql,如果结果为空，说明还没有安装，如果已经安装了，就卸载重新安装。</li>
-<li>下载mysql安装包，执行命令：rpm -ivh <a href="http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm" target="_blank" rel="external">http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</a></li>
+<li>下载mysql安装包，执行命令：rpm -ivh <a href="http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm" target="_blank" rel="noopener">http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</a></li>
 <li>安装mysql,执行命令：yum install -y mysql-server,如果显示 Complete! 说明安装成功。</li>
 <li>设置开机自启动服务：systemctl enable mysqld.service</li>
 <li><p>查看开机自启动是否生效：systemctl |grep mysqld,如果显示如下内容，表示生效了</p>
@@ -235,7 +219,7 @@
 <li>查看mysql的root用户初始化密码：grep ‘temporary password’ /var/log/mysqld.log </li>
 <li>登录mysql Server : mysql -uroot -pXXXXXX</li>
 <li>mysql 登录成功后，修改密码：mysql&gt;set PASSWORD=PASSWORD(‘new password’);</li>
-<li>为root登录开启远程登录：mysql&gt;GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘xxxxx’ WITH GRANT OPTION;</li>
+<li>为root登录开启远程登录：mysql&gt;GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root‘@’%’ IDENTIFIED BY ‘xxxxx’ WITH GRANT OPTION;</li>
 <li>命令立即执行生效：mysql&gt;flush privileges;</li>
 <li>查看mysql服务状态：systemctl status mysqld;</li>
 <li>启动mysql服务：systemctl start mysqld;</li>
@@ -434,7 +418,7 @@
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
     

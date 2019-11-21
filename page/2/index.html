@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
   <title>发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,6 +12,7 @@
 <meta property="og:title" content="发现新大陆">
 <meta property="og:url" content="http://caixw.cn/page/2/index.html">
 <meta property="og:site_name" content="发现新大陆">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发现新大陆">
   
@@ -20,13 +21,13 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -175,7 +176,7 @@ $git commit -m &quot;first commit&quot;
 $git remote add origin git@github.com:williamcai663/$kotlinPrimary.git
 $git push -u origin master
 </code></pre><p>这样就可以把项目推到库中并生成且提交到master</p>
-<p>###如果存在一个库的项目，直接执行如下命令：<br>    $git remote add origin git@github.com:williamcai663/kotlinPrimary.git<br>    $git push -u origin master</p>
+<p>###如果存在一个库的项目，直接执行如下命令：<br>    $git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:williamcai663/kotlinPrimary.git<br>    $git push -u origin master</p>
 <p>###如果想从master上开一个develop分支，可以执行如下：<br>    $git checkout -b develop<br>-b 的作用就是创建并切换到develop分支<br>这个新开的分支并没有关联到远程分支，创建远程分支并提交到远程，执行 git push origin develop<br>这样远程就有了一个分支，并且与远程的分支develop没有关联上，<br>可以通过执行如下命令：</p>
 <pre><code>$git branch --set-upstream-to=origin/develop develop
 </code></pre>
@@ -226,7 +227,7 @@ $git push -u origin master
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>參考 ：<a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html</a></p>
+        <p>參考 ：<a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html</a></p>
 
       
 
@@ -468,7 +469,7 @@ $git push -u origin master
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首次启动的时候，选择license server ，输入下方链接：<br><a href="http://xdouble.cn:8888/" target="_blank" rel="external">http://xdouble.cn:8888/</a><br>点击activate即可</p>
+        <p>首次启动的时候，选择license server ，输入下方链接：<br><a href="http://xdouble.cn:8888/" target="_blank" rel="noopener">http://xdouble.cn:8888/</a><br>点击activate即可</p>
 
       
 
@@ -555,7 +556,7 @@ $git push -u origin master
 <p>点击确定，添加安全组成功后，就可以通过外网ip:9999访问tomcat了。</p>
 <h2 id="mysql安装和配置"><a href="#mysql安装和配置" class="headerlink" title="mysql安装和配置"></a>mysql安装和配置</h2></li>
 <li>检查一下原来是否安装过mysql,执行命令：yum list installed |grep mysql,如果结果为空，说明还没有安装，如果已经安装了，就卸载重新安装。</li>
-<li>下载mysql安装包，执行命令：rpm -ivh <a href="http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm" target="_blank" rel="external">http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</a></li>
+<li>下载mysql安装包，执行命令：rpm -ivh <a href="http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm" target="_blank" rel="noopener">http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm</a></li>
 <li>安装mysql,执行命令：yum install -y mysql-server,如果显示 Complete! 说明安装成功。</li>
 <li>设置开机自启动服务：systemctl enable mysqld.service</li>
 <li><p>查看开机自启动是否生效：systemctl |grep mysqld,如果显示如下内容，表示生效了</p>
@@ -566,7 +567,7 @@ $git push -u origin master
 <li>查看mysql的root用户初始化密码：grep ‘temporary password’ /var/log/mysqld.log </li>
 <li>登录mysql Server : mysql -uroot -pXXXXXX</li>
 <li>mysql 登录成功后，修改密码：mysql&gt;set PASSWORD=PASSWORD(‘new password’);</li>
-<li>为root登录开启远程登录：mysql&gt;GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root’@’%’ IDENTIFIED BY ‘xxxxx’ WITH GRANT OPTION;</li>
+<li>为root登录开启远程登录：mysql&gt;GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root‘@’%’ IDENTIFIED BY ‘xxxxx’ WITH GRANT OPTION;</li>
 <li>命令立即执行生效：mysql&gt;flush privileges;</li>
 <li>查看mysql服务状态：systemctl status mysqld;</li>
 <li>启动mysql服务：systemctl start mysqld;</li>
@@ -632,7 +633,7 @@ $git push -u origin master
 <p> <img src="assets/blogImg/public_key_error.JPG" alt="error"></p>
 </li>
 <li><p>查看用户配置的ssh的public key 是否存在</p>
-<p>  执行命令： ssh -vT git@github.com,结果如下：</p>
+<p>  执行命令： ssh -vT <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>,结果如下：</p>
 <p><img src="assets/blogImg/testkeyfailue.JPG" alt="testkeyfailue"></p>
 <p>  提示 permission denied<br>  进入 cd ~/.ssh,查看没有 id_rsa id_rsa_pub ,所以需要生成public_key。</p>
 </li>
@@ -641,7 +642,7 @@ $git push -u origin master
 </li>
 </ul>
 <p>$ cd ~  #保证当前路径在”~”下</p>
-<p>$ ssh-keygen -t rsa -C “xxxxxx@yy.com”  #建议填写自己真实有效的邮箱地址</p>
+<p>$ ssh-keygen -t rsa -C “<a href="mailto:xxxxxx@yy.com" target="_blank" rel="noopener">xxxxxx@yy.com</a>“  #建议填写自己真实有效的邮箱地址</p>
 <p>Generating public/private rsa key pair.</p>
 <p>Enter file in which to save the key (/c/Users/xxxx_000/.ssh/id_rsa):   #不填直接回车</p>
 <p>Enter passphrase (empty for no passphrase):   #输入密码（可以为空）</p>
@@ -655,7 +656,7 @@ $git push -u origin master
 <ul>
 <li>验证public key 是否生效</li>
 </ul>
-<p>再次执行 $ ssh -vT “xxxxxx@yy.com”,成功了提示 success,效果如下：</p>
+<p>再次执行 $ ssh -vT “<a href="mailto:xxxxxx@yy.com" target="_blank" rel="noopener">xxxxxx@yy.com</a>“,成功了提示 success,效果如下：</p>
 <p> <img src="assets/blogImg/testsuccess.JPG" alt="testsuccess"></p>
 
       
@@ -836,7 +837,7 @@ $git push -u origin master
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
     
