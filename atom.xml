@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-11-22T15:50:42.659Z</updated>
+  <updated>2019-11-22T15:52:38.213Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>2019112201</title>
+    <title>认识spring</title>
     <link href="http://caixw.cn/2019/11/22/2019112201/"/>
     <id>http://caixw.cn/2019/11/22/2019112201/</id>
     <published>2019-11-22T03:40:31.000Z</published>
-    <updated>2019-11-22T15:50:42.659Z</updated>
+    <updated>2019-11-22T15:52:38.213Z</updated>
     
     <content type="html"><![CDATA[<h3 id="spring的发展"><a href="#spring的发展" class="headerlink" title="spring的发展"></a>spring的发展</h3><p>spring 作为java服务器端开发的事实标准，有着巨大的优势，他对标的是EJB,为开发企业级应用提供一站式解决方案，核心思想是对象之间的依赖管理由容器来管理，为此其核心技术是bean 容器，ioc和aop。为了简化对spring 的使用，springboot ,它简化了配置，只需很少的处理就可以运行微服务，达到开箱即用的效果。为了更好的开发分布式应用，spring cloud应运而生，它集合了注册和发现，服务熔断和负载均衡等核心组件；万物互联等时代开始来临，Spring cloud data flow 目标是connect anything。</p>]]></content>
     
