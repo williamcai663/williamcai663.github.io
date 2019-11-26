@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-11-22T15:52:38.213Z</updated>
+  <updated>2019-11-26T15:42:45.916Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>20191126</title>
+    <link href="http://caixw.cn/2019/11/26/20191126/"/>
+    <id>http://caixw.cn/2019/11/26/20191126/</id>
+    <published>2019-11-26T15:36:47.000Z</published>
+    <updated>2019-11-26T15:42:45.916Z</updated>
+    
+    <content type="html"><![CDATA[<p>##关于Linux的定时更新时间配置<br>1、直接命令：crontab -e<br>2、vim /etc/crontab<br>加入配置：<em>/1 </em> <em> </em> * /usr/sbin/ntpdate 0.asia.pool.ntp.org<br>3、为了开机自启动，命令：vim /etc/rc.d/rc.local 加入以上命令</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;##关于Linux的定时更新时间配置&lt;br&gt;1、直接命令：crontab -e&lt;br&gt;2、vim /etc/crontab&lt;br&gt;加入配置：&lt;em&gt;/1 &lt;/em&gt; &lt;em&gt; &lt;/em&gt; * /usr/sbin/ntpdate 0.asia.pool.ntp.org&lt;br&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>认识spring</title>
@@ -464,29 +485,6 @@ $git commit -m &amp;
 &lt;li&gt;&lt;p&gt;出现的问题&lt;/p&gt;
 &lt;p&gt;  hexo deploy ,提示Error: Permission denied (publikey),如下图：&lt;/p&gt;
 &lt;p&gt; &lt;img src=&quot;assets/blogImg/public_key_error.JPG&quot; al
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>放松心情的时候，可以听听</title>
-    <link href="http://caixw.cn/2017/04/16/postFor2017041601/"/>
-    <id>http://caixw.cn/2017/04/16/postFor2017041601/</id>
-    <published>2017-04-16T11:04:13.000Z</published>
-    <updated>2017-04-16T11:22:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="600" height="450" src="//music.163.com/outchain/player?type=0&id=364919830&auto=1&height=430"></iframe>    ]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;600&quot; height=&quot;450&quot; src=&quot;//music.163.com/outchain/player?type=0&amp;id
       
     
     </summary>
