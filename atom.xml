@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-11-26T15:48:58.079Z</updated>
+  <updated>2019-11-27T06:32:22.557Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://caixw.cn/2019/11/26/20191126/"/>
     <id>http://caixw.cn/2019/11/26/20191126/</id>
     <published>2019-11-26T15:36:47.000Z</published>
-    <updated>2019-11-26T15:48:58.079Z</updated>
+    <updated>2019-11-27T06:32:22.557Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="关于Linux的定时更新时间配置"><a href="#关于Linux的定时更新时间配置" class="headerlink" title="关于Linux的定时更新时间配置"></a>关于Linux的定时更新时间配置</h3><p>1、直接命令：crontab -e<br>2、vim /etc/crontab<br>加入配置：<code>*/1 * * * *  /usr/sbin/ntpdate 0.asia.pool.ntp.org</code><br>3、为了开机自启动，命令：vim /etc/rc.d/rc.local 加入以上命令</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="关于Linux的定时更新时间配置"><a href="#关于Linux的定时更新时间配置" class="headerlink" title="关于Linux的定时更新时间配置"></a>关于Linux的定时更新时间配置</h3><p>1、直接命令：crontab -e====<br>2、vim /etc/crontab<br>加入配置：<code>*/1 * * * *  /usr/sbin/ntpdate 0.asia.pool.ntp.org</code><br>3、为了开机自启动，命令：vim /etc/rc.d/rc.local 加入以上命令</p>]]></content>
     
     <summary type="html">
     
