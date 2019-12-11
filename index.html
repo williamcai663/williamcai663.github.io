@@ -150,6 +150,63 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20191211" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/11/20191211/">https的简单使用</a>
+    </h1>
+  
+
+        <a href="/2019/12/11/20191211/" class="archive-article-date">
+  	<time datetime="2019-12-11T11:22:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-11</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、https与http的区别<br>https相比http 多了一安全Security层，双方的传输通过对称加密传输；传输的数据不被窃取和篡改；</p>
+<p>2、https的实现原理</p>
+<p>(1) 客户向服务端发送一个空的https请求；服务端返回CA证书（包含有公钥）；<br>（2）客户端验证CA证书的有效性，如果有效，执行下一步；<br>（3）客户端生成一个随机数；通过公钥加密这个随机数，发送给服务端；<br>（4）服务端通过公钥对应的私钥解密获取随机数；<br>（5）服务端和客户端通过这个随机数的对称加密传输数据；</p>
+<p>3、由http 切换到https</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/11/20191211/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2019120201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -687,66 +744,6 @@ public  void printCount(){
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/02/12/20190212love/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-20190211love" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/11/20190211love/">读《深入理解Java虚拟机有感》之1</a>
-    </h1>
-  
-
-        <a href="/2019/02/11/20190211love/" class="archive-article-date">
-  	<time datetime="2019-02-11T13:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>理解java虚拟机的理由</li>
-</ul>
-<p>   (1) 理解jvm运行原理，可以编写高质量的代码。</p>
-<p>   (2) jvm 接管了内存，好处是可以不用担心内存释放的问题，但是出现内存泄漏的情况，就必须<br>   深入理解jvm,才能更好的定位和解决问题。</p>
-<p>   (3) jvm 未来朝着模块化和支持多核方向发展，编写lamda函数式编程可以更好的支持多核，理解jvm<br>   有助于知其然，知其所以然。</p>
-<p>   (4) 目前显卡的算术运算能力，并行能力已经远远超过了CPU，在图形领域以外发掘显卡的潜力是近几年计算机发展的方向之一。Java的项目Sumatra就是提供GPU和APU运算能力的工具，以后她将直接提供java语言层面的API。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/11/20190211love/">展开全文 >></a>
         </p>
       
 
