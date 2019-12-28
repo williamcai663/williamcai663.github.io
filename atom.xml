@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2019-12-14T02:34:55.120Z</updated>
+  <updated>2019-12-28T09:43:50.027Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析</title>
+    <link href="http://caixw.cn/2019/12/28/2019122801/"/>
+    <id>http://caixw.cn/2019/12/28/2019122801/</id>
+    <published>2019-12-28T09:17:09.000Z</published>
+    <updated>2019-12-28T09:43:50.027Z</updated>
+    
+    <content type="html"><![CDATA[<p>启动微服务的时候，突然报这个服务，错误如下：</p><p><code>org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eurekaAutoServiceRegistration’: Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)</code><br>有如下原因如下：<br> (1) 同一个服务重复启动了；<br>（2）端口被其他应用占用了；</p><p>解决办法：<br>（1）参考<a href="http://www.itersblog.com/archives/29.html；" target="_blank" rel="noopener">http://www.itersblog.com/archives/29.html；</a><br>（2）<a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/1952#issuecomment-355487342" target="_blank" rel="noopener">https://github.com/spring-cloud/spring-cloud-netflix/issues/1952#issuecomment-355487342</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;启动微服务的时候，突然报这个服务，错误如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eur
+      
+    
+    </summary>
+    
+    
+      <category term="技术研究" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019121601</title>
+    <link href="http://caixw.cn/2019/12/16/2019121601/"/>
+    <id>http://caixw.cn/2019/12/16/2019121601/</id>
+    <published>2019-12-16T03:19:41.000Z</published>
+    <updated>2019-12-16T14:05:27.479Z</updated>
+    
+    <content type="html"><![CDATA[<p>项目管理协会(PMI)定制了项目管理知识体系的图表和词汇标准；<br>知识体系 (BOK) 包括已发布和未发布的材料，这一知识体系仍在不断演变发展；<br>本《PMBOK®指南》 收录项目管理知识体系中被普遍认可为“良好实践”的那一部分；<br>本指南基于《项目管理标准》；<br>本指南的范围仅限于项目管理领域，而不涉及任何项目组合、项目集和多个项目的领域；<br>通用词汇是专业学科的基本要素。<br>全球项目管理业界定义的最重要的价值 观是责任、尊重、公正和诚实，这是《道德与专业行为规范》的最重要的规范；<br>项目是为创造独特的产品、服务或成果而进行的临时性工作。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;项目管理协会(PMI)定制了项目管理知识体系的图表和词汇标准；&lt;br&gt;知识体系 (BOK) 包括已发布和未发布的材料，这一知识体系仍在不断演变发展；&lt;br&gt;本《PMBOK®指南》 收录项目管理知识体系中被普遍认可为“良好实践”的那一部分；&lt;br&gt;本指南基于《项目管理标准》；
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>https的简单使用</title>
@@ -441,55 +488,6 @@ $git commit -m &amp;
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>compiler error 解决办法</title>
-    <link href="http://caixw.cn/2018/04/24/java-compiler-error/"/>
-    <id>http://caixw.cn/2018/04/24/java-compiler-error/</id>
-    <published>2018-04-24T04:22:17.000Z</published>
-    <updated>2018-04-24T04:55:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<pre><code>编译项目，报Error:java: Compilation failed: internal java compiler error。原因是项目中jdk版本配置不一致，配成一致即可解决问题。</code></pre><ul><li><p>查看项目的jdk（Ctrl+Alt+shift+S）</p><p>  File -&gt;Project Structure-&gt;Project Settings -&gt;Project </p><p>  <img src="/assets/blogImg/project_jdk.JPG" alt="project_jdk"></p></li><li><p>查看工程的jdk（Ctrl+Alt+shift+S）</p><p>  File -&gt;Project Structure-&gt;Project Settings -&gt;module </p><p>  <img src="/assets/blogImg/module_jdk.JPG" alt="module_jdk"></p></li><li><p>查看idea中java配置（Ctrl+Alt+S）</p><p>  File -&gt;Settings&gt;Build,Execution,Deployment&gt;Compiler&gt;Java Compiler </p><p>  <img src="/assets/blogImg/idea_jdk.jpg" alt="idea_jdk"></p><p>  报错的原因就在这里，idea软件环境中Java版本的配置和之前项目的配置不一样，设置成一样的即可解决该问题。</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;pre&gt;&lt;code&gt;编译项目，报Error:java: Compilation failed: internal java compiler error。
-原因是项目中jdk版本配置不一致，配成一致即可解决问题。
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;查看项目的jd
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>intellij idea 2018 激活</title>
-    <link href="http://caixw.cn/2018/04/24/active-idea2018/"/>
-    <id>http://caixw.cn/2018/04/24/active-idea2018/</id>
-    <published>2018-04-24T04:18:22.000Z</published>
-    <updated>2018-04-24T04:20:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>首次启动的时候，选择license server ，输入下方链接：<br><a href="http://xdouble.cn:8888/" target="_blank" rel="noopener">http://xdouble.cn:8888/</a><br>点击activate即可</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;首次启动的时候，选择license server ，输入下方链接：&lt;br&gt;&lt;a href=&quot;http://xdouble.cn:8888/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://xdouble.cn:8888/&lt;/a&gt;&lt;br&gt;点击ac
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

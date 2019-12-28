@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
-  <title>读《从0开始学架构》有感-开篇 | 发现新大陆</title>
+  <title>Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每个人程序员都有一个架构师梦想，但是梦想是美好的，现实却是残酷的。 架构没有想象中的简单，它有几个特性：1、架构设计的思维和程序设计的思维差异很大 架构设计的关键思维是判断和取舍，程序设计的关键思维是逻辑与实现。要从程序员转变成架构师，就必须转变思维；同理穷人和富人的思维也不同，要成为富人必须有富人的思维。  2、架构设计没有体系化的培训和训练机制 大学几乎没有架构设计的相关课程，也没有体系化的相">
+  <meta name="description" content="启动微服务的时候，突然报这个服务，错误如下： org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eurekaAutoServiceRegistration’: Singleton bean creation not allowed while singl">
+<meta name="keywords" content="技术研究">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读《从0开始学架构》有感-开篇">
-<meta property="og:url" content="http://caixw.cn/2018/06/24/2018062401/index.html">
+<meta property="og:title" content="Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析">
+<meta property="og:url" content="http://caixw.cn/2019/12/28/2019122801/index.html">
 <meta property="og:site_name" content="发现新大陆">
-<meta property="og:description" content="每个人程序员都有一个架构师梦想，但是梦想是美好的，现实却是残酷的。 架构没有想象中的简单，它有几个特性：1、架构设计的思维和程序设计的思维差异很大 架构设计的关键思维是判断和取舍，程序设计的关键思维是逻辑与实现。要从程序员转变成架构师，就必须转变思维；同理穷人和富人的思维也不同，要成为富人必须有富人的思维。  2、架构设计没有体系化的培训和训练机制 大学几乎没有架构设计的相关课程，也没有体系化的相">
+<meta property="og:description" content="启动微服务的时候，突然报这个服务，错误如下： org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eurekaAutoServiceRegistration’: Singleton bean creation not allowed while singl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-24T08:49:04.000Z">
+<meta property="og:updated_time" content="2019-12-28T09:43:50.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读《从0开始学架构》有感-开篇">
-<meta name="twitter:description" content="每个人程序员都有一个架构师梦想，但是梦想是美好的，现实却是残酷的。 架构没有想象中的简单，它有几个特性：1、架构设计的思维和程序设计的思维差异很大 架构设计的关键思维是判断和取舍，程序设计的关键思维是逻辑与实现。要从程序员转变成架构师，就必须转变思维；同理穷人和富人的思维也不同，要成为富人必须有富人的思维。  2、架构设计没有体系化的培训和训练机制 大学几乎没有架构设计的相关课程，也没有体系化的相">
+<meta name="twitter:title" content="Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析">
+<meta name="twitter:description" content="启动微服务的时候，突然报这个服务，错误如下： org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eurekaAutoServiceRegistration’: Singleton bean creation not allowed while singl">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
   
@@ -152,41 +153,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2018062401" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2019122801" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      读《从0开始学架构》有感-开篇
+      Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析
     </h1>
   
 
-        <a href="/2018/06/24/2018062401/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:50:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+        <a href="/2019/12/28/2019122801/" class="archive-article-date">
+  	<time datetime="2019-12-28T09:17:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每个人程序员都有一个架构师梦想，但是梦想是美好的，现实却是残酷的。</p>
-<h1 id="架构没有想象中的简单，它有几个特性："><a href="#架构没有想象中的简单，它有几个特性：" class="headerlink" title="架构没有想象中的简单，它有几个特性："></a>架构没有想象中的简单，它有几个特性：</h1><h2 id="1、架构设计的思维和程序设计的思维差异很大"><a href="#1、架构设计的思维和程序设计的思维差异很大" class="headerlink" title="1、架构设计的思维和程序设计的思维差异很大"></a>1、架构设计的思维和程序设计的思维差异很大</h2><ul>
-<li>架构设计的关键思维是判断和取舍，程序设计的关键思维是逻辑与实现。要从程序员转变成架构师，就必须转变思维；同理穷人和富人的思维也不同，要成为富人必须有富人的思维。</li>
-</ul>
-<h2 id="2、架构设计没有体系化的培训和训练机制"><a href="#2、架构设计没有体系化的培训和训练机制" class="headerlink" title="2、架构设计没有体系化的培训和训练机制"></a>2、架构设计没有体系化的培训和训练机制</h2><ul>
-<li>大学几乎没有架构设计的相关课程，也没有体系化的相关书籍，只能依靠自己摸索，效率低，容易采坑。</li>
-</ul>
-<h2 id="3、程序员对架构设计存在很大误区"><a href="#3、程序员对架构设计存在很大误区" class="headerlink" title="3、程序员对架构设计存在很大误区"></a>3、程序员对架构设计存在很大误区</h2><ul>
-<li>要成为架构师必须要有很强的技术天分；架构师要有很强的创造力；架构设计必须要高大上才能体现架构师设计能力；架构一定要具备高可用、高性能…这些似似而非的误区。</li>
-</ul>
-<h1 id="通过学习《从0开始学习架构》，我可以收获："><a href="#通过学习《从0开始学习架构》，我可以收获：" class="headerlink" title="通过学习《从0开始学习架构》，我可以收获："></a>通过学习《从0开始学习架构》，我可以收获：</h1><ul>
-<li>清楚的理解架构设计的本质、概念、目的，避免架构师在实践过程中把握不住重点、分不清主次，眉毛胡子一把抓，导致架构设计的四不像。</li>
-<li>掌握架构设计的通用原则，无论何种业务或技术，架构师在判断和选择的时候有一套方法论可以参考，避免架构设计举棋不定，或者拍脑袋式设计。</li>
-<li>掌握标准的架构设计流程，即使是刚开始做技术架构，也能够按照架构一步一步设计出合适的架构，避免某些步骤缺失导致错误的架构设计。</li>
-<li>深入理解已有的架构模式，做到架构特点快速挑选合适的模式完成架构设计，或者在已有的模式上进行创新，或者将已有的模式组合出新的架构。</li>
-<li>掌握架构演进和开源系统使用的一些技巧。</li>
-</ul>
+        <p>启动微服务的时候，突然报这个服务，错误如下：</p>
+<p><code>org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eurekaAutoServiceRegistration’: Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)</code><br>有如下原因如下：<br> (1) 同一个服务重复启动了；<br>（2）端口被其他应用占用了；</p>
+<p>解决办法：<br>（1）参考<a href="http://www.itersblog.com/archives/29.html；" target="_blank" rel="noopener">http://www.itersblog.com/archives/29.html；</a><br>（2）<a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/1952#issuecomment-355487342" target="_blank" rel="noopener">https://github.com/spring-cloud/spring-cloud-netflix/issues/1952#issuecomment-355487342</a></p>
 
       
 
@@ -216,6 +203,11 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术研究/">技术研究</a></li></ul>
+	</div>
+
       
 
       
@@ -266,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2018/06/24/2018062401/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2019/12/28/2019122801/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,18 +272,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/10/jingdianlaogefor20190110/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          经典老歌，久听不厌
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/06/17/201806171029/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">分库分表总结</div>
+    <a href="/2019/12/16/2019121601/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2019121601</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -304,7 +287,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2018062401" data-title="读《从0开始学架构》有感-开篇" data-url="http://caixw.cn/2018/06/24/2018062401/"></div>
+	<div class="ds-thread" data-thread-key="2019122801" data-title="Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析" data-url="http://caixw.cn/2019/12/28/2019122801/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -326,7 +309,7 @@
 
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-2018062401" data-title="读《从0开始学架构》有感-开篇" data-url="http://caixw.cn/2018/06/24/2018062401/"></div>
+    <div class="ds-thread" data-thread-key="post-2019122801" data-title="Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析" data-url="http://caixw.cn/2019/12/28/2019122801/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
