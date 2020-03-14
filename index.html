@@ -150,6 +150,61 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020031401" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/14/2020031401/">linux遇到的问题总结</a>
+    </h1>
+  
+
+        <a href="/2020/03/14/2020031401/" class="archive-article-date">
+  	<time datetime="2020-03-14T00:56:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied"><a href="#1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied" class="headerlink" title="1、解决Nginx的connect() to 127.0.0.1:8080 failed (13: Permission denied)"></a>1、解决Nginx的connect() to 127.0.0.1:8080 failed (13: Permission denied)</h3><p>  nginx 默认端口是8080，selinux安全默认是enforcing,所以关闭掉就ok了</p>
+<h3 id="2、服务器内存占用过高的问题排查"><a href="#2、服务器内存占用过高的问题排查" class="headerlink" title="2、服务器内存占用过高的问题排查"></a>2、服务器内存占用过高的问题排查</h3><p>   (1).用top 命令查看占用资源最多PID(进程)：<br>   (2).再用 top -H -p  1000 命令查看在这个进程中，消耗 cpu 最多 的线程，如 1003；<br>   (3).最后使用 jstack 1000 &gt; dump_file 把这个进程的堆栈信息 dump 到文件中，<br>   (4).打开 dump_file，找到 id 为1003的线程（要转化为16进制），就能发现是哪个方法占用了 cpu，分析自己的    代码;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术珠玑/">技术珠玑</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/14/2020031401/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-20200222" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -808,76 +863,6 @@ location / {
 
 
   
-    <article id="post-2019032402" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/24/2019032402/">springboot调度任务</a>
-    </h1>
-  
-
-        <a href="/2019/03/24/2019032402/" class="archive-article-date">
-  	<time datetime="2019-03-24T08:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-24</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>基于注解配置</li>
-</ul>
-<p>-</p>
-<pre><code>@EnableScheduling  开启调度
-@EnableAsync       开启异步线程
-public class EnvironmentTestController {
-
-/@Scheduled(cron = &quot;*/5 * * * * ?&quot;) 单位为毫秒数
-@Scheduled(fixedRate = 5000) 可以设置固定间隔毫秒数
-@Async        开启多个任务的时候，多个线程处理
-public  void printCount(){
-    System.out.println(Thread.currentThread().getName());
-    //System.out.println(&quot;Count:&quot;+Count);
-}
-
-}
-</code></pre><ul>
-<li>cron 表达式</li>
-</ul>
-<p>Cron表达式参数分别表示：</p>
-<p>秒（0~59） 例如0/5表示从零开始，每隔5秒<br>分（0~59）<br>时（0~23）<br>日（0~31）的某天，需计算<br>月（0~11）<br>周几（ 可填1-7 或 SUN/MON/TUE/WED/THU/FRI/SAT）<br><em>表示任意<br>？表示不确定<br>n/m 表示从n开始，每隔m<br>@Scheduled：除了支持灵活的参数表达式cron之外，还支持简单的延时操作，例如 fixedDelay ，fixedRate 填写相应的毫秒数即可。<br>每隔一分钟： </em> 0/1 <em> </em> * ？</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/24/2019032402/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -941,6 +926,10 @@ public  void printCount(){
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">技术珠玑</a>
               </li>
              
               <li class="article-tag-list-item">
