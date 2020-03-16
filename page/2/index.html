@@ -150,6 +150,64 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019090301" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/03/2019090301/">diskpart的使用</a>
+    </h1>
+  
+
+        <a href="/2019/09/03/2019090301/" class="archive-article-date">
+  	<time datetime="2019-09-03T14:17:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="mount-a-disk-to-another-disk"><a href="#mount-a-disk-to-another-disk" class="headerlink" title="mount a disk to  another disk"></a>mount a disk to  another disk</h3><pre><code>&gt; diskpart
+&gt; list vol  /*list all volume*/
+&gt; select vol=3
+&gt; remove 
+&gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/
+</code></pre><h3 id="remove-mount"><a href="#remove-mount" class="headerlink" title="remove mount"></a>remove mount</h3><pre><code>&gt; diskpart
+&gt; list vol
+&gt; remove mount=c:\mnt
+&gt; select vol=3
+&gt; assign mount=f:
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/03/2019090301/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2019032402" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -721,65 +779,6 @@ public  void printCount(){
 
 
   
-    <article id="post-20180604" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/04/20180604/">Git的简单使用</a>
-    </h1>
-  
-
-        <a href="/2018/06/04/20180604/" class="archive-article-date">
-  	<time datetime="2018-06-04T14:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###如果没有初始化的项目，可以通过以下步骤：</p>
-<pre><code>$echo &quot;# kotlinPrimary&quot; &gt;&gt; README.md
-$git init
-$git add README.md
-$git commit -m &quot;first commit&quot;
-$git remote add origin git@github.com:williamcai663/$kotlinPrimary.git
-$git push -u origin master
-</code></pre><p>这样就可以把项目推到库中并生成且提交到master</p>
-<p>###如果存在一个库的项目，直接执行如下命令：<br>    $git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:williamcai663/kotlinPrimary.git<br>    $git push -u origin master</p>
-<p>###如果想从master上开一个develop分支，可以执行如下：<br>    $git checkout -b develop<br>-b 的作用就是创建并切换到develop分支<br>这个新开的分支并没有关联到远程分支，创建远程分支并提交到远程，执行 git push origin develop<br>这样远程就有了一个分支，并且与远程的分支develop没有关联上，<br>可以通过执行如下命令：</p>
-<pre><code>$git branch --set-upstream-to=origin/develop develop
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/04/20180604/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -846,15 +845,15 @@ $git push -u origin master
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">技术珠玑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">感悟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">技术珠玑</a>
               </li>
              
               <li class="article-tag-list-item">

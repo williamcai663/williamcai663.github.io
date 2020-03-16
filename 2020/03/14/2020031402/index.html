@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
-  <title>Archives: 2018/6 | 发现新大陆</title>
+  <title>springcloud之feign详解 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="发现新大陆">
-<meta property="og:url" content="http://caixw.cn/archives/2018/06/index.html">
+  <meta name="description" content="1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER 可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。 在SpringCloud中,有两种调用服务时客户端的负载均衡策略,一个是Ribbon,一个是Feign; (1)Ribbon是一个基于Http端的负载均衡,通过在Configuration中配置Rest">
+<meta name="keywords" content="技术珠玑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springcloud之feign详解">
+<meta property="og:url" content="http://caixw.cn/2020/03/14/2020031402/index.html">
 <meta property="og:site_name" content="发现新大陆">
+<meta property="og:description" content="1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER 可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。 在SpringCloud中,有两种调用服务时客户端的负载均衡策略,一个是Ribbon,一个是Feign; (1)Ribbon是一个基于Http端的负载均衡,通过在Configuration中配置Rest">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-16T01:03:46.835Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="发现新大陆">
+<meta name="twitter:title" content="springcloud之feign详解">
+<meta name="twitter:description" content="1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER 可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。 在SpringCloud中,有两种调用服务时客户端的负载均衡策略,一个是Ribbon,一个是Feign; (1)Ribbon是一个基于Http端的负载均衡,通过在Configuration中配置Rest">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
   
@@ -148,104 +153,193 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2020031402" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      springcloud之feign详解
+    </h1>
+  
+
+        <a href="/2020/03/14/2020031402/" class="archive-article-date">
+  	<time datetime="2020-03-14T06:57:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER</p>
+<p>可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。</p>
+<p>在SpringCloud中,有两种调用服务时客户端的负载均衡策略,一个是Ribbon,一个是Feign;</p>
+<p>(1)Ribbon是一个基于Http端的负载均衡,通过在Configuration中配置RestTemplate来进行调用,可以自定义负载均衡的方式。</p>
+<p>(2)Feign是一个通过本地接口的形式来进行调用服务的,其中Feign中默认引入了Ribbon,在线上开发中,我还是比较倾向用Feign，因为Feign中以接口的形式进行调用服务,看起来简洁,而且Feign中还可以增加熔断器,来进行服务的熔断和降级,防止服务调用中的服务的雪崩</p>
+<p>2、Feign的日志配置<br>（1）在application.yml</p>
+<pre><code>logging.level.xxx.xxx.xxxClient=DEBUG;
+</code></pre><p> (2) 需要配置Level bean</p>
+<pre><code>  @Bean
+public Logger.Level feignLevel() {
+    return Logger.Level.FULL;
+}
+</code></pre><p>(3) 配置文件需要指定httpClient</p>
+<pre><code>feign:
+httpclient:
+  enabled: true
+</code></pre><p>3、使用日志最好的方式<br>   lombok的@Slf4j注解后，直接log.info就ok了 </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/24/2018062401/" class="archive-article-date">
-  	<time datetime="2018-06-24T07:50:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/24/2018062401/">读《从0开始学架构》有感-开篇</a>
-    </h1>
-  
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术珠玑/">技术珠玑</a></li></ul>
+	</div>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2020/03/14/2020031402/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/17/201806171029/" class="archive-article-date">
-  	<time datetime="2018-06-17T02:29:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/17/201806171029/">分库分表总结</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/14/2020031401/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux遇到的问题总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/04/20180604/" class="archive-article-date">
-  	<time datetime="2018-06-04T14:43:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/04/20180604/">Git的简单使用</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
 
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2020031402" data-title="springcloud之feign详解" data-url="http://caixw.cn/2020/03/14/2020031402/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-2020031402" data-title="springcloud之feign详解" data-url="http://caixw.cn/2020/03/14/2020031402/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'williamcai663'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
 
           </div>
         </div>
@@ -267,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

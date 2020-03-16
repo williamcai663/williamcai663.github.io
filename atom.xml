@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-03-14T01:30:37.374Z</updated>
+  <updated>2020-03-16T01:03:46.835Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>springcloud之feign详解</title>
+    <link href="http://caixw.cn/2020/03/14/2020031402/"/>
+    <id>http://caixw.cn/2020/03/14/2020031402/</id>
+    <published>2020-03-14T06:57:23.000Z</published>
+    <updated>2020-03-16T01:03:46.835Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER</p><p>可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。</p><p>在SpringCloud中,有两种调用服务时客户端的负载均衡策略,一个是Ribbon,一个是Feign;</p><p>(1)Ribbon是一个基于Http端的负载均衡,通过在Configuration中配置RestTemplate来进行调用,可以自定义负载均衡的方式。</p><p>(2)Feign是一个通过本地接口的形式来进行调用服务的,其中Feign中默认引入了Ribbon,在线上开发中,我还是比较倾向用Feign，因为Feign中以接口的形式进行调用服务,看起来简洁,而且Feign中还可以增加熔断器,来进行服务的熔断和降级,防止服务调用中的服务的雪崩</p><p>2、Feign的日志配置<br>（1）在application.yml</p><pre><code>logging.level.xxx.xxx.xxxClient=DEBUG;</code></pre><p> (2) 需要配置Level bean</p><pre><code>  @Beanpublic Logger.Level feignLevel() {    return Logger.Level.FULL;}</code></pre><p>(3) 配置文件需要指定httpClient</p><pre><code>feign:httpclient:  enabled: true</code></pre><p>3、使用日志最好的方式<br>   lombok的@Slf4j注解后，直接log.info就ok了 </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER&lt;/p&gt;
+&lt;p&gt;可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。&lt;/p&gt;
+&lt;p&gt;在SpringCloud中,有两种调用服务时客户
+      
+    
+    </summary>
+    
+    
+      <category term="技术珠玑" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF%E7%8F%A0%E7%8E%91/"/>
+    
+  </entry>
   
   <entry>
     <title>linux遇到的问题总结</title>
@@ -468,31 +493,6 @@ public class EnvironmentTestController {
       
       
         &lt;h2 id=&quot;为什么要分库分表&quot;&gt;&lt;a href=&quot;#为什么要分库分表&quot; class=&quot;headerlink&quot; title=&quot;为什么要分库分表&quot;&gt;&lt;/a&gt;为什么要分库分表&lt;/h2&gt;&lt;p&gt;当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Git的简单使用</title>
-    <link href="http://caixw.cn/2018/06/04/20180604/"/>
-    <id>http://caixw.cn/2018/06/04/20180604/</id>
-    <published>2018-06-04T14:43:16.000Z</published>
-    <updated>2018-06-04T15:07:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>###如果没有初始化的项目，可以通过以下步骤：</p><pre><code>$echo &quot;# kotlinPrimary&quot; &gt;&gt; README.md$git init$git add README.md$git commit -m &quot;first commit&quot;$git remote add origin git@github.com:williamcai663/$kotlinPrimary.git$git push -u origin master</code></pre><p>这样就可以把项目推到库中并生成且提交到master</p><p>###如果存在一个库的项目，直接执行如下命令：<br>    $git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:williamcai663/kotlinPrimary.git<br>    $git push -u origin master</p><p>###如果想从master上开一个develop分支，可以执行如下：<br>    $git checkout -b develop<br>-b 的作用就是创建并切换到develop分支<br>这个新开的分支并没有关联到远程分支，创建远程分支并提交到远程，执行 git push origin develop<br>这样远程就有了一个分支，并且与远程的分支develop没有关联上，<br>可以通过执行如下命令：</p><pre><code>$git branch --set-upstream-to=origin/develop develop</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;###如果没有初始化的项目，可以通过以下步骤：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$echo &amp;quot;# kotlinPrimary&amp;quot; &amp;gt;&amp;gt; README.md
-$git init
-$git add README.md
-$git commit -m &amp;
       
     
     </summary>
