@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-03-16T01:03:46.835Z</updated>
+  <updated>2020-03-19T14:31:38.806Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx的proxy_temp目录权限问题</title>
+    <link href="http://caixw.cn/2020/03/19/20200319/"/>
+    <id>http://caixw.cn/2020/03/19/20200319/</id>
+    <published>2020-03-19T14:20:12.000Z</published>
+    <updated>2020-03-19T14:31:38.806Z</updated>
+    
+    <content type="html"><![CDATA[<p>且看下面是我这MYPM配的nginx反向代理</p><pre><code>location /iot {        root /home/mypmcc/mypm20100914;                   index  index.jhtml index.html login_page.jhtml;        proxy_set_header X-Real-IP $remote_addr;        proxy_set_header   Host $host;        proxy_pass http://127.0.0.1:8080;        client_max_body_size     100m;        client_body_buffer_size  128k;        proxy_connect_timeout    600;        proxy_read_timeout       600;        proxy_send_timeout       6000;        proxy_buffer_size        32k;        proxy_buffers            4 64k;        proxy_busy_buffers_size 128k;        proxy_temp_file_write_size 512k;      }</code></pre><p>   nginx 反向代理参数说明</p><pre><code>proxy_connect_timeout 600;              #nginx跟后端服务器连接超时时间(代理连接超时)proxy_read_timeout    600;              #连接成功后，后端服务器响应时间(代理接收超时)proxy_send_timeout    600;              #后端服务器数据回传时间(代理发送超时)proxy_buffer_size     32k;              #设置代理服务器（nginx）保存用户头信息的缓冲区大小proxy_buffers         4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置proxy_busy_buffers_size  64k;           #高负荷下缓冲大小（proxy_buffers*2）proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这个值，将从upstream服务器传</code></pre><p>   问题就出在proxy_temp_file_write_size上，当你的文件超过该参数设置的大小时，nginx会先将文件写入临时目录(缺省为nginx安装目下/proxy_temp目录),缺省nginx是以nobody身份启动的，用ls -al 命令查看proxy_temp目录 nobody是proxy_temp目录的所有者，怪了那为什么没权限呢，接下来我查看proxy_temp的父目录既nginx安装目录。发现nobody竞然没权限，怪不得会出上面的问题然后设置任何人都可以写 proxy_temp目录，再重启示nginx解决;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;且看下面是我这MYPM配的nginx反向代理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;location /iot {
+        root /home/mypmcc/mypm20100914;           
+        index  index.jhtml index
+      
+    
+    </summary>
+    
+    
+      <category term="技术珠玑" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF%E7%8F%A0%E7%8E%91/"/>
+    
+  </entry>
   
   <entry>
     <title>springcloud之feign详解</title>
@@ -472,27 +498,6 @@ public class EnvironmentTestController {
       
         &lt;p&gt;每个人程序员都有一个架构师梦想，但是梦想是美好的，现实却是残酷的。&lt;/p&gt;
 &lt;h1 id=&quot;架构没有想象中的简单，它有几个特性：&quot;&gt;&lt;a href=&quot;#架构没有想象中的简单，它有几个特性：&quot; class=&quot;headerlink&quot; title=&quot;架构没有想象中的简单，它有几个
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>分库分表总结</title>
-    <link href="http://caixw.cn/2018/06/17/201806171029/"/>
-    <id>http://caixw.cn/2018/06/17/201806171029/</id>
-    <published>2018-06-17T02:29:37.000Z</published>
-    <updated>2018-06-17T02:52:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="为什么要分库分表"><a href="#为什么要分库分表" class="headerlink" title="为什么要分库分表"></a>为什么要分库分表</h2><p>当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个个体的压力，缩短响应时间，提高性能。<br>分库分表，顾名思义，是两个操作。<br>分库，拆分成多个数据库，分表，拆分成多张表。<br>常见方式有：单库单表-&gt;单库多表-&gt;多库多表。</p><h2 id="如何进行数据拆分"><a href="#如何进行数据拆分" class="headerlink" title="如何进行数据拆分"></a>如何进行数据拆分</h2><p>最简单的方式就是按照ID将数据分配到不同的库不同的表中。<br>当你创建一条记录时，就会根据生成的ID计算这条数据放到哪个库哪张表里去。</p><h2 id="分库分表路由规则"><a href="#分库分表路由规则" class="headerlink" title="分库分表路由规则"></a>分库分表路由规则</h2><p>假如有16个库（从00库到15库），每个库有64张表，那一共就是有1024张表（从0000-1023）<br>对应的路由规则：<br>dbRule=id%1024%64<br>tbRule=id%1024<br>那么对应的库为dbName_dbRule<br>对应的表为：tbName_tbRule</p><h3 id="常见的方式"><a href="#常见的方式" class="headerlink" title="常见的方式"></a>常见的方式</h3><ul><li>简单ID取模</li><li>字符串hash取模</li></ul><h2 id="分表键的问题"><a href="#分表键的问题" class="headerlink" title="分表键的问题"></a>分表键的问题</h2><p>选择谁作为分表键，这涉及到数据库的可扩展性，是否便于查询，能够避免跨库事务等，如果数据老是落到特定的数据库表中，那就分库分表就没有意义了。<br>这个问题没有明确的答案，必须根据实际业务来确定。建议分表键尽可能找到数据表中的数据在业务逻辑上的主体，并确定大部分的数据库围绕这个主体的数据进行。如果一个分表键无法解决，可以使用2个，尽量越少越好。</p><h2 id="分库分表存在的问题"><a href="#分库分表存在的问题" class="headerlink" title="分库分表存在的问题"></a>分库分表存在的问题</h2><ul><li>数据按照用户划分，就会造成跨库事务问题。</li><li>原来所有的单库单表的sql都要进行改造，加入appId分表键。</li><li>汇总分库分表的数据，要跨越多个库，是一个问题。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;为什么要分库分表&quot;&gt;&lt;a href=&quot;#为什么要分库分表&quot; class=&quot;headerlink&quot; title=&quot;为什么要分库分表&quot;&gt;&lt;/a&gt;为什么要分库分表&lt;/h2&gt;&lt;p&gt;当存储数据过多，性能下降，无法满足正常的业务需求的时候，就需要将单个空间拆分成多个，分担单个
       
     
     </summary>
