@@ -150,6 +150,164 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20200429" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/29/20200429/">linux服务器配置安装之后处理</a>
+    </h1>
+  
+
+        <a href="/2020/04/29/20200429/" class="archive-article-date">
+  	<time datetime="2020-04-29T09:54:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、设置文件句柄数和最大IO数量</p>
+<p>在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。</p>
+<p>另请参阅： 按用户级别设置Linux运行进程限制</p>
+<p>在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。</p>
+<p>首先，让我们看看我们如何找到Linux系统上打开的文件描述符的最大数量。</p>
+<p>查找Linux打开文件限制<br>该值存储在：</p>
+<p>[root@localhost ~]# cat /proc/sys/fs/file-max </p>
+<p>483438</p>
+<p>您将看到的数字显示用户每次登录会话可以打开的文件数。结果可能会因系统而异。</p>
+<p>例如，在我的CentOS服务器上，限制设置为483438，而在我在家运行的Ubuntu服务器上，默认限制设置为176772。</p>
+<p>如果要查看硬限制和软限制，可以使用以下命令：</p>
+<p>检查Linux中的硬限制<br>[root@localhost ~]# ulimit -Hn</p>
+<p>65536</p>
+<p>检查Linux中的软限制</p>
+<p>[root@localhost ~]# ulimit -Sn</p>
+<p>65536</p>
+<p>要查看不同用户的硬值和软值，您只需将用户“su”切换到限制您要检查的用户即可。</p>
+<p>例如：</p>
+<p>[root@localhost ~]# su - smgadmin</p>
+<p>上一次登录：五 7月 26 22:21:47 CST 2019pts/0 上</p>
+<p>[smgadmin@localhost ~]$ ulimit -Sn</p>
+<p>65536</p>
+<p>[smgadmin@localhost ~]$ ulimit -Hn</p>
+<p>65536</p>
+<p>如果需要永久设置，必须在~/.bash_profile 添加 ulimit  -HSn 2048</p>
+<p>如何在Linux中检查系统范围的文件描述符限制<br>如果您正在运行服务器，则某些应用程序可能需要更高的打开文件描述符限制。一个很好的例子是MySQL / MariaDB服务或Apache Web服务器。</p>
+<p>您可以通过编辑内核指令来增加Linux中打开文件的限制  fs.file-max。为此，您可以使用sysctl实用程序。</p>
+<p>Sysctl用于在运行时配置内核参数。</p>
+<p>例如，要将打开文件限制增加到  500000，可以以root身份使用以下命令：</p>
+<p>[root@localhost ~]# sysctl -w fs.file-max=500000</p>
+<p>fs.file-max = 500000</p>
+<p>您可以使用以下命令检查已打开文件的当前值：</p>
+<p>[root@localhost ~]# cat /proc/sys/fs/file-max </p>
+<p>500000</p>
+<p>使用上述命令，您所做的更改将仅在下次重新引导之前保持活动状态。如果您希望永久应用它们，则必须编辑以下文件：</p>
+<p>[root@localhost ~]# vi /etc/sysctl.conf</p>
+<p>添加以下行：</p>
+<p>fs.file-MAX = 500000</p>
+<p>当然，您可以根据需要更改数量。要再次验证更改，请使用：</p>
+<p>cat /proc/sys/fs/file-max</p>
+<p>用户需要注销并再次登录才能使更改生效。如果要立即应用限制，可以使用以下命令：</p>
+<p>sysctl -p</p>
+<p>在Linux中设置用户级别打开文件限制<br>上面的示例显示了如何设置全局限制，但您可能希望对每个用户应用限制。为此，作为root用户，您需要编辑以下文件：</p>
+<p>[root@localhost ~]# vi /etc/security/limits.conf</p>
+<p>如果您是Linux管理员，我建议您熟悉该文件以及您可以对其执行的操作。阅读其中的所有注释，因为它通过限制不同级别的用户/组来提供管理系统资源方面的极大灵活性。</p>
+<p>您应添加的行采用以下参数：</p>
+<p><domain> <type> <item> <value></value></item></type></domain></p>
+<p>以下是为用户smgadmin设置软硬限制的示例：</p>
+<p>##最大打开文件的硬限制示例</p>
+<ul>
+<li>hard nofile 65536</li>
+</ul>
+<p>##最大打开文件的软限制示例</p>
+<ul>
+<li>soft nofile 65536</li>
+</ul>
+<p>最后的想法<br>这篇简短的文章向您展示了如何检查和配置最大打开文件数的全局和用户级别限制的基本示例。</p>
+<p>虽然我们只是略微表面，但我强烈建议您对/etc/sysctl.conf和/etc/security/limits.conf进行更详细的介绍和阅读，并学习如何使用它们。总有一天他们会对你有很大的帮助。</p>
+<p>二、 关闭selinux </p>
+<p>临时关闭 setenforce 0<br>永久关闭  vim /etc/selinux/config 设置 SELINUX=DISABLED</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/29/20200429/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-2020040201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/02/2020040201/">遇到的问题</a>
+    </h1>
+  
+
+        <a href="/2020/04/02/2020040201/" class="archive-article-date">
+  	<time datetime="2020-04-02T04:31:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>crontab运行中时间不对的问题<br>more /var/log/cron 查看日志<br>执行如下命令操作：</p>
+<p>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>service crond restart</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/02/2020040201/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2020033001" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -769,166 +927,6 @@ httpclient:
 
 
   
-    <article id="post-2019121601" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/16/2019121601/">PMBOK基本概念</a>
-    </h1>
-  
-
-        <a href="/2019/12/16/2019121601/" class="archive-article-date">
-  	<time datetime="2019-12-16T03:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-16</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>项目管理协会(PMI)定制了项目管理知识体系的图表和词汇标准；<br>知识体系 (BOK) 包括已发布和未发布的材料，这一知识体系仍在不断演变发展；<br>本《PMBOK®指南》 收录项目管理知识体系中被普遍认可为“良好实践”的那一部分；<br>本指南基于《项目管理标准》；<br>本指南的范围仅限于项目管理领域，而不涉及任何项目组合、项目集和多个项目的领域；<br>通用词汇是专业学科的基本要素。<br>全球项目管理业界定义的最重要的价值 观是责任、尊重、公正和诚实，这是《道德与专业行为规范》的最重要的规范；<br>项目是为创造独特的产品、服务或成果而进行的临时性工作。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/16/2019121601/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-20191211" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/11/20191211/">https的简单使用</a>
-    </h1>
-  
-
-        <a href="/2019/12/11/20191211/" class="archive-article-date">
-  	<time datetime="2019-12-11T11:22:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、https与http的区别<br>https相比http 多了一安全Security层，双方的传输通过对称加密传输；传输的数据不被窃取和篡改；</p>
-<p>2、https的实现原理</p>
-<p> (1) 客户向服务端发送一个空的https请求；服务端返回CA证书（包含有公钥）；<br>（2）客户端验证CA证书的有效性，如果有效，执行下一步；<br>（3）客户端生成一个随机数；通过公钥加密这个随机数，发送给服务端；<br>（4）服务端通过公钥对应的私钥解密获取随机数；<br>（5）服务端和客户端通过这个随机数的对称加密传输数据；</p>
-<p>3、由http 切换到https<br>  (1) nginx重定向</p>
-<pre><code>` server {  
-listen  80;
-server_name docs.lvrui.io
-
-rewrite ^(.*)$  https://$host$1 permanent; 
-# return 302 https://$host$request_uri;
- }
-
-server {
-listen 443 ssl;
-server_name docs.lvrui.io;
-index index.html index.htm;
-access_log  /var/log/nginx/docs.log  main;
-ssl on;
-ssl_certificate /etc/ssl/docs.20150509.cn.crt;
-ssl_certificate_key  /etc/ssl/docs.20150509.cn.key;
-error_page 404 /404.html;
-location / {
-    root /var/www/html/docs;
-}
- }
-</code></pre><p>`</p>
-<p>（2）index刷新重定向</p>
-<pre><code> &lt;html&gt;  
-&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;url=https://docs.lvrui.io/&quot;&gt;
- &lt;/html&gt;  
-  server {
-listen 80;
-server_name docs.lvrui.io;
-
-location / {
-    # 将 index.html 文件放到下面的目录下
-    root /var/www/html/refresh/;
-}
- }
-
-server {
-listen 443 ssl;
-server_name docs.lvrui.io;
-index index.html index.htm;
-access_log  /var/log/nginx/docs.log  main;
-ssl on;
-ssl_certificate /etc/ssl/docs.20150509.cn.crt;
-ssl_certificate_key  /etc/ssl/docs.20150509.cn.key;
-error_page 404 /404.html;
-location / {
-    root /var/www/html/docs;
-}
- }
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/11/20191211/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -995,11 +993,11 @@ location / {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">技术研究</a>
+                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
+                <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">

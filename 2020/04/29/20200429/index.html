@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
-  <title>Archives: 2016/12 | 发现新大陆</title>
+  <title>linux服务器配置安装之后处理 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="发现新大陆">
-<meta property="og:url" content="http://caixw.cn/archives/2016/12/index.html">
+  <meta name="description" content="一、设置文件句柄数和最大IO数量 在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。 另请参阅： 按用户级别设置Linux运行进程限制 在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。 首先，让我们看看我们如何找到Linux系统上打开的文件描">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux服务器配置安装之后处理">
+<meta property="og:url" content="http://caixw.cn/2020/04/29/20200429/index.html">
 <meta property="og:site_name" content="发现新大陆">
+<meta property="og:description" content="一、设置文件句柄数和最大IO数量 在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。 另请参阅： 按用户级别设置Linux运行进程限制 在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。 首先，让我们看看我们如何找到Linux系统上打开的文件描">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-05-08T11:48:28.510Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="发现新大陆">
+<meta name="twitter:title" content="linux服务器配置安装之后处理">
+<meta name="twitter:description" content="一、设置文件句柄数和最大IO数量 在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。 另请参阅： 按用户级别设置Linux运行进程限制 在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。 首先，让我们看看我们如何找到Linux系统上打开的文件描">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
   
@@ -148,146 +152,231 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20200429" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux服务器配置安装之后处理
+    </h1>
+  
+
+        <a href="/2020/04/29/20200429/" class="archive-article-date">
+  	<time datetime="2020-04-29T09:54:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、设置文件句柄数和最大IO数量</p>
+<p>在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。</p>
+<p>另请参阅： 按用户级别设置Linux运行进程限制</p>
+<p>在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。</p>
+<p>首先，让我们看看我们如何找到Linux系统上打开的文件描述符的最大数量。</p>
+<p>查找Linux打开文件限制<br>该值存储在：</p>
+<p>[root@localhost ~]# cat /proc/sys/fs/file-max </p>
+<p>483438</p>
+<p>您将看到的数字显示用户每次登录会话可以打开的文件数。结果可能会因系统而异。</p>
+<p>例如，在我的CentOS服务器上，限制设置为483438，而在我在家运行的Ubuntu服务器上，默认限制设置为176772。</p>
+<p>如果要查看硬限制和软限制，可以使用以下命令：</p>
+<p>检查Linux中的硬限制<br>[root@localhost ~]# ulimit -Hn</p>
+<p>65536</p>
+<p>检查Linux中的软限制</p>
+<p>[root@localhost ~]# ulimit -Sn</p>
+<p>65536</p>
+<p>要查看不同用户的硬值和软值，您只需将用户“su”切换到限制您要检查的用户即可。</p>
+<p>例如：</p>
+<p>[root@localhost ~]# su - smgadmin</p>
+<p>上一次登录：五 7月 26 22:21:47 CST 2019pts/0 上</p>
+<p>[smgadmin@localhost ~]$ ulimit -Sn</p>
+<p>65536</p>
+<p>[smgadmin@localhost ~]$ ulimit -Hn</p>
+<p>65536</p>
+<p>如果需要永久设置，必须在~/.bash_profile 添加 ulimit  -HSn 2048</p>
+<p>如何在Linux中检查系统范围的文件描述符限制<br>如果您正在运行服务器，则某些应用程序可能需要更高的打开文件描述符限制。一个很好的例子是MySQL / MariaDB服务或Apache Web服务器。</p>
+<p>您可以通过编辑内核指令来增加Linux中打开文件的限制  fs.file-max。为此，您可以使用sysctl实用程序。</p>
+<p>Sysctl用于在运行时配置内核参数。</p>
+<p>例如，要将打开文件限制增加到  500000，可以以root身份使用以下命令：</p>
+<p>[root@localhost ~]# sysctl -w fs.file-max=500000</p>
+<p>fs.file-max = 500000</p>
+<p>您可以使用以下命令检查已打开文件的当前值：</p>
+<p>[root@localhost ~]# cat /proc/sys/fs/file-max </p>
+<p>500000</p>
+<p>使用上述命令，您所做的更改将仅在下次重新引导之前保持活动状态。如果您希望永久应用它们，则必须编辑以下文件：</p>
+<p>[root@localhost ~]# vi /etc/sysctl.conf</p>
+<p>添加以下行：</p>
+<p>fs.file-MAX = 500000</p>
+<p>当然，您可以根据需要更改数量。要再次验证更改，请使用：</p>
+<p>cat /proc/sys/fs/file-max</p>
+<p>用户需要注销并再次登录才能使更改生效。如果要立即应用限制，可以使用以下命令：</p>
+<p>sysctl -p</p>
+<p>在Linux中设置用户级别打开文件限制<br>上面的示例显示了如何设置全局限制，但您可能希望对每个用户应用限制。为此，作为root用户，您需要编辑以下文件：</p>
+<p>[root@localhost ~]# vi /etc/security/limits.conf</p>
+<p>如果您是Linux管理员，我建议您熟悉该文件以及您可以对其执行的操作。阅读其中的所有注释，因为它通过限制不同级别的用户/组来提供管理系统资源方面的极大灵活性。</p>
+<p>您应添加的行采用以下参数：</p>
+<p><domain> <type> <item> <value></value></item></type></domain></p>
+<p>以下是为用户smgadmin设置软硬限制的示例：</p>
+<p>##最大打开文件的硬限制示例</p>
+<ul>
+<li>hard nofile 65536</li>
+</ul>
+<p>##最大打开文件的软限制示例</p>
+<ul>
+<li>soft nofile 65536</li>
+</ul>
+<p>最后的想法<br>这篇简短的文章向您展示了如何检查和配置最大打开文件数的全局和用户级别限制的基本示例。</p>
+<p>虽然我们只是略微表面，但我强烈建议您对/etc/sysctl.conf和/etc/security/limits.conf进行更详细的介绍和阅读，并学习如何使用它们。总有一天他们会对你有很大的帮助。</p>
+<p>二、 关闭selinux </p>
+<p>临时关闭 setenforce 0<br>永久关闭  vim /etc/selinux/config 设置 SELINUX=DISABLED</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/21/20161221post1/" class="archive-article-date">
-  	<time datetime="2016-12-21T13:49:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/21/20161221post1/">年轻程序员和大龄程序员</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2020/04/29/20200429/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/19/post-20161219/" class="archive-article-date">
-  	<time datetime="2016-12-19T15:25:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/19/post-20161219/">为博客绑定域名</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/18/firstPoster20161218/" class="archive-article-date">
-  	<time datetime="2016-12-18T15:37:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/18/firstPoster20161218/">纪念一下，第一次发博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/18/hello-world/" class="archive-article-date">
-  	<time datetime="2016-12-18T10:56:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/02/2020040201/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">遇到的问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
 
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="20200429" data-title="linux服务器配置安装之后处理" data-url="http://caixw.cn/2020/04/29/20200429/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-20200429" data-title="linux服务器配置安装之后处理" data-url="http://caixw.cn/2020/04/29/20200429/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'williamcai663'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
 
           </div>
         </div>
@@ -309,8 +398,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-03-30T01:52:35.549Z</updated>
+  <updated>2020-05-08T11:48:28.510Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux服务器配置安装之后处理</title>
+    <link href="http://caixw.cn/2020/04/29/20200429/"/>
+    <id>http://caixw.cn/2020/04/29/20200429/</id>
+    <published>2020-04-29T09:54:38.000Z</published>
+    <updated>2020-05-08T11:48:28.510Z</updated>
+    
+    <content type="html"><![CDATA[<p>一、设置文件句柄数和最大IO数量</p><p>在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。</p><p>另请参阅： 按用户级别设置Linux运行进程限制</p><p>在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。</p><p>首先，让我们看看我们如何找到Linux系统上打开的文件描述符的最大数量。</p><p>查找Linux打开文件限制<br>该值存储在：</p><p>[root@localhost ~]# cat /proc/sys/fs/file-max </p><p>483438</p><p>您将看到的数字显示用户每次登录会话可以打开的文件数。结果可能会因系统而异。</p><p>例如，在我的CentOS服务器上，限制设置为483438，而在我在家运行的Ubuntu服务器上，默认限制设置为176772。</p><p>如果要查看硬限制和软限制，可以使用以下命令：</p><p>检查Linux中的硬限制<br>[root@localhost ~]# ulimit -Hn</p><p>65536</p><p>检查Linux中的软限制</p><p>[root@localhost ~]# ulimit -Sn</p><p>65536</p><p>要查看不同用户的硬值和软值，您只需将用户“su”切换到限制您要检查的用户即可。</p><p>例如：</p><p>[root@localhost ~]# su - smgadmin</p><p>上一次登录：五 7月 26 22:21:47 CST 2019pts/0 上</p><p>[smgadmin@localhost ~]$ ulimit -Sn</p><p>65536</p><p>[smgadmin@localhost ~]$ ulimit -Hn</p><p>65536</p><p>如果需要永久设置，必须在~/.bash_profile 添加 ulimit  -HSn 2048</p><p>如何在Linux中检查系统范围的文件描述符限制<br>如果您正在运行服务器，则某些应用程序可能需要更高的打开文件描述符限制。一个很好的例子是MySQL / MariaDB服务或Apache Web服务器。</p><p>您可以通过编辑内核指令来增加Linux中打开文件的限制  fs.file-max。为此，您可以使用sysctl实用程序。</p><p>Sysctl用于在运行时配置内核参数。</p><p>例如，要将打开文件限制增加到  500000，可以以root身份使用以下命令：</p><p>[root@localhost ~]# sysctl -w fs.file-max=500000</p><p>fs.file-max = 500000</p><p>您可以使用以下命令检查已打开文件的当前值：</p><p>[root@localhost ~]# cat /proc/sys/fs/file-max </p><p>500000</p><p>使用上述命令，您所做的更改将仅在下次重新引导之前保持活动状态。如果您希望永久应用它们，则必须编辑以下文件：</p><p>[root@localhost ~]# vi /etc/sysctl.conf</p><p>添加以下行：</p><p>fs.file-MAX = 500000</p><p>当然，您可以根据需要更改数量。要再次验证更改，请使用：</p><p>cat /proc/sys/fs/file-max</p><p>用户需要注销并再次登录才能使更改生效。如果要立即应用限制，可以使用以下命令：</p><p>sysctl -p</p><p>在Linux中设置用户级别打开文件限制<br>上面的示例显示了如何设置全局限制，但您可能希望对每个用户应用限制。为此，作为root用户，您需要编辑以下文件：</p><p>[root@localhost ~]# vi /etc/security/limits.conf</p><p>如果您是Linux管理员，我建议您熟悉该文件以及您可以对其执行的操作。阅读其中的所有注释，因为它通过限制不同级别的用户/组来提供管理系统资源方面的极大灵活性。</p><p>您应添加的行采用以下参数：</p><p><domain> <type> <item> <value></value></item></type></domain></p><p>以下是为用户smgadmin设置软硬限制的示例：</p><p>##最大打开文件的硬限制示例</p><ul><li>hard nofile 65536</li></ul><p>##最大打开文件的软限制示例</p><ul><li>soft nofile 65536</li></ul><p>最后的想法<br>这篇简短的文章向您展示了如何检查和配置最大打开文件数的全局和用户级别限制的基本示例。</p><p>虽然我们只是略微表面，但我强烈建议您对/etc/sysctl.conf和/etc/security/limits.conf进行更详细的介绍和阅读，并学习如何使用它们。总有一天他们会对你有很大的帮助。</p><p>二、 关闭selinux </p><p>临时关闭 setenforce 0<br>永久关闭  vim /etc/selinux/config 设置 SELINUX=DISABLED</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一、设置文件句柄数和最大IO数量&lt;/p&gt;
+&lt;p&gt;在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。&lt;/p&gt;
+&lt;p&gt;另请参阅： 按用户级别设置Linux运行进程限制&lt;/p&gt;
+&lt;p&gt;在这个
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>遇到的问题</title>
+    <link href="http://caixw.cn/2020/04/02/2020040201/"/>
+    <id>http://caixw.cn/2020/04/02/2020040201/</id>
+    <published>2020-04-02T04:31:46.000Z</published>
+    <updated>2020-04-23T06:05:09.574Z</updated>
+    
+    <content type="html"><![CDATA[<p>crontab运行中时间不对的问题<br>more /var/log/cron 查看日志<br>执行如下命令操作：</p><p>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>service crond restart</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;crontab运行中时间不对的问题&lt;br&gt;more /var/log/cron 查看日志&lt;br&gt;执行如下命令操作：&lt;/p&gt;
+&lt;p&gt;cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime&lt;br&gt;service crond res
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>常用命令使用</title>
@@ -449,57 +495,6 @@ public class EnvironmentTestController {
 &lt;p&gt;如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError 异常；如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读《深入理解Java虚拟机有感》之2</title>
-    <link href="http://caixw.cn/2019/02/12/20190212love/"/>
-    <id>http://caixw.cn/2019/02/12/20190212love/</id>
-    <published>2019-02-12T14:21:29.000Z</published>
-    <updated>2019-02-12T14:30:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>java把内存的分配和回收交给了虚拟机，工程师不用自己手动释放内存，这样就带来了一个不好的事情，一旦发生内存异常和溢出，如果对jvm<br>内存原理不够精通的话，排查问题就是一件痛苦的工作。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;java把内存的分配和回收交给了虚拟机，工程师不用自己手动释放内存，这样就带来了一个不好的事情，一旦发生内存异常和溢出，如果对jvm&lt;br&gt;内存原理不够精通的话，排查问题就是一件痛苦的工作。&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读《深入理解Java虚拟机有感》之1</title>
-    <link href="http://caixw.cn/2019/02/11/20190211love/"/>
-    <id>http://caixw.cn/2019/02/11/20190211love/</id>
-    <published>2019-02-11T13:33:58.000Z</published>
-    <updated>2019-02-12T12:39:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>理解java虚拟机的理由</li></ul><p>   (1) 理解jvm运行原理，可以编写高质量的代码。</p><p>   (2) jvm 接管了内存，好处是可以不用担心内存释放的问题，但是出现内存泄漏的情况，就必须<br>   深入理解jvm,才能更好的定位和解决问题。</p><p>   (3) jvm 未来朝着模块化和支持多核方向发展，编写lamda函数式编程可以更好的支持多核，理解jvm<br>   有助于知其然，知其所以然。</p><p>   (4) 目前显卡的算术运算能力，并行能力已经远远超过了CPU，在图形领域以外发掘显卡的潜力是近几年计算机发展的方向之一。Java的项目Sumatra就是提供GPU和APU运算能力的工具，以后她将直接提供java语言层面的API。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;理解java虚拟机的理由&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;   (1) 理解jvm运行原理，可以编写高质量的代码。&lt;/p&gt;
-&lt;p&gt;   (2) jvm 接管了内存，好处是可以不用担心内存释放的问题，但是出现内存泄漏的情况，就必须&lt;br&gt;   深入理解jvm,才能更好
       
     
     </summary>
