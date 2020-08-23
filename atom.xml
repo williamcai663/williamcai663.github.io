@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-06-25T09:45:09.921Z</updated>
+  <updated>2020-08-22T11:50:59.477Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2020082201</title>
+    <link href="http://caixw.cn/2020/08/22/2020082201/"/>
+    <id>http://caixw.cn/2020/08/22/2020082201/</id>
+    <published>2020-08-22T11:50:59.000Z</published>
+    <updated>2020-08-22T11:50:59.477Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>nginx的配置讲解</title>
@@ -465,32 +479,6 @@ public class EnvironmentTestController {
         &lt;ul&gt;
 &lt;li&gt;需要在启动参数里配置如下：&lt;/li&gt;
 &lt;li&gt;&lt;p&gt; -Dcom.sun.management.jmxremote.authenticate=”false”&lt;br&gt; -Dcom.sun.management.jmxremote.ssl=”false”&lt;br&gt; -
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读《深入理解Java虚拟机》有感之4</title>
-    <link href="http://caixw.cn/2019/02/20/20190220love/"/>
-    <id>http://caixw.cn/2019/02/20/20190220love/</id>
-    <published>2019-02-20T11:50:05.000Z</published>
-    <updated>2019-02-20T15:09:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>对象的创建</li></ul><p>（1）虚拟机遇到new的指令时，首先从常量池查看是否有类的常量符号引用，并且检查这个符号引用代表的类是否已经加载，解析和初始化过，如果没有的话，就会启动类的加载。在类加载检查通过后，接下来虚拟机为新生的对象分配内存，分配内存的过程就是在堆中划分一块内存出来。为了加快对象的内存分配，防止指针的不安全，通常是使用TLAB（本地线程缓冲），可以使用参数-XX:+UseTLAB设置。</p><p>（2）内存分配完成后，虚拟机需要保证将分配的内存空间都设置为零值（不包括对象头），这样即使没有初始化，也可以访问数据为零值；</p><p>（3）接下来要是设置对象头，对象头内容有：元数据信息，对象的哈希码，对象的GC分代年龄等信息；</p><p>（4）在上面完成之后，一个新的对象产生了，但是还没有init(),所有字段值为零；初始化之后就有值；</p><ul><li>对象的布局</li></ul><p>对象布局可以分为3部分：对象头，实例数据和对齐填充；<br>（1） 对象头：一个为Mark world:hash,gc年代等数据，一个为类的指针，确定这个对象为那个类型的实例；如果是数组的话，还有一个字段存储数组长度；<br>（2）实例数据，无论是从父类继承下来的，还是在子类中定义的，都需要记录起来；这部分存储顺序收到分配策略影响，Hotspot虚拟机默认的策略是相同宽度的字段总是被分配到一起，在此基础之上父类的字段出现在子类之前；</p><p>（3）对象填充并不是必然存在的，也没有特殊的含义，只是起着占位符的作用，由于HotspotVM 内存管理系统的要求对象的起始地址必须是8字节倍数；所以没有对齐的，就需要补充。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;对象的创建&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;（1）虚拟机遇到new的指令时，首先从常量池查看是否有类的常量符号引用，并且检查这个符号引用代表的类是否已经加载，解析和初始化过，如果没有的话，就会启动类的加载。在类加载检查通过后，接下来虚拟机为新生的对象分配内存，分配内
       
     
     </summary>

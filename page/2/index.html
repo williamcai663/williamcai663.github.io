@@ -150,6 +150,77 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20200202" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/02/20200202/">这短短的一生我们最终都会失去</a>
+    </h1>
+  
+
+        <a href="/2020/02/02/20200202/" class="archive-article-date">
+  	<time datetime="2020-02-02T09:23:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>所有的一切终将逝去，人生就是一个从生到死的过程。</p>
+<p>中间的路如何走，全凭个人选择。</p>
+<p>我们从出生嗷嗷待哺开始，翻身，爬行，咿呀学语，蹒跚学步，尿床，摔跟头，自己吃东西，奔跑；</p>
+<p>从幼年到童年，断奶，和小伙伴玩，打架和好，上幼儿园，上小学；</p>
+<p>从童年到少年，学习成长，不断地学习各种知识；</p>
+<p>从少年到青年，开始有选择的学习，了解自己的喜好，开始表现出自己独一无二的人格，学校毕业，开始工作，结婚生子，买房买车；</p>
+<p>从青年到中年，人生已过半，有了自己的一套人生处事原则；</p>
+<p>从中年到老年，退休了，忙了半辈子也该歇歇了，锻炼身体，培养爱好；</p>
+<p>从老年到暮年，走不动了，看不清了，也听不见了，吃饭穿衣都费劲了，快不行了，不说了要挂了。</p>
+<p>人的一生犹如四季轮回，春生，夏长，秋衰，冬亡。</p>
+<p>犹如草木枯荣，犹如太阳东升西落。</p>
+<p>人这短暂的一生，在宇宙的岁月中如白驹过隙，弹指烟消云散。</p>
+<p>人类很渺小，生命很短暂。</p>
+<p>但生而为人，我们有自己的想法，要活成自己想要的样子。不辜负爱，不辜负青春，不辜负生命。</p>
+<p>这短短的一生</p>
+<p>我们最终都会失去</p>
+<p>你不妨大胆一些</p>
+<p>爱一个人，攀一座山，追一个梦……</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/02/20200202/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2019122801" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -724,74 +795,9 @@ public  void printCount(){
 
 
   
-    <article id="post-20190220love" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/20/20190220love/">读《深入理解Java虚拟机》有感之4</a>
-    </h1>
-  
-
-        <a href="/2019/02/20/20190220love/" class="archive-article-date">
-  	<time datetime="2019-02-20T11:50:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-20</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>对象的创建</li>
-</ul>
-<p>（1）虚拟机遇到new的指令时，首先从常量池查看是否有类的常量符号引用，并且检查这个符号引用代表的类是否已经加载，解析和初始化过，如果没有的话，就会启动类的加载。在类加载检查通过后，接下来虚拟机为新生的对象分配内存，分配内存的过程就是在堆中划分一块内存出来。为了加快对象的内存分配，防止指针的不安全，通常是使用TLAB（本地线程缓冲），可以使用参数-XX:+UseTLAB设置。</p>
-<p>（2）内存分配完成后，虚拟机需要保证将分配的内存空间都设置为零值（不包括对象头），这样即使没有初始化，也可以访问数据为零值；</p>
-<p>（3）接下来要是设置对象头，对象头内容有：元数据信息，对象的哈希码，对象的GC分代年龄等信息；</p>
-<p>（4）在上面完成之后，一个新的对象产生了，但是还没有init(),所有字段值为零；初始化之后就有值；</p>
-<ul>
-<li>对象的布局</li>
-</ul>
-<p>对象布局可以分为3部分：对象头，实例数据和对齐填充；<br>（1） 对象头：一个为Mark world:hash,gc年代等数据，一个为类的指针，确定这个对象为那个类型的实例；如果是数组的话，还有一个字段存储数组长度；<br>（2）实例数据，无论是从父类继承下来的，还是在子类中定义的，都需要记录起来；这部分存储顺序收到分配策略影响，Hotspot虚拟机默认的策略是相同宽度的字段总是被分配到一起，在此基础之上父类的字段出现在子类之前；</p>
-<p>（3）对象填充并不是必然存在的，也没有特殊的含义，只是起着占位符的作用，由于HotspotVM 内存管理系统的要求对象的起始地址必须是8字节倍数；所以没有对齐的，就需要补充。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/20/20190220love/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -855,11 +861,11 @@ public  void printCount(){
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">技术研究</a>
+                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
+                <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
