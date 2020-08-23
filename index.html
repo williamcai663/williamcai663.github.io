@@ -157,7 +157,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/22/2020082201/">2020082201</a>
+      <a class="article-title" href="/2020/08/22/2020082201/">spring cloud 获取 nacos 配置</a>
     </h1>
   
 
@@ -168,7 +168,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>(1) pom 依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;`</span><br></pre></td></tr></table></figure>
+<p>(2) 基本配置</p>
+<p>boostrap.yml 或bootstrap.properties里加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server.port=8060</span><br><span class="line">spring.application.name=consumer</span><br><span class="line">spring.profiles.active=prod </span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br><span class="line">spring.cloud.nacos.discovery.namespace=public</span><br><span class="line">spring.cloud.nacos.config.server-addr=127.0.0.1:8848 </span><br><span class="line">spring.cloud.nacos.config.namespace=public</span><br><span class="line">spring.cloud.nacos.config.file-extension=yml</span><br></pre></td></tr></table></figure>
+<p>(3) 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar --spring.profiles.active=prod xxx.jar  &amp;</span><br></pre></td></tr></table></figure>
+<p>(4) 出现的问题<br>1、启动没有找到 profile,即为默认的profile ,default<br>解决方法在启动的时候加入参数： –spring.profiles.active=dev,test,prod<br>2、获取不到配置</p>
+
       
 
       
@@ -176,6 +184,11 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud-nacos/">spring cloud,nacos</a></li></ul>
+	</div>
+
       
 
       
@@ -995,15 +1008,19 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">感悟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术珠玑</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">spring cloud,nacos</a>
               </li>
              
               <li class="article-tag-list-item">
