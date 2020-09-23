@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-08-22T12:46:26.435Z</updated>
+  <updated>2020-08-27T14:13:06.767Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://caixw.cn/2020/08/27/2020082701/"/>
+    <id>http://caixw.cn/2020/08/27/2020082701/</id>
+    <published>2020-08-27T14:09:00.061Z</published>
+    <updated>2020-08-27T14:13:06.767Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: spring cloud对应的spring boot 版本<br>date: 2020-08-27 22:09:00<br>tags: spring</p><hr><p>Release Train    Boot Version<br>Hoxton</p><p>2.2.x, 2.3.x (Starting with SR5)</p><p>Greenwich</p><p>2.1.x</p><p>Finchley</p><p>2.0.x</p><p>Edgware</p><p>1.5.x</p><p>Dalston</p><p>1.5.x</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;title: spring cloud对应的spring boot 版本&lt;br&gt;date: 2020-08-27 22:09:00&lt;br&gt;tags: spring&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Release Train    Boot Version&lt;br&gt;Hoxto
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rpm 安装 mysql-community-server-5.7</title>
+    <link href="http://caixw.cn/2020/08/27/20200827/"/>
+    <id>http://caixw.cn/2020/08/27/20200827/</id>
+    <published>2020-08-27T09:20:12.000Z</published>
+    <updated>2020-08-27T14:06:20.674Z</updated>
+    
+    <content type="html"><![CDATA[<p>在mysql 官网下载 mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar<br>然后解压：<br> tar -xvf mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar<br> 按照依赖关系依次安装rpm包 依赖关系依次为common→libs→client→server<br>在安装过程中会出现如下问题：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ2zegr90gig0zej8pvbk8Z tmp]# rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">警告：mysql-community-server-5.7.31-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY</span><br><span class="line">错误：依赖检测失败：</span><br><span class="line">libaio.so.1()(64bit) 被 mysql-community-server-5.7.31-1.el7.x86_64 需要</span><br><span class="line">libaio.so.1(LIBAIO_0.1)(64bit) 被 mysql-community-server-5.7.31-1.el7.x86_64 需要</span><br><span class="line">libaio.so.1(LIBAIO_0.4)(64bit) 被 mysql-community-server-5.7.31-1.el7.x86_64 需要</span><br><span class="line">[root@iZ2zegr90gig0zej8pvbk8Z tmp]# rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure><p>解决：yum install libaio</p><p>[root@iZ2zegr90gig0zej8pvbk8Z tmp]# rpm -ivh mysql-community-libs-5.7.31-1.el7.x86_64.rpm<br>警告：mysql-community-libs-5.7.31-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY<br>错误：依赖检测失败：<br>    mysql-community-common(x86-64) &gt;= 5.7.9 被 mysql-community-libs-5.7.31-1.el7.x86_64 需要</p><p>解决：清除yum里所有mysql依赖包</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mysql</span><br><span class="line"> yum remove mysql-libs</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在mysql 官网下载 mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar&lt;br&gt;然后解压：&lt;br&gt; tar -xvf mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar&lt;br&gt; 按照依赖关系依次安装rpm包 依赖
+      
+    
+    </summary>
+    
+    
+      <category term="mysql5.7" scheme="http://caixw.cn/tags/mysql5-7/"/>
+    
+  </entry>
   
   <entry>
     <title>spring cloud 获取 nacos 配置</title>
@@ -441,60 +488,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>springboot调度任务</title>
-    <link href="http://caixw.cn/2019/03/24/2019032402/"/>
-    <id>http://caixw.cn/2019/03/24/2019032402/</id>
-    <published>2019-03-24T08:39:30.000Z</published>
-    <updated>2019-03-24T13:35:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>基于注解配置</li></ul><p>-</p><pre><code>@EnableScheduling  开启调度@EnableAsync       开启异步线程public class EnvironmentTestController {/@Scheduled(cron = &quot;*/5 * * * * ?&quot;) 单位为毫秒数@Scheduled(fixedRate = 5000) 可以设置固定间隔毫秒数@Async        开启多个任务的时候，多个线程处理public  void printCount(){    System.out.println(Thread.currentThread().getName());    //System.out.println(&quot;Count:&quot;+Count);}}</code></pre><ul><li>cron 表达式</li></ul><p>Cron表达式参数分别表示：</p><p>秒（0~59） 例如0/5表示从零开始，每隔5秒<br>分（0~59）<br>时（0~23）<br>日（0~31）的某天，需计算<br>月（0~11）<br>周几（ 可填1-7 或 SUN/MON/TUE/WED/THU/FRI/SAT）<br><em>表示任意<br>？表示不确定<br>n/m 表示从n开始，每隔m<br>@Scheduled：除了支持灵活的参数表达式cron之外，还支持简单的延时操作，例如 fixedDelay ，fixedRate 填写相应的毫秒数即可。<br>每隔一分钟： </em> 0/1 <em> </em> * ？</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;基于注解配置&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;-&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@EnableScheduling  开启调度
-@EnableAsync       开启异步线程
-public class EnvironmentTestController {
-
-/
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>jconsole 查看springboot 项目</title>
-    <link href="http://caixw.cn/2019/03/24/2019032401/"/>
-    <id>http://caixw.cn/2019/03/24/2019032401/</id>
-    <published>2019-03-24T01:19:11.000Z</published>
-    <updated>2019-03-24T01:41:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>需要在启动参数里配置如下：</li><li><p> -Dcom.sun.management.jmxremote.authenticate=”false”<br> -Dcom.sun.management.jmxremote.ssl=”false”<br> -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=”6017”</p></li></ul><ul><li><p>ctrl+r启动 jconsole ,如下图所示：</p><p>– 登录界面</p><p><img src="/assets/blogImg/jconsole_login.JPG" alt="jconsole_login"></p></li></ul><p> – 登录后的面板</p><p> <img src="/assets/blogImg/jconsole_board.JPG" alt="jconsole_board"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;需要在启动参数里配置如下：&lt;/li&gt;
-&lt;li&gt;&lt;p&gt; -Dcom.sun.management.jmxremote.authenticate=”false”&lt;br&gt; -Dcom.sun.management.jmxremote.ssl=”false”&lt;br&gt; -
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
