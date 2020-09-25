@@ -150,24 +150,25 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2020082701" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-20200923" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/23/20200923/">centOS7中允许3306通过防火墙</a>
+    </h1>
+  
+
+        <a href="/2020/09/23/20200923/" class="archive-article-date">
+  	<time datetime="2020-09-23T03:27:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+</a>
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: spring cloud对应的spring boot 版本<br>date: 2020-08-27 22:09:00<br>tags: spring</p>
-<hr>
-<p>Release Train    Boot Version<br>Hoxton</p>
-<p>2.2.x, 2.3.x (Starting with SR5)</p>
-<p>Greenwich</p>
-<p>2.1.x</p>
-<p>Finchley</p>
-<p>2.0.x</p>
-<p>Edgware</p>
-<p>1.5.x</p>
-<p>Dalston</p>
-<p>1.5.x</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">## zone --&gt; 作用域</span><br><span class="line">## add-port=80/tcp --&gt; 添加端口，格式为：端口/通讯协议</span><br><span class="line">## permanent --&gt; 永久生效，没有此参数重启后失效</span><br><span class="line">sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">## 开启3306端口后，必须重启防火墙，workbench或naivcat 就能连接到MySQL数据库了</span><br><span class="line">sudo systemctl restart firewalld.service</span><br><span class="line"></span><br><span class="line">## 查看端口号 80 是否开启</span><br><span class="line">firewall-cmd  --query-port=89/tcp</span><br></pre></td></tr></table></figure>
 
       
 
@@ -176,6 +177,64 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/23/20200923/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-2020082701" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/27/2020082701/">spring cloud对应的spring boot 版本</a>
+    </h1>
+  
+
+        <a href="/2020/08/27/2020082701/" class="archive-article-date">
+  	<time datetime="2020-08-27T14:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-27</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Release Train Boot Version</span><br><span class="line">Hoxton</span><br><span class="line"></span><br><span class="line">2.2.x, 2.3.x (Starting with SR5)</span><br><span class="line"></span><br><span class="line">Greenwich</span><br><span class="line"></span><br><span class="line">2.1.x</span><br><span class="line"></span><br><span class="line">Finchley</span><br><span class="line"></span><br><span class="line">2.0.x</span><br><span class="line"></span><br><span class="line">Edgware</span><br><span class="line"></span><br><span class="line">1.5.x</span><br><span class="line"></span><br><span class="line">Dalston</span><br><span class="line"></span><br><span class="line">1.5.x</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+	</div>
+
       
 
       
@@ -775,76 +834,6 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
 
 
   
-    <article id="post-2020031402" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/14/2020031402/">springcloud之feign详解</a>
-    </h1>
-  
-
-        <a href="/2020/03/14/2020031402/" class="archive-article-date">
-  	<time datetime="2020-03-14T06:57:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER</p>
-<p>可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。</p>
-<p>在SpringCloud中,有两种调用服务时客户端的负载均衡策略,一个是Ribbon,一个是Feign;</p>
-<p>(1)Ribbon是一个基于Http端的负载均衡,通过在Configuration中配置RestTemplate来进行调用,可以自定义负载均衡的方式。</p>
-<p>(2)Feign是一个通过本地接口的形式来进行调用服务的,其中Feign中默认引入了Ribbon,在线上开发中,我还是比较倾向用Feign，因为Feign中以接口的形式进行调用服务,看起来简洁,而且Feign中还可以增加熔断器,来进行服务的熔断和降级,防止服务调用中的服务的雪崩</p>
-<p>2、Feign的日志配置<br>（1）在application.yml</p>
-<pre><code>logging.level.xxx.xxx.xxxClient=DEBUG;
-</code></pre><p> (2) 需要配置Level bean</p>
-<pre><code>  @Bean
-public Logger.Level feignLevel() {
-    return Logger.Level.FULL;
-}
-</code></pre><p>(3) 配置文件需要指定httpClient</p>
-<pre><code>feign:
-httpclient:
-  enabled: true
-</code></pre><p>3、使用日志最好的方式<br>   lombok的@Slf4j注解后，直接log.info就ok了 </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术珠玑/">技术珠玑</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/14/2020031402/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -915,11 +904,11 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">技术珠玑</a>
+                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
+                <a href="javascript:void(0)">技术珠玑</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -927,11 +916,19 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">心得体会</a>
+                <a href="javascript:void(0)">mysql5.7</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql5.7</a>
+                <a href="javascript:void(0)">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">心得体会</a>
               </li>
              
               <li class="article-tag-list-item">

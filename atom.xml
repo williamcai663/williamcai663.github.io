@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-08-27T14:13:06.767Z</updated>
+  <updated>2020-09-23T06:06:18.872Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -17,26 +17,48 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://caixw.cn/2020/08/27/2020082701/"/>
-    <id>http://caixw.cn/2020/08/27/2020082701/</id>
-    <published>2020-08-27T14:09:00.061Z</published>
-    <updated>2020-08-27T14:13:06.767Z</updated>
+    <title>centOS7中允许3306通过防火墙</title>
+    <link href="http://caixw.cn/2020/09/23/20200923/"/>
+    <id>http://caixw.cn/2020/09/23/20200923/</id>
+    <published>2020-09-23T03:27:49.000Z</published>
+    <updated>2020-09-23T06:06:18.872Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>title: spring cloud对应的spring boot 版本<br>date: 2020-08-27 22:09:00<br>tags: spring</p><hr><p>Release Train    Boot Version<br>Hoxton</p><p>2.2.x, 2.3.x (Starting with SR5)</p><p>Greenwich</p><p>2.1.x</p><p>Finchley</p><p>2.0.x</p><p>Edgware</p><p>1.5.x</p><p>Dalston</p><p>1.5.x</p>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">## zone --&gt; 作用域</span><br><span class="line">## add-port=80/tcp --&gt; 添加端口，格式为：端口/通讯协议</span><br><span class="line">## permanent --&gt; 永久生效，没有此参数重启后失效</span><br><span class="line">sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">## 开启3306端口后，必须重启防火墙，workbench或naivcat 就能连接到MySQL数据库了</span><br><span class="line">sudo systemctl restart firewalld.service</span><br><span class="line"></span><br><span class="line">## 查看端口号 80 是否开启</span><br><span class="line">firewall-cmd  --query-port=89/tcp</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;hr&gt;
-&lt;p&gt;title: spring cloud对应的spring boot 版本&lt;br&gt;date: 2020-08-27 22:09:00&lt;br&gt;tags: spring&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Release Train    Boot Version&lt;br&gt;Hoxto
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
       
     
     </summary>
     
+    
+      <category term="mysql" scheme="http://caixw.cn/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring cloud对应的spring boot 版本</title>
+    <link href="http://caixw.cn/2020/08/27/2020082701/"/>
+    <id>http://caixw.cn/2020/08/27/2020082701/</id>
+    <published>2020-08-27T14:09:00.000Z</published>
+    <updated>2020-09-23T03:22:51.102Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Release Train Boot Version</span><br><span class="line">Hoxton</span><br><span class="line"></span><br><span class="line">2.2.x, 2.3.x (Starting with SR5)</span><br><span class="line"></span><br><span class="line">Greenwich</span><br><span class="line"></span><br><span class="line">2.1.x</span><br><span class="line"></span><br><span class="line">Finchley</span><br><span class="line"></span><br><span class="line">2.0.x</span><br><span class="line"></span><br><span class="line">Edgware</span><br><span class="line"></span><br><span class="line">1.5.x</span><br><span class="line"></span><br><span class="line">Dalston</span><br><span class="line"></span><br><span class="line">1.5.x</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+      <category term="spring" scheme="http://caixw.cn/tags/spring/"/>
     
   </entry>
   
@@ -45,7 +67,7 @@
     <link href="http://caixw.cn/2020/08/27/20200827/"/>
     <id>http://caixw.cn/2020/08/27/20200827/</id>
     <published>2020-08-27T09:20:12.000Z</published>
-    <updated>2020-08-27T14:06:20.674Z</updated>
+    <updated>2020-09-23T07:40:21.988Z</updated>
     
     <content type="html"><![CDATA[<p>在mysql 官网下载 mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar<br>然后解压：<br> tar -xvf mysql-5.7.25-1.el7.x86_64.rpm-bundle.tar<br> 按照依赖关系依次安装rpm包 依赖关系依次为common→libs→client→server<br>在安装过程中会出现如下问题：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ2zegr90gig0zej8pvbk8Z tmp]# rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">警告：mysql-community-server-5.7.31-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY</span><br><span class="line">错误：依赖检测失败：</span><br><span class="line">libaio.so.1()(64bit) 被 mysql-community-server-5.7.31-1.el7.x86_64 需要</span><br><span class="line">libaio.so.1(LIBAIO_0.1)(64bit) 被 mysql-community-server-5.7.31-1.el7.x86_64 需要</span><br><span class="line">libaio.so.1(LIBAIO_0.4)(64bit) 被 mysql-community-server-5.7.31-1.el7.x86_64 需要</span><br><span class="line">[root@iZ2zegr90gig0zej8pvbk8Z tmp]# rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure><p>解决：yum install libaio</p><p>[root@iZ2zegr90gig0zej8pvbk8Z tmp]# rpm -ivh mysql-community-libs-5.7.31-1.el7.x86_64.rpm<br>警告：mysql-community-libs-5.7.31-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY<br>错误：依赖检测失败：<br>    mysql-community-common(x86-64) &gt;= 5.7.9 被 mysql-community-libs-5.7.31-1.el7.x86_64 需要</p><p>解决：清除yum里所有mysql依赖包</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mysql</span><br><span class="line"> yum remove mysql-libs</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -467,27 +489,6 @@
     
     
       <category term="随笔" scheme="http://caixw.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>diskpart的使用</title>
-    <link href="http://caixw.cn/2019/09/03/2019090301/"/>
-    <id>http://caixw.cn/2019/09/03/2019090301/</id>
-    <published>2019-09-03T14:17:45.000Z</published>
-    <updated>2019-09-03T14:35:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="mount-a-disk-to-another-disk"><a href="#mount-a-disk-to-another-disk" class="headerlink" title="mount a disk to  another disk"></a>mount a disk to  another disk</h3><pre><code>&gt; diskpart&gt; list vol  /*list all volume*/&gt; select vol=3&gt; remove &gt; assign mount=c:\mnt   /*vol=3 mount to c:\mnt*/</code></pre><h3 id="remove-mount"><a href="#remove-mount" class="headerlink" title="remove mount"></a>remove mount</h3><pre><code>&gt; diskpart&gt; list vol&gt; remove mount=c:\mnt&gt; select vol=3&gt; assign mount=f:</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;mount-a-disk-to-another-disk&quot;&gt;&lt;a href=&quot;#mount-a-disk-to-another-disk&quot; class=&quot;headerlink&quot; title=&quot;mount a disk to  another disk&quot;&gt;&lt;/a&gt;m
-      
-    
-    </summary>
-    
     
   </entry>
   
