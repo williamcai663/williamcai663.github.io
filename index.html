@@ -150,6 +150,251 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020103002" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/2020103002/">linux下面的 /var/log/sa文件作用</a>
+    </h1>
+  
+
+        <a href="/2020/10/30/2020103002/" class="archive-article-date">
+  	<time datetime="2020-10-30T07:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/var/log/sa目录下包含每日由sysstat软件包收集的sar文件，这些文件可以用来分析网卡的流量走向，会保存7天内的<br>流量走心啊哥，超过7天会自动删除，我们可以使用sar查看历史负载</p>
+<p>//查看指定文件CPU使用记录</p>
+<p>#sar -f /var/log/sa/sa03</p>
+<p>//查看指定文件1/5/15分钟平均负载记录</p>
+<p>#sar -q -f /var/log/sa/sa03</p>
+<p>//查看指定文件7点到9点CPU使用记录，如要看负载加参数-q</p>
+<p>#sar -s 07:00:00 -e 10:00:00 -f /var/log/sa/sa03</p>
+<p>安装sysstat工具包后会自动每10分钟采集一次脚本在/etc/cron.d/sysstat默认只保留7天的文件要保留更长时间要修改配置文件有人觉得是修改/etc/sysconfig/sysstat这个文件，其实不是的应该是/usr/lib/sa/sa2(64位/usr/lib64/sa/sa2)，来看看里面的代码HISTORY=7[ -r /etc/sysconfig/sysstat ] &amp;&amp; . /etc/sysconfig/sysstat[ ${HISTORY} -gt 28 ] &amp;&amp; HISTORY=28#就是这个了，如果sysstat文件设置了历史天数超过28天就不会生效的超过28天就要修改这个地方了。</p>
+<p>不要小看这个命令，它能够让你对系统运行情况了如指掌。</p>
+<p>细化补充：</p>
+<p>-A：所有报告的总和</p>
+<p>-u：输出CPU使用情况的统计信息</p>
+<p>-v：输出inode、文件和其他内核表的统计信息</p>
+<p>-d：输出每一个块设备的活动信息</p>
+<p>-r：输出内存和交换空间的统计信息</p>
+<p>-b：显示I/O和传送速率的统计信息</p>
+<p>-a：文件读写情况</p>
+<p>-c：输出进程统计信息，每秒创建的进程数</p>
+<p>-R：输出内存页面的统计信息</p>
+<p>-y：终端设备活动情况</p>
+<p>-w：输出系统交换活动信息</p>
+<p>内存分页监控:</p>
+<p>sar -r -f /var/log/sa29 //查看历史内存</p>
+<p>kbmemfree：这个值和free命令中的free值基本一致,所以它不包括buffer和cache的空间.</p>
+<p>kbmemused：这个值和free命令中的used值基本一致,所以它包括buffer和cache的空间.</p>
+<p>%memused：这个值是kbmemused和内存总量(不包括swap)的一个百分比.</p>
+<p>kbbuffers和kbcached：这两个值就是free命令中的buffer和cache.</p>
+<p>kbcommit：保证当前系统所需要的内存,即为了确保不溢出而需要的内存(RAM+swap).</p>
+<p>%commit：这个值是kbcommit与内存总量(包括swap)的一个百分比.</p>
+<p>内存分页监控</p>
+<p>例如，每10秒采样一次，连续采样3次，监控内存分页：</p>
+<p>sar -B 10 3</p>
+<p>输出项说明：</p>
+<p>pgpgin/s：表示每秒从磁盘或SWAP置换到内存的字节数(KB)</p>
+<p>pgpgout/s：表示每秒从内存置换到磁盘或SWAP的字节数(KB)</p>
+<p>fault/s：每秒钟系统产生的缺页数,即主缺页与次缺页之和(major + minor)</p>
+<p>majflt/s：每秒钟产生的主缺页数.</p>
+<p>pgfree/s：每秒被放入空闲队列中的页个数</p>
+<p>pgscank/s：每秒被kswapd扫描的页个数</p>
+<p>pgscand/s：每秒直接被扫描的页个数</p>
+<p>pgsteal/s：每秒钟从cache中被清除来满足内存需要的页个数</p>
+<p>%vmeff：每秒清除的页(pgsteal)占总扫描页(pgscank+pgscand)的百分比</p>
+<p>I/O和传送速率监控</p>
+<p>每10秒采样一次，连续采样3次，报告缓冲区的使用情况，需键入如下命令：</p>
+<p>sar -b 10 3</p>
+<p>屏幕显示如下：</p>
+<p>18:51:05 tps rtps wtps bread/s bwrtn/s</p>
+<p>18:51:15 0.00 0.00 0.00 0.00 0.00</p>
+<p>18:51:25 1.92 0.00 1.92 0.00 22.65</p>
+<p>18:51:35 0.00 0.00 0.00 0.00 0.00</p>
+<p>Average: 0.64 0.00 0.64 0.00 7.59</p>
+<p>输出项说明：</p>
+<p>tps：每秒钟物理设备的 I/O 传输总量</p>
+<p>rtps：每秒钟从物理设备读入的数据总量</p>
+<p>wtps：每秒钟向物理设备写入的数据总量</p>
+<p>bread/s：每秒钟从物理设备读入的数据量，单位为 块/s</p>
+<p>bwrtn/s：每秒钟向物理设备写入的数据量，单位为 块/s</p>
+<ol start="6">
+<li>进程队列长度和平均负载状态监控</li>
+</ol>
+<p>例如，每10秒采样一次，连续采样3次，监控进程队列长度和平均负载状态：</p>
+<p>sar -q 10 3</p>
+<p>屏幕显示如下：</p>
+<p>19:25:50 runq-sz plist-sz ldavg-1 ldavg-5 ldavg-15</p>
+<p>19:26:00 0 259 0.00 0.00 0.00</p>
+<p>19:26:10 0 259 0.00 0.00 0.00</p>
+<p>19:26:20 0 259 0.00 0.00 0.00</p>
+<p>Average: 0 259 0.00 0.00 0.00</p>
+<p>输出项说明：</p>
+<p>runq-sz：运行队列的长度（等待运行的进程数）</p>
+<p>plist-sz：进程列表中进程（processes）和线程（threads）的数量</p>
+<p>ldavg-1：最后1分钟的系统平均负载（System load average）</p>
+<p>ldavg-5：过去5分钟的系统平均负载</p>
+<p>ldavg-15：过去15分钟的系统平均负载</p>
+<ol start="7">
+<li>系统交换活动信息监控</li>
+</ol>
+<p>例如，每10秒采样一次，连续采样3次，监控系统交换活动信息：</p>
+<p>sar - W 10 3</p>
+<p>屏幕显示如下：</p>
+<p>19:39:50 pswpin/s pswpout/s</p>
+<p>19:40:00 0.00 0.00</p>
+<p>19:40:10 0.00 0.00</p>
+<p>19:40:20 0.00 0.00</p>
+<p>Average: 0.00 0.00</p>
+<p>输出项说明：</p>
+<p>pswpin/s：每秒系统换入的交换页面（swap page）数量</p>
+<p>pswpout/s：每秒系统换出的交换页面（swap page）数量</p>
+<ol start="8">
+<li>设备使用情况监控</li>
+</ol>
+<p>例如，每10秒采样一次，连续采样3次，报告设备使用情况，需键入如下命令：</p>
+<h1 id="sar-d-10-3-–p"><a href="#sar-d-10-3-–p" class="headerlink" title="sar -d 10 3 –p"></a>sar -d 10 3 –p</h1><p>屏幕显示如下：</p>
+<p>17:45:54 DEV tps rd_sec/s wr_sec/s avgrq-sz avgqu-sz await svctm %util</p>
+<p>17:46:04 scd0 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>17:46:04 sda 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>17:46:04 vg_livedvd-lv_root 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>17:46:04 vg_livedvd-lv_swap 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>其中：</p>
+<p>参数-p可以打印出sda,hdc等磁盘设备名称,如果不用参数-p,设备节点则有可能是dev8-0,dev22-0</p>
+<p>tps:每秒从物理磁盘I/O的次数.多个逻辑请求会被合并为一个I/O磁盘请求,一次传输的大小是不确定的.</p>
+<p>rd_sec/s:每秒读扇区的次数.</p>
+<p>wr_sec/s:每秒写扇区的次数.</p>
+<p>avgrq-sz:平均每次设备I/O操作的数据大小(扇区).</p>
+<p>avgqu-sz:磁盘请求队列的平均长度.</p>
+<p>await:从请求磁盘操作到系统完成处理,每次请求的平均消耗时间,包括请求队列等待时间,单位是毫秒(1秒=1000毫秒).</p>
+<p>svctm:系统处理每次请求的平均时间,不包括在请求队列中消耗的时间.</p>
+<p>%util:I/O请求占CPU的百分比,比率越大,说明越饱和.</p>
+<ol>
+<li><p>avgqu-sz 的值较低时，设备的利用率较高。</p>
+</li>
+<li><p>当%util的值接近 1% 时，表示设备带宽已经占满。</p>
+</li>
+</ol>
+<p>inode、文件和其他内核表监控</p>
+<p>例如，每10秒采样一次，连续采样3次，观察核心表的状态，需键入如下命令：</p>
+<p>sar -v 10 3</p>
+<p>屏幕显示如下：</p>
+<p>17:10:49 dentunusd file-nr inode-nr pty-nr</p>
+<p>17:10:59 6301 5664 12037 4</p>
+<p>17:11:09 6301 5664 12037 4</p>
+<p>17:11:19 6301 5664 12037 4</p>
+<p>Average: 6301 5664 12037 4</p>
+<p>输出项说明：</p>
+<p>dentunusd：目录高速缓存中未被使用的条目数量</p>
+<p>file-nr：文件句柄（file handle）的使用数量</p>
+<p>inode-nr：索引节点句柄（inode handle）的使用数量</p>
+<p>pty-nr：使用的pty数量</p>
+<p>查看页面交换发生状况</p>
+<p>sar -W</p>
+<p>页面发生交换时，服务器的吞吐量会大幅下降；服务器状况不良时，如果怀疑因为内存不足而导致了页面交换的发生，可以使用这个命令来确认是否发生了大量的交换；</p>
+<p>pswpin/s：每秒系统换入的交换页面（swap page）数量</p>
+<p>pswpout/s：每秒系统换出的交换页面（swap page）数量</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux-运维/">linux 运维</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/2020103002/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-2020103001" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/30/2020103001/">systemctl注意事项</a>
+    </h1>
+  
+
+        <a href="/2020/10/30/2020103001/" class="archive-article-date">
+  	<time datetime="2020-10-30T06:59:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>systemctl daemon-reload<br>解释： 重新加载某个服务的配置文件，如果新安装了一个服务，归属于systemctl管理，要使新服务的服务程序文件生效，需要重新加载配置；</p>
+<p>systemctl –help  查看帮助!!!!!!!</p>
+<p>systemctl  enable  |  disable |  is-enabled  | status  | is-active  unit</p>
+<p>systemctl   get-default    |  set-default   graphical.target  | multi-user.target           islate 在线切换模式  </p>
+<p>systemctl reload-daemon  加载新的unit 配置文件  </p>
+<p>systemd  的 unit 的配置文件位置  ：  redhat 系列： 目录  /usr/lib/systemd/system/ 下<br>enable 是在  /etc/systemd/system/multi-user.target.wants/  这个目录下 做 unit 配置文件的软链：</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux-运维/">linux 运维</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/30/2020103001/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-20200923" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -675,165 +920,6 @@
 
 
   
-    <article id="post-2020032401" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/2020032401/">转傅盛演讲《为什么我们要不顾一切的努力》</a>
-    </h1>
-  
-
-        <a href="/2020/03/24/2020032401/" class="archive-article-date">
-  	<time datetime="2020-03-24T13:53:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>关于攀比：</p>
-<p>　　要像孩子一样回到初心</p>
-<p>　　我是一个好强的人，看着股价跌落，内心其实是崩溃的。每次我见了同等收入公司的CEO，一跟他们算，我们的收入和有的上市公司一样高，甚至增长率比他们还要高，他们有的还亏了好几个亿，我们挣好几个亿，但股价却是我的几倍，为什么呢？</p>
-<p>　　再后来，我就问分析师。为什么呢？你们给的估值很不公平。完全应该是40亿美金以上。我的目标价怎么只有20块呢？</p>
-<p>　　我们发布了四次财报。每次都超出预期。每次发财报当天都跌。就像一个孩子，他把答案认真地写上去了，却给你打了个零分。真是不公平。</p>
-<p>　　后来，我终于知道了，那是因为你想攀比。你想要变得不一样，然后你要找一个尺度。</p>
-<p>　　但是，这个尺度是真的对吗？</p>
-<p>　　去年我去西雅图，和刘强东同坐一个飞机。我不能想象，他在十几年前只是一个小卖部的店主。他说，我就是觉得京东，要成为互联网后面的基础设施，用很低的毛利，让整个互联网购物大大提升。只要这个行业在增长，我们就可以增长。其他事情我也不想做。</p>
-<p>　　听完这句话，我就觉得，他是一个目标感很强的人。后来，我终于知道，一家公司是有使命和边界的，它不应该去做所有的事情，也不应该完全被别人制定的规则所束缚。</p>
-<p>　　有一次，我的同事送了我一张老狼的演唱会门票。坐在台下，我就想，真的应该去做让自己内心觉得快乐的事情，才是最重要的事情。一个孩子摔跤了、哭了、闹了，第二天照样开开心心，继续跟你玩儿，没有任何心理阴影。可能最快乐的事情，就是回到所谓孩子一样的初心，对所有的事情保持孩子般的好奇，面对未来的困难虽然恐惧，但可以忘掉它，然后抹一把鼻涕，抹一把眼泪继续往前走。</p>
-<p>　　关于努力：</p>
-<p>　　像航海一样探知这个世界</p>
-<p>　　回到开篇，为什么我要不顾一切地努力？</p>
-<p>　　因为我终于知道所有的努力，都是让你知道这个世界本来的样子。你只有真正努力过，你才知道这个世界长什么样。你才知道这个世界是怎样真实的存在。</p>
-<p>　　我读《乔布斯传》，让我最感动的一个事情，就是当他生命快结束的时候，他还在坚持上班，为什么？他一定不是为了攀比，不是为了金钱。即便只有一点点时间在这个世界上，他还希望更好地了解这个世界。</p>
-<p>　　航海不就是一个在探知世界的过程吗？我们的人生不也是在体会这个世界的过程中吗？你所有的努力不就是为了让自己比别人更真切地知道这些东西吗？而且越是这样的努力，越是经历了很多痛苦，你会终于发现——这个世界不完美，但很美好。</p>
-<p>　　《平凡的世界》里面有一段，孙少平从他村子里出来去了煤矿，每天都特别努力。后来村里的老头就来找他说，不要这样了，回村吧，娶个老婆，生个孩子，盖个房子，挺好的。他说了一句话——我不能让我的一辈子就像村口那些老头一样，每天吹嘘的都只是，年轻的时候能多吃几碗饭，因为他们只有这些可以去回忆了。</p>
-<p>　　当我真正想清楚这些点的时候，我才知道，虽然我们有过恐惧，我们有过委屈，但总有一天，我要证明给你们看——你们都是错的。</p>
-<p>　　到了今天，对错都不重要了。因为他们跟我的世界已经离得越来越远了。虽然一度在上市这一年里，我觉得自己比上市前还辛苦，我每天都在想为什么。可是反过来，这些东西却在督促着我的努力。</p>
-<p>　　后来我终于知道，我能走到今天，猎豹能走到今天，真的是因为，我们想去发现人生当中的那些美好的东西。</p>
-<p>　　有一天我跟徐鸣哥哥喝多了，他说：傅盛，你说什么是爱？</p>
-<p>　　我没多想，蹦出来一句话——爱就是不顾一切。</p>
-<p>　　徐鸣大饮三杯，哈哈大笑，然后就倒下去了……</p>
-<p>　　也是那一刻，我突然明白，我为什么要不顾一切地努力？</p>
-<p>　　因为——我爱这个世界；</p>
-<p>　　因为——它真的很美好；</p>
-<p>　　因为——我可以和你们一起去看最美的风景。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/24/2020032401/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-20200319" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/19/20200319/">nginx的proxy_temp目录权限问题</a>
-    </h1>
-  
-
-        <a href="/2020/03/19/20200319/" class="archive-article-date">
-  	<time datetime="2020-03-19T14:20:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>且看下面是我这MYPM配的nginx反向代理</p>
-<pre><code>location /iot {
-        root /home/mypmcc/mypm20100914;           
-        index  index.jhtml index.html login_page.jhtml;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header   Host $host;
-        proxy_pass http://127.0.0.1:8080;
-        client_max_body_size     100m;
-        client_body_buffer_size  128k;
-        proxy_connect_timeout    600;
-        proxy_read_timeout       600;
-        proxy_send_timeout       6000;
-        proxy_buffer_size        32k;
-        proxy_buffers            4 64k;
-        proxy_busy_buffers_size 128k;
-        proxy_temp_file_write_size 512k;
-      }
-</code></pre><p>   nginx 反向代理参数说明</p>
-<pre><code>proxy_connect_timeout 600;              #nginx跟后端服务器连接超时时间(代理连接超时)
-proxy_read_timeout    600;              #连接成功后，后端服务器响应时间(代理接收超时)
-proxy_send_timeout    600;              #后端服务器数据回传时间(代理发送超时)
-proxy_buffer_size     32k;              #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-proxy_buffers         4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
-proxy_busy_buffers_size  64k;           #高负荷下缓冲大小（proxy_buffers*2）
-proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这个值，将从upstream服务器传
-</code></pre><p>   问题就出在proxy_temp_file_write_size上，当你的文件超过该参数设置的大小时，nginx会先将文件写入临时目录(缺省为nginx安装目下/proxy_temp目录),缺省nginx是以nobody身份启动的，用ls -al 命令查看proxy_temp目录 nobody是proxy_temp目录的所有者，怪了那为什么没权限呢，接下来我查看proxy_temp的父目录既nginx安装目录。发现nobody竞然没权限，怪不得会出上面的问题然后设置任何人都可以写 proxy_temp目录，再重启示nginx解决;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术珠玑/">技术珠玑</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/19/20200319/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -900,11 +986,11 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">技术研究</a>
+                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
+                <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -912,15 +998,15 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring cloud,nacos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql5.7</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring</a>
+                <a href="javascript:void(0)">linux 运维</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">spring cloud,nacos</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -929,6 +1015,10 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">心得体会</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">spring</a>
               </li>
              
               <li class="article-tag-list-item">

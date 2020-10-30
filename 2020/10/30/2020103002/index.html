@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
-  <title>ubuntu搭建elasticsearch和使用 | 发现新大陆</title>
+  <title>linux下面的 /var/log/sa文件作用 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="參考 ：http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html">
+  <meta name="description" content="/var/log/sa目录下包含每日由sysstat软件包收集的sar文件，这些文件可以用来分析网卡的流量走向，会保存7天内的流量走心啊哥，超过7天会自动删除，我们可以使用sar查看历史负载 //查看指定文件CPU使用记录 #sar -f /var/log/sa/sa03 //查看指定文件1/5/15分钟平均负载记录 #sar -q -f /var/log/sa/sa03 //查看指定文件7点到9">
+<meta name="keywords" content="linux 运维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu搭建elasticsearch和使用">
-<meta property="og:url" content="http://caixw.cn/2018/05/06/20180506elasticsearch/index.html">
+<meta property="og:title" content="linux下面的 &#x2F;var&#x2F;log&#x2F;sa文件作用">
+<meta property="og:url" content="http://caixw.cn/2020/10/30/2020103002/index.html">
 <meta property="og:site_name" content="发现新大陆">
-<meta property="og:description" content="參考 ：http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html">
+<meta property="og:description" content="/var/log/sa目录下包含每日由sysstat软件包收集的sar文件，这些文件可以用来分析网卡的流量走向，会保存7天内的流量走心啊哥，超过7天会自动删除，我们可以使用sar查看历史负载 //查看指定文件CPU使用记录 #sar -f /var/log/sa/sa03 //查看指定文件1/5/15分钟平均负载记录 #sar -q -f /var/log/sa/sa03 //查看指定文件7点到9">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-06T14:58:22.000Z">
+<meta property="og:updated_time" content="2020-10-30T07:19:44.005Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu搭建elasticsearch和使用">
-<meta name="twitter:description" content="參考 ：http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html">
+<meta name="twitter:title" content="linux下面的 &#x2F;var&#x2F;log&#x2F;sa文件作用">
+<meta name="twitter:description" content="/var/log/sa目录下包含每日由sysstat软件包收集的sar文件，这些文件可以用来分析网卡的流量走向，会保存7天内的流量走心啊哥，超过7天会自动删除，我们可以使用sar查看历史负载 //查看指定文件CPU使用记录 #sar -f /var/log/sa/sa03 //查看指定文件1/5/15分钟平均负载记录 #sar -q -f /var/log/sa/sa03 //查看指定文件7点到9">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
   
@@ -152,25 +153,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20180506elasticsearch" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2020103002" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ubuntu搭建elasticsearch和使用
+      linux下面的 /var/log/sa文件作用
     </h1>
   
 
-        <a href="/2018/05/06/20180506elasticsearch/" class="archive-article-date">
-  	<time datetime="2018-05-06T06:53:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
+        <a href="/2020/10/30/2020103002/" class="archive-article-date">
+  	<time datetime="2020-10-30T07:09:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-30</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>參考 ：<a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html</a></p>
+        <p>/var/log/sa目录下包含每日由sysstat软件包收集的sar文件，这些文件可以用来分析网卡的流量走向，会保存7天内的<br>流量走心啊哥，超过7天会自动删除，我们可以使用sar查看历史负载</p>
+<p>//查看指定文件CPU使用记录</p>
+<p>#sar -f /var/log/sa/sa03</p>
+<p>//查看指定文件1/5/15分钟平均负载记录</p>
+<p>#sar -q -f /var/log/sa/sa03</p>
+<p>//查看指定文件7点到9点CPU使用记录，如要看负载加参数-q</p>
+<p>#sar -s 07:00:00 -e 10:00:00 -f /var/log/sa/sa03</p>
+<p>安装sysstat工具包后会自动每10分钟采集一次脚本在/etc/cron.d/sysstat默认只保留7天的文件要保留更长时间要修改配置文件有人觉得是修改/etc/sysconfig/sysstat这个文件，其实不是的应该是/usr/lib/sa/sa2(64位/usr/lib64/sa/sa2)，来看看里面的代码HISTORY=7[ -r /etc/sysconfig/sysstat ] &amp;&amp; . /etc/sysconfig/sysstat[ ${HISTORY} -gt 28 ] &amp;&amp; HISTORY=28#就是这个了，如果sysstat文件设置了历史天数超过28天就不会生效的超过28天就要修改这个地方了。</p>
+<p>不要小看这个命令，它能够让你对系统运行情况了如指掌。</p>
+<p>细化补充：</p>
+<p>-A：所有报告的总和</p>
+<p>-u：输出CPU使用情况的统计信息</p>
+<p>-v：输出inode、文件和其他内核表的统计信息</p>
+<p>-d：输出每一个块设备的活动信息</p>
+<p>-r：输出内存和交换空间的统计信息</p>
+<p>-b：显示I/O和传送速率的统计信息</p>
+<p>-a：文件读写情况</p>
+<p>-c：输出进程统计信息，每秒创建的进程数</p>
+<p>-R：输出内存页面的统计信息</p>
+<p>-y：终端设备活动情况</p>
+<p>-w：输出系统交换活动信息</p>
+<p>内存分页监控:</p>
+<p>sar -r -f /var/log/sa29 //查看历史内存</p>
+<p>kbmemfree：这个值和free命令中的free值基本一致,所以它不包括buffer和cache的空间.</p>
+<p>kbmemused：这个值和free命令中的used值基本一致,所以它包括buffer和cache的空间.</p>
+<p>%memused：这个值是kbmemused和内存总量(不包括swap)的一个百分比.</p>
+<p>kbbuffers和kbcached：这两个值就是free命令中的buffer和cache.</p>
+<p>kbcommit：保证当前系统所需要的内存,即为了确保不溢出而需要的内存(RAM+swap).</p>
+<p>%commit：这个值是kbcommit与内存总量(包括swap)的一个百分比.</p>
+<p>内存分页监控</p>
+<p>例如，每10秒采样一次，连续采样3次，监控内存分页：</p>
+<p>sar -B 10 3</p>
+<p>输出项说明：</p>
+<p>pgpgin/s：表示每秒从磁盘或SWAP置换到内存的字节数(KB)</p>
+<p>pgpgout/s：表示每秒从内存置换到磁盘或SWAP的字节数(KB)</p>
+<p>fault/s：每秒钟系统产生的缺页数,即主缺页与次缺页之和(major + minor)</p>
+<p>majflt/s：每秒钟产生的主缺页数.</p>
+<p>pgfree/s：每秒被放入空闲队列中的页个数</p>
+<p>pgscank/s：每秒被kswapd扫描的页个数</p>
+<p>pgscand/s：每秒直接被扫描的页个数</p>
+<p>pgsteal/s：每秒钟从cache中被清除来满足内存需要的页个数</p>
+<p>%vmeff：每秒清除的页(pgsteal)占总扫描页(pgscank+pgscand)的百分比</p>
+<p>I/O和传送速率监控</p>
+<p>每10秒采样一次，连续采样3次，报告缓冲区的使用情况，需键入如下命令：</p>
+<p>sar -b 10 3</p>
+<p>屏幕显示如下：</p>
+<p>18:51:05 tps rtps wtps bread/s bwrtn/s</p>
+<p>18:51:15 0.00 0.00 0.00 0.00 0.00</p>
+<p>18:51:25 1.92 0.00 1.92 0.00 22.65</p>
+<p>18:51:35 0.00 0.00 0.00 0.00 0.00</p>
+<p>Average: 0.64 0.00 0.64 0.00 7.59</p>
+<p>输出项说明：</p>
+<p>tps：每秒钟物理设备的 I/O 传输总量</p>
+<p>rtps：每秒钟从物理设备读入的数据总量</p>
+<p>wtps：每秒钟向物理设备写入的数据总量</p>
+<p>bread/s：每秒钟从物理设备读入的数据量，单位为 块/s</p>
+<p>bwrtn/s：每秒钟向物理设备写入的数据量，单位为 块/s</p>
+<ol start="6">
+<li>进程队列长度和平均负载状态监控</li>
+</ol>
+<p>例如，每10秒采样一次，连续采样3次，监控进程队列长度和平均负载状态：</p>
+<p>sar -q 10 3</p>
+<p>屏幕显示如下：</p>
+<p>19:25:50 runq-sz plist-sz ldavg-1 ldavg-5 ldavg-15</p>
+<p>19:26:00 0 259 0.00 0.00 0.00</p>
+<p>19:26:10 0 259 0.00 0.00 0.00</p>
+<p>19:26:20 0 259 0.00 0.00 0.00</p>
+<p>Average: 0 259 0.00 0.00 0.00</p>
+<p>输出项说明：</p>
+<p>runq-sz：运行队列的长度（等待运行的进程数）</p>
+<p>plist-sz：进程列表中进程（processes）和线程（threads）的数量</p>
+<p>ldavg-1：最后1分钟的系统平均负载（System load average）</p>
+<p>ldavg-5：过去5分钟的系统平均负载</p>
+<p>ldavg-15：过去15分钟的系统平均负载</p>
+<ol start="7">
+<li>系统交换活动信息监控</li>
+</ol>
+<p>例如，每10秒采样一次，连续采样3次，监控系统交换活动信息：</p>
+<p>sar - W 10 3</p>
+<p>屏幕显示如下：</p>
+<p>19:39:50 pswpin/s pswpout/s</p>
+<p>19:40:00 0.00 0.00</p>
+<p>19:40:10 0.00 0.00</p>
+<p>19:40:20 0.00 0.00</p>
+<p>Average: 0.00 0.00</p>
+<p>输出项说明：</p>
+<p>pswpin/s：每秒系统换入的交换页面（swap page）数量</p>
+<p>pswpout/s：每秒系统换出的交换页面（swap page）数量</p>
+<ol start="8">
+<li>设备使用情况监控</li>
+</ol>
+<p>例如，每10秒采样一次，连续采样3次，报告设备使用情况，需键入如下命令：</p>
+<h1 id="sar-d-10-3-–p"><a href="#sar-d-10-3-–p" class="headerlink" title="sar -d 10 3 –p"></a>sar -d 10 3 –p</h1><p>屏幕显示如下：</p>
+<p>17:45:54 DEV tps rd_sec/s wr_sec/s avgrq-sz avgqu-sz await svctm %util</p>
+<p>17:46:04 scd0 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>17:46:04 sda 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>17:46:04 vg_livedvd-lv_root 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>17:46:04 vg_livedvd-lv_swap 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00</p>
+<p>其中：</p>
+<p>参数-p可以打印出sda,hdc等磁盘设备名称,如果不用参数-p,设备节点则有可能是dev8-0,dev22-0</p>
+<p>tps:每秒从物理磁盘I/O的次数.多个逻辑请求会被合并为一个I/O磁盘请求,一次传输的大小是不确定的.</p>
+<p>rd_sec/s:每秒读扇区的次数.</p>
+<p>wr_sec/s:每秒写扇区的次数.</p>
+<p>avgrq-sz:平均每次设备I/O操作的数据大小(扇区).</p>
+<p>avgqu-sz:磁盘请求队列的平均长度.</p>
+<p>await:从请求磁盘操作到系统完成处理,每次请求的平均消耗时间,包括请求队列等待时间,单位是毫秒(1秒=1000毫秒).</p>
+<p>svctm:系统处理每次请求的平均时间,不包括在请求队列中消耗的时间.</p>
+<p>%util:I/O请求占CPU的百分比,比率越大,说明越饱和.</p>
+<ol>
+<li><p>avgqu-sz 的值较低时，设备的利用率较高。</p>
+</li>
+<li><p>当%util的值接近 1% 时，表示设备带宽已经占满。</p>
+</li>
+</ol>
+<p>inode、文件和其他内核表监控</p>
+<p>例如，每10秒采样一次，连续采样3次，观察核心表的状态，需键入如下命令：</p>
+<p>sar -v 10 3</p>
+<p>屏幕显示如下：</p>
+<p>17:10:49 dentunusd file-nr inode-nr pty-nr</p>
+<p>17:10:59 6301 5664 12037 4</p>
+<p>17:11:09 6301 5664 12037 4</p>
+<p>17:11:19 6301 5664 12037 4</p>
+<p>Average: 6301 5664 12037 4</p>
+<p>输出项说明：</p>
+<p>dentunusd：目录高速缓存中未被使用的条目数量</p>
+<p>file-nr：文件句柄（file handle）的使用数量</p>
+<p>inode-nr：索引节点句柄（inode handle）的使用数量</p>
+<p>pty-nr：使用的pty数量</p>
+<p>查看页面交换发生状况</p>
+<p>sar -W</p>
+<p>页面发生交换时，服务器的吞吐量会大幅下降；服务器状况不良时，如果怀疑因为内存不足而导致了页面交换的发生，可以使用这个命令来确认是否发生了大量的交换；</p>
+<p>pswpin/s：每秒系统换入的交换页面（swap page）数量</p>
+<p>pswpout/s：每秒系统换出的交换页面（swap page）数量</p>
 
       
 
@@ -200,6 +333,11 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux-运维/">linux 运维</a></li></ul>
+	</div>
+
       
 
       
@@ -250,7 +388,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2018/05/06/20180506elasticsearch/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2020/10/30/2020103002/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -264,18 +402,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/06/04/20180604/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Git的简单使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/05/20180505elasticsearch/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">elasticsearch的安裝</div>
+    <a href="/2020/10/30/2020103001/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">systemctl注意事项</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -288,7 +417,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20180506elasticsearch" data-title="ubuntu搭建elasticsearch和使用" data-url="http://caixw.cn/2018/05/06/20180506elasticsearch/"></div>
+	<div class="ds-thread" data-thread-key="2020103002" data-title="linux下面的 /var/log/sa文件作用" data-url="http://caixw.cn/2020/10/30/2020103002/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -310,7 +439,7 @@
 
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-20180506elasticsearch" data-title="ubuntu搭建elasticsearch和使用" data-url="http://caixw.cn/2018/05/06/20180506elasticsearch/"></div>
+    <div class="ds-thread" data-thread-key="post-2020103002" data-title="linux下面的 /var/log/sa文件作用" data-url="http://caixw.cn/2020/10/30/2020103002/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
