@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2020-10-30T07:19:44.005Z</updated>
+  <updated>2021-06-19T03:19:03.948Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysql数据库全量备份</title>
+    <link href="http://caixw.cn/2021/06/19/2021061901/"/>
+    <id>http://caixw.cn/2021/06/19/2021061901/</id>
+    <published>2021-06-19T03:10:53.000Z</published>
+    <updated>2021-06-19T03:19:03.948Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、安装mysqldump<br>可以安装mysqldump命令，如果已经安装可以忽略</p><p><code>yum -y install holland-mysqldump.noarch</code></p><p>2、新建shell脚本<br><code>mysqldump -h10.90.12.200 -P 3306 -uroot  vehiclex &gt;/data/backup/vehiclex_$(date +%Y%m%d)_$(date +%H%M%S).sql</code></p><p>3、 定时任务执行脚本<br>crontab -e 加入定时任务脚本<br><code>0 4 * * * sh *.sh</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、安装mysqldump&lt;br&gt;可以安装mysqldump命令，如果已经安装可以忽略&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yum -y install holland-mysqldump.noarch&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;2、新建shell脚本&lt;br&gt;&lt;code&gt;mysql
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>linux下面的 /var/log/sa文件作用</title>
@@ -464,29 +489,6 @@
         &lt;p&gt;1、https与http的区别&lt;br&gt;https相比http 多了一安全Security层，双方的传输通过对称加密传输；传输的数据不被窃取和篡改；&lt;/p&gt;
 &lt;p&gt;2、https的实现原理&lt;/p&gt;
 &lt;p&gt; (1) 客户向服务端发送一个空的https请求；服务端返回CA证书（包
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2019120201</title>
-    <link href="http://caixw.cn/2019/12/02/2019120201/"/>
-    <id>http://caixw.cn/2019/12/02/2019120201/</id>
-    <published>2019-12-01T23:58:36.000Z</published>
-    <updated>2019-12-02T03:52:05.654Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="nacos-的初探"><a href="#nacos-的初探" class="headerlink" title="nacos 的初探"></a>nacos 的初探</h2><h3 id="1、为什么要使用nacos"><a href="#1、为什么要使用nacos" class="headerlink" title="1、为什么要使用nacos"></a>1、为什么要使用nacos</h3><p>(1) eureka服务从2.0开始不在维护了，后期升级和维护困难;<br>(2) nocos支持的服务更多，包括基于DNS和基于RPC的服务，提供实时的健康检查；<br>(3) 更适应于云服务架构，支持多租户和多环境；</p><h3 id="2、服务发现"><a href="#2、服务发现" class="headerlink" title="2、服务发现"></a>2、服务发现</h3><p>   Dynamic Service Discovery is key to service-centric (for example microservice or cloud-native) architectures. Nacos supports both DNS-based and RPC-based (Dubbo, gRPC) service discovery, and provides real-time service health checks to prevent routing requests from being sent to unhealthy hosts or service instances. With Nacos, you can also implement circuit breakers for your services with ease.</p><h3 id="3、服务配置"><a href="#3、服务配置" class="headerlink" title="3、服务配置"></a>3、服务配置</h3><p>Dynamic Configuration Service allows you to manage configurations in all environments in a centralized, externalized, and dynamic approach. Dynamic configuration saves you from redeploying your applications and services when configuration is updated. You can implement stateless services and achieve on-demand scaling effortlessly.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;nacos-的初探&quot;&gt;&lt;a href=&quot;#nacos-的初探&quot; class=&quot;headerlink&quot; title=&quot;nacos 的初探&quot;&gt;&lt;/a&gt;nacos 的初探&lt;/h2&gt;&lt;h3 id=&quot;1、为什么要使用nacos&quot;&gt;&lt;a href=&quot;#1、为什么要使用naco
       
     
     </summary>
