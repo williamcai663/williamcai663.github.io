@@ -150,6 +150,75 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2022070201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/02/2022070201/">hbase单实例搭建</a>
+    </h1>
+  
+
+        <a href="/2022/07/02/2022070201/" class="archive-article-date">
+  	<time datetime="2022-07-02T01:30:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-02</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、安装前置条件说明<br>1.1 JDK版本说明<br>HBase 需要依赖 JDK 环境，同时 HBase 2.0+ 以上版本不再支持 JDK 1.7 ，需要安装 JDK 1.8+ 。JDK 安装方式见本仓库：</p>
+<p>Linux 环境下 JDK 安装</p>
+<p>1.2 Standalone模式和伪集群模式的区别<br>在 Standalone 模式下，所有守护进程都运行在一个 jvm 进程/实例中；<br>在伪分布模式下，HBase 仍然在单个主机上运行，但是每个守护进程 (HMaster，HRegionServer 和 ZooKeeper) 则分别作为一个单独的进程运行。<br>说明：两种模式任选其一进行部署即可，对于开发测试来说区别不大。</p>
+<p>二、Standalone 模式<br>2.1 下载并解压<br>从官方网站 下载所需要版本的二进制安装包，并进行解压：</p>
+<h1 id="tar-zxvf-hbase-2-1-4-bin-tar-gz"><a href="#tar-zxvf-hbase-2-1-4-bin-tar-gz" class="headerlink" title="tar -zxvf hbase-2.1.4-bin.tar.gz"></a>tar -zxvf hbase-2.1.4-bin.tar.gz</h1><p>2.2 配置环境变量</p>
+<h1 id="vim-etc-profile"><a href="#vim-etc-profile" class="headerlink" title="vim /etc/profile"></a>vim /etc/profile</h1><p>添加环境变量：</p>
+<p>export HBASE_HOME=/usr/app/hbase-2.1.4<br>export PATH=$HBASE_HOME/bin:$PATH<br>使得配置的环境变量生效：</p>
+<h1 id="source-etc-profile"><a href="#source-etc-profile" class="headerlink" title="source /etc/profile"></a>source /etc/profile</h1><p>2.3 进行HBase相关配置<br>修改安装目录下的 conf/hbase-env.sh,指定 JDK 的安装路径：</p>
+<h1 id="The-java-implementation-to-use-Java-1-8-required"><a href="#The-java-implementation-to-use-Java-1-8-required" class="headerlink" title="The java implementation to use.  Java 1.8+ required."></a>The java implementation to use.  Java 1.8+ required.</h1><p>export JAVA_HOME=/usr/java/jdk1.8.0_201<br>修改安装目录下的 conf/hbase-site.xml，增加如下配置：</p>
+<p><configuration><br> <property><br>    <name>hbase.rootdir</name><br>    <value>file:///home/hbase/rootdir</value><br>  </property><br>  <property><br>    <name>hbase.zookeeper.property.dataDir</name><br>    <value>/home/zookeeper/dataDir</value><br>  </property><br>  <property><br>    <name>hbase.unsafe.stream.capability.enforce</name><br>    <value>false</value><br>  </property><br></configuration><br>hbase.rootdir: 配置 hbase 数据的存储路径；</p>
+<p>hbase.zookeeper.property.dataDir: 配置 zookeeper 数据的存储路径；</p>
+<p>hbase.unsafe.stream.capability.enforce: 使用本地文件系统存储，不使用 HDFS 的情况下需要禁用此配置，设置为 false。</p>
+<p>2.4 启动HBase<br>由于已经将 HBase 的 bin 目录配置到环境变量，直接使用以下命令启动：</p>
+<h1 id="start-hbase-sh"><a href="#start-hbase-sh" class="headerlink" title="start-hbase.sh"></a>start-hbase.sh</h1><p>2.5 验证启动是否成功<br>验证方式一 ：使用 jps 命令查看 HMaster 进程是否启动。</p>
+<p>[root@hadoop001 hbase-2.1.4]# jps<br>16336 Jps<br>15500 HMaster<br>验证方式二 ：访问 HBaseWeb UI 页面，默认端口为 16010 。<br><img src="/assets/blogImg/hbase01.jpg" alt="hbase"><br>hbase shell 报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IncompatibleClassChangeError: Found class jline.Terminal, but interface was expected</span><br></pre></td></tr></table></figure></p>
+<p>解决办法如下：<br>1、下载最新的jline: wget <a href="http://www.java2s.com/ref/jar/jline-2.12.1.jar.zip" target="_blank" rel="noopener">http://www.java2s.com/ref/jar/jline-2.12.1.jar.zip</a><br>2、解压之后替换 jline-0.9.94.jar</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据-hbase/">大数据 hbase</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/02/2022070201/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2021061902" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -814,114 +883,6 @@
 
 
   
-    <article id="post-20200429" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/29/20200429/">linux服务器配置安装之后处理</a>
-    </h1>
-  
-
-        <a href="/2020/04/29/20200429/" class="archive-article-date">
-  	<time datetime="2020-04-29T09:54:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一、设置文件句柄数和最大IO数量</p>
-<p>在Linux中，您可以更改打开文件的最大数量。您可以使用ulimit命令修改此数字。它授予您控制shell启动的资源或由其启动的进程的能力。</p>
-<p>另请参阅： 按用户级别设置Linux运行进程限制</p>
-<p>在这个简短的教程中，我们将向您展示如何检查打开文件和文件描述的当前限制，但为此，您需要具有对系统的root访问权限。</p>
-<p>首先，让我们看看我们如何找到Linux系统上打开的文件描述符的最大数量。</p>
-<p>查找Linux打开文件限制<br>该值存储在：</p>
-<p>[root@localhost ~]# cat /proc/sys/fs/file-max </p>
-<p>483438</p>
-<p>您将看到的数字显示用户每次登录会话可以打开的文件数。结果可能会因系统而异。</p>
-<p>例如，在我的CentOS服务器上，限制设置为483438，而在我在家运行的Ubuntu服务器上，默认限制设置为176772。</p>
-<p>如果要查看硬限制和软限制，可以使用以下命令：</p>
-<p>检查Linux中的硬限制<br>[root@localhost ~]# ulimit -Hn</p>
-<p>65536</p>
-<p>检查Linux中的软限制</p>
-<p>[root@localhost ~]# ulimit -Sn</p>
-<p>65536</p>
-<p>要查看不同用户的硬值和软值，您只需将用户“su”切换到限制您要检查的用户即可。</p>
-<p>例如：</p>
-<p>[root@localhost ~]# su - smgadmin</p>
-<p>上一次登录：五 7月 26 22:21:47 CST 2019pts/0 上</p>
-<p>[smgadmin@localhost ~]$ ulimit -Sn</p>
-<p>65536</p>
-<p>[smgadmin@localhost ~]$ ulimit -Hn</p>
-<p>65536</p>
-<p>如果需要永久设置，必须在~/.bash_profile 添加 ulimit  -HSn 2048</p>
-<p>如何在Linux中检查系统范围的文件描述符限制<br>如果您正在运行服务器，则某些应用程序可能需要更高的打开文件描述符限制。一个很好的例子是MySQL / MariaDB服务或Apache Web服务器。</p>
-<p>您可以通过编辑内核指令来增加Linux中打开文件的限制  fs.file-max。为此，您可以使用sysctl实用程序。</p>
-<p>Sysctl用于在运行时配置内核参数。</p>
-<p>例如，要将打开文件限制增加到  500000，可以以root身份使用以下命令：</p>
-<p>[root@localhost ~]# sysctl -w fs.file-max=500000</p>
-<p>fs.file-max = 500000</p>
-<p>您可以使用以下命令检查已打开文件的当前值：</p>
-<p>[root@localhost ~]# cat /proc/sys/fs/file-max </p>
-<p>500000</p>
-<p>使用上述命令，您所做的更改将仅在下次重新引导之前保持活动状态。如果您希望永久应用它们，则必须编辑以下文件：</p>
-<p>[root@localhost ~]# vi /etc/sysctl.conf</p>
-<p>添加以下行：</p>
-<p>fs.file-MAX = 500000</p>
-<p>当然，您可以根据需要更改数量。要再次验证更改，请使用：</p>
-<p>cat /proc/sys/fs/file-max</p>
-<p>用户需要注销并再次登录才能使更改生效。如果要立即应用限制，可以使用以下命令：</p>
-<p>sysctl -p</p>
-<p>在Linux中设置用户级别打开文件限制<br>上面的示例显示了如何设置全局限制，但您可能希望对每个用户应用限制。为此，作为root用户，您需要编辑以下文件：</p>
-<p>[root@localhost ~]# vi /etc/security/limits.conf</p>
-<p>如果您是Linux管理员，我建议您熟悉该文件以及您可以对其执行的操作。阅读其中的所有注释，因为它通过限制不同级别的用户/组来提供管理系统资源方面的极大灵活性。</p>
-<p>您应添加的行采用以下参数：</p>
-<p><domain> <type> <item> <value></value></item></type></domain></p>
-<p>以下是为用户smgadmin设置软硬限制的示例：</p>
-<p>##最大打开文件的硬限制示例</p>
-<ul>
-<li>hard nofile 65536</li>
-</ul>
-<p>##最大打开文件的软限制示例</p>
-<ul>
-<li>soft nofile 65536</li>
-</ul>
-<p>最后的想法<br>这篇简短的文章向您展示了如何检查和配置最大打开文件数的全局和用户级别限制的基本示例。</p>
-<p>虽然我们只是略微表面，但我强烈建议您对/etc/sysctl.conf和/etc/security/limits.conf进行更详细的介绍和阅读，并学习如何使用它们。总有一天他们会对你有很大的帮助。</p>
-<p>二、 关闭selinux </p>
-<p>临时关闭 setenforce 0<br>永久关闭  vim /etc/selinux/config 设置 SELINUX=DISABLED</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/29/20200429/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -988,11 +949,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">技术研究</a>
+                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
+                <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1008,15 +969,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">linux 运维</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据 hbase</a>
               </li>
              
               <li class="article-tag-list-item">
