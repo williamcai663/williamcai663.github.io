@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2022-07-02T02:01:13.317Z</updated>
+  <updated>2022-08-18T11:49:52.633Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spark访问mysql数据库实例</title>
+    <link href="http://caixw.cn/2022/08/18/2022081801/"/>
+    <id>http://caixw.cn/2022/08/18/2022081801/</id>
+    <published>2022-08-18T11:41:07.000Z</published>
+    <updated>2022-08-18T11:49:52.633Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、上传msyql的jar到spark的目录下<br><code>~/.m2/repository/mysql/mysql-connector-java/5.1.47  scp mysql-connector-java-5.1.47.jar root@10.90.9.114:/opt/spark-2.2.3-bin-hadoop2.6/jars</code></p><p>2、启动spark 客户端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# !1023</span><br><span class="line">spark-shell --master local[2]</span><br><span class="line">Using Spark&apos;s default log4j profile: org/apache/spark/log4j-defaults.properties</span><br><span class="line">Setting default log level to &quot;WARN&quot;.</span><br><span class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</span><br><span class="line">22/08/18 07:36:46 WARN Utils: Your hostname, localhost.localdomain resolves to a loopback address: 127.0.0.1; using 10.90.9.114 instead (on interface eth0)</span><br><span class="line">22/08/18 07:36:46 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address</span><br><span class="line">22/08/18 07:36:46 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</span><br><span class="line">Spark context Web UI available at http://10.90.9.114:4040</span><br><span class="line">Spark context available as &apos;sc&apos; (master = local[2], app id = local-1660822607218).</span><br><span class="line">Spark session available as &apos;spark&apos;.</span><br><span class="line">Welcome to</span><br><span class="line">      ____              __</span><br><span class="line">     / __/__  ___ _____/ /__</span><br><span class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</span><br><span class="line">   /___/ .__/\_,_/_/ /_/\_\   version 2.2.3</span><br><span class="line">      /_/</span><br></pre></td></tr></table></figure></p><p>3、编写访问代码<br><code>spark.read.format(&quot;jdbc&quot;).option(&quot;driver&quot;, &quot;com.mysql.jdbc.Driver&quot;)            .option(&quot;url&quot;, &quot;jdbc:mysql://10.90.9.120:3306/sys?useSSL=false&quot;)   .option(&quot;dbtable&quot;, &quot;sys_config&quot;)                   .option(&quot;user&quot;, &quot;root&quot;).option(&quot;password&quot;,&quot;xxxx&quot;).load().show(10)</code></p><p>4、执行代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; spark.read</span><br><span class="line">res12: org.apache.spark.sql.DataFrameReader = org.apache.spark.sql.DataFrameReader@59fa5a39</span><br><span class="line"></span><br><span class="line">scala&gt; .format(&quot;jdbc&quot;)</span><br><span class="line">res13: org.apache.spark.sql.DataFrameReader = org.apache.spark.sql.DataFrameReader@59fa5a39</span><br><span class="line"></span><br><span class="line">scala&gt; .option(&quot;driver&quot;, &quot;com.mysql.jdbc.Driver&quot;)</span><br><span class="line">res14: org.apache.spark.sql.DataFrameReader = org.apache.spark.sql.DataFrameReader@59fa5a39</span><br><span class="line"></span><br><span class="line">scala&gt; .option(&quot;url&quot;, &quot;jdbc:mysql://10.90.9.120:3306/sys?useSSL=false&quot;)</span><br><span class="line">res15: org.apache.spark.sql.DataFrameReader = org.apache.spark.sql.DataFrameReader@59fa5a39</span><br><span class="line"></span><br><span class="line">scala&gt; .option(&quot;dbtable&quot;, &quot;sys_config&quot;)</span><br><span class="line">res16: org.apache.spark.sql.DataFrameReader = org.apache.spark.sql.DataFrameReader@59fa5a39</span><br><span class="line"></span><br><span class="line">scala&gt; .option(&quot;user&quot;, &quot;root&quot;).option(&quot;password&quot;,&quot;Xx00123&quot;).load().show(10)</span><br><span class="line">+--------------------+-----+-------------------+------+</span><br><span class="line">|            variable|value|           set_time|set_by|</span><br><span class="line">+--------------------+-----+-------------------+------+</span><br><span class="line">|diagnostics.allow...|  OFF|2021-08-04 11:39:10|  null|</span><br><span class="line">|diagnostics.inclu...|  OFF|2021-08-04 11:39:10|  null|</span><br><span class="line">|ps_thread_trx_inf...|65535|2021-08-04 11:39:10|  null|</span><br><span class="line">|statement_perform...|  100|2021-08-04 11:39:10|  null|</span><br><span class="line">|statement_perform...| null|2021-08-04 11:39:10|  null|</span><br><span class="line">|statement_truncat...|   64|2021-08-04 11:39:10|  null|</span><br><span class="line">+--------------------+-----+-------------------+------+</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">scala&gt;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、上传msyql的jar到spark的目录下&lt;br&gt;&lt;code&gt;~/.m2/repository/mysql/mysql-connector-java/5.1.47  scp mysql-connector-java-5.1.47.jar root@10.90.9.11
+      
+    
+    </summary>
+    
+    
+      <category term="大数据,spark" scheme="http://caixw.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-spark/"/>
+    
+  </entry>
   
   <entry>
     <title>hbase单实例搭建</title>
@@ -471,30 +494,6 @@
     
     
       <category term="感悟" scheme="http://caixw.cn/tags/%E6%84%9F%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Error creating bean with name &#39;eurekaAutoServiceRegistration&#39;的原因分析</title>
-    <link href="http://caixw.cn/2019/12/28/2019122801/"/>
-    <id>http://caixw.cn/2019/12/28/2019122801/</id>
-    <published>2019-12-28T09:17:09.000Z</published>
-    <updated>2019-12-28T09:43:50.027Z</updated>
-    
-    <content type="html"><![CDATA[<p>启动微服务的时候，突然报这个服务，错误如下：</p><p><code>org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eurekaAutoServiceRegistration’: Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)</code><br>有如下原因如下：<br> (1) 同一个服务重复启动了；<br>（2）端口被其他应用占用了；</p><p>解决办法：<br>（1）参考<a href="http://www.itersblog.com/archives/29.html；" target="_blank" rel="noopener">http://www.itersblog.com/archives/29.html；</a><br>（2）<a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/1952#issuecomment-355487342" target="_blank" rel="noopener">https://github.com/spring-cloud/spring-cloud-netflix/issues/1952#issuecomment-355487342</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;启动微服务的时候，突然报这个服务，错误如下：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name ‘eur
-      
-    
-    </summary>
-    
-    
-      <category term="技术研究" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6/"/>
     
   </entry>
   
