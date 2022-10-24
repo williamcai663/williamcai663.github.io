@@ -150,6 +150,67 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020082201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/22/2020082201/">spring cloud 获取 nacos 配置</a>
+    </h1>
+  
+
+        <a href="/2020/08/22/2020082201/" class="archive-article-date">
+  	<time datetime="2020-08-22T11:50:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-22</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>(1) pom 依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;`</span><br></pre></td></tr></table></figure>
+<p>(2) 基本配置</p>
+<p>boostrap.yml 或bootstrap.properties里加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server.port=8060</span><br><span class="line">spring.application.name=consumer</span><br><span class="line">spring.profiles.active=prod </span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br><span class="line">spring.cloud.nacos.discovery.namespace=public</span><br><span class="line">spring.cloud.nacos.config.server-addr=127.0.0.1:8848 </span><br><span class="line">spring.cloud.nacos.config.namespace=public</span><br><span class="line">spring.cloud.nacos.config.file-extension=yml</span><br></pre></td></tr></table></figure>
+<p>(3) 运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar --spring.profiles.active=prod xxx.jar  &amp;</span><br></pre></td></tr></table></figure>
+<p>(4) 出现的问题<br>1、启动没有找到 profile,即为默认的profile ,default<br>解决方法在启动的时候加入参数： –spring.profiles.active=dev,test,prod<br>2、获取不到配置</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud-nacos/">spring cloud,nacos</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/22/2020082201/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-20200625" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -881,80 +942,9 @@ httpclient:
 
 
   
-    <article id="post-20200202" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/02/20200202/">这短短的一生我们最终都会失去</a>
-    </h1>
-  
-
-        <a href="/2020/02/02/20200202/" class="archive-article-date">
-  	<time datetime="2020-02-02T09:23:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-02</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>所有的一切终将逝去，人生就是一个从生到死的过程。</p>
-<p>中间的路如何走，全凭个人选择。</p>
-<p>我们从出生嗷嗷待哺开始，翻身，爬行，咿呀学语，蹒跚学步，尿床，摔跟头，自己吃东西，奔跑；</p>
-<p>从幼年到童年，断奶，和小伙伴玩，打架和好，上幼儿园，上小学；</p>
-<p>从童年到少年，学习成长，不断地学习各种知识；</p>
-<p>从少年到青年，开始有选择的学习，了解自己的喜好，开始表现出自己独一无二的人格，学校毕业，开始工作，结婚生子，买房买车；</p>
-<p>从青年到中年，人生已过半，有了自己的一套人生处事原则；</p>
-<p>从中年到老年，退休了，忙了半辈子也该歇歇了，锻炼身体，培养爱好；</p>
-<p>从老年到暮年，走不动了，看不清了，也听不见了，吃饭穿衣都费劲了，快不行了，不说了要挂了。</p>
-<p>人的一生犹如四季轮回，春生，夏长，秋衰，冬亡。</p>
-<p>犹如草木枯荣，犹如太阳东升西落。</p>
-<p>人这短暂的一生，在宇宙的岁月中如白驹过隙，弹指烟消云散。</p>
-<p>人类很渺小，生命很短暂。</p>
-<p>但生而为人，我们有自己的想法，要活成自己想要的样子。不辜负爱，不辜负青春，不辜负生命。</p>
-<p>这短短的一生</p>
-<p>我们最终都会失去</p>
-<p>你不妨大胆一些</p>
-<p>爱一个人，攀一座山，追一个梦……</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/02/20200202/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1018,15 +1008,15 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">感悟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术珠玑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1042,11 +1032,11 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql</a>
+                <a href="javascript:void(0)">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring</a>
+                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1063,6 +1053,10 @@ httpclient:
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">资讯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CAP</a>
               </li>
             
             <div class="clearfix"></div>

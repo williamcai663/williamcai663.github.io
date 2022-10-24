@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2022-08-18T11:49:52.633Z</updated>
+  <updated>2022-10-24T14:58:44.708Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CAP理论的理解</title>
+    <link href="http://caixw.cn/2022/10/23/20221022/"/>
+    <id>http://caixw.cn/2022/10/23/20221022/</id>
+    <published>2022-10-22T23:19:56.000Z</published>
+    <updated>2022-10-24T14:58:44.708Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>CAP的定义</p><p> CAP（Consistency、Availability、Partition Tolerance Theorem）定理里描述了一个分布式的系统中，涉及共享数据问题时，以下三个特性最多只能同时满足其中两个（CP，AP，CA）。其中P最难理解，解释如下。</p></li><li><p>P(分区容错性)理解</p></li></ul><p>   一个分布式系统里面，节点组成的网络本来应该就是连通的，然而可能因为一些故障，使得有些节点之间不连通了，整个网络就分成了几块区域。数据就散布在这些不连通的区域中，这叫分区。当你一个数据项只在一个节点中保存，那么分区出现后，与这个节点不连通的部分就访问不到这个数据了，这时分区就是无法容忍的。提高分区容忍度性的办法就是一个数据项复制到多个节点上，那么出现分区之后，这一数据项就可能分布到各个区里，容忍性就提高了。然而，要把数据复制到多个节点，就会带来一致性问题，就是多个节点上面的数据可能是不一致的。要保证一致，每次写操作就都要等待全部节点写成功，而等待又会带来可用性的问题。总的来说就是，数据存在的节点越多，分区容忍性越高，但要复制更新的数据就越多，一致性就越难保证。为了保证一致性，更新所有节点数据所需要的时间就越长，可用性就会降低。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CAP的定义&lt;/p&gt;
+&lt;p&gt; CAP（Consistency、Availability、Partition Tolerance Theorem）定理里描述了一个分布式的系统中，涉及共享数据问题时，以下三个特性最多只能同时满足其中两个（CP，AP，CA）。其
+      
+    
+    </summary>
+    
+    
+      <category term="CAP" scheme="http://caixw.cn/tags/CAP/"/>
+    
+  </entry>
   
   <entry>
     <title>spark访问mysql数据库实例</title>
@@ -468,32 +493,6 @@
     
     
       <category term="资讯" scheme="http://caixw.cn/tags/%E8%B5%84%E8%AE%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>这短短的一生我们最终都会失去</title>
-    <link href="http://caixw.cn/2020/02/02/20200202/"/>
-    <id>http://caixw.cn/2020/02/02/20200202/</id>
-    <published>2020-02-02T09:23:14.000Z</published>
-    <updated>2020-02-02T10:58:33.111Z</updated>
-    
-    <content type="html"><![CDATA[<p>所有的一切终将逝去，人生就是一个从生到死的过程。</p><p>中间的路如何走，全凭个人选择。</p><p>我们从出生嗷嗷待哺开始，翻身，爬行，咿呀学语，蹒跚学步，尿床，摔跟头，自己吃东西，奔跑；</p><p>从幼年到童年，断奶，和小伙伴玩，打架和好，上幼儿园，上小学；</p><p>从童年到少年，学习成长，不断地学习各种知识；</p><p>从少年到青年，开始有选择的学习，了解自己的喜好，开始表现出自己独一无二的人格，学校毕业，开始工作，结婚生子，买房买车；</p><p>从青年到中年，人生已过半，有了自己的一套人生处事原则；</p><p>从中年到老年，退休了，忙了半辈子也该歇歇了，锻炼身体，培养爱好；</p><p>从老年到暮年，走不动了，看不清了，也听不见了，吃饭穿衣都费劲了，快不行了，不说了要挂了。</p><p>人的一生犹如四季轮回，春生，夏长，秋衰，冬亡。</p><p>犹如草木枯荣，犹如太阳东升西落。</p><p>人这短暂的一生，在宇宙的岁月中如白驹过隙，弹指烟消云散。</p><p>人类很渺小，生命很短暂。</p><p>但生而为人，我们有自己的想法，要活成自己想要的样子。不辜负爱，不辜负青春，不辜负生命。</p><p>这短短的一生</p><p>我们最终都会失去</p><p>你不妨大胆一些</p><p>爱一个人，攀一座山，追一个梦……</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;所有的一切终将逝去，人生就是一个从生到死的过程。&lt;/p&gt;
-&lt;p&gt;中间的路如何走，全凭个人选择。&lt;/p&gt;
-&lt;p&gt;我们从出生嗷嗷待哺开始，翻身，爬行，咿呀学语，蹒跚学步，尿床，摔跟头，自己吃东西，奔跑；&lt;/p&gt;
-&lt;p&gt;从幼年到童年，断奶，和小伙伴玩，打架和好，上幼儿园，上小学；
-      
-    
-    </summary>
-    
-    
-      <category term="感悟" scheme="http://caixw.cn/tags/%E6%84%9F%E6%82%9F/"/>
     
   </entry>
   

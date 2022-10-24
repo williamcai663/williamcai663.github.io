@@ -150,6 +150,67 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20221022" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/10/23/20221022/">CAP理论的理解</a>
+    </h1>
+  
+
+        <a href="/2022/10/23/20221022/" class="archive-article-date">
+  	<time datetime="2022-10-22T23:19:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-23</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>CAP的定义</p>
+<p> CAP（Consistency、Availability、Partition Tolerance Theorem）定理里描述了一个分布式的系统中，涉及共享数据问题时，以下三个特性最多只能同时满足其中两个（CP，AP，CA）。其中P最难理解，解释如下。</p>
+</li>
+<li><p>P(分区容错性)理解</p>
+</li>
+</ul>
+<p>   一个分布式系统里面，节点组成的网络本来应该就是连通的，然而可能因为一些故障，使得有些节点之间不连通了，整个网络就分成了几块区域。数据就散布在这些不连通的区域中，这叫分区。当你一个数据项只在一个节点中保存，那么分区出现后，与这个节点不连通的部分就访问不到这个数据了，这时分区就是无法容忍的。提高分区容忍度性的办法就是一个数据项复制到多个节点上，那么出现分区之后，这一数据项就可能分布到各个区里，容忍性就提高了。然而，要把数据复制到多个节点，就会带来一致性问题，就是多个节点上面的数据可能是不一致的。要保证一致，每次写操作就都要等待全部节点写成功，而等待又会带来可用性的问题。总的来说就是，数据存在的节点越多，分区容忍性越高，但要复制更新的数据就越多，一致性就越难保证。为了保证一致性，更新所有节点数据所需要的时间就越长，可用性就会降低。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAP/">CAP</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/10/23/20221022/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2022081801" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -803,70 +864,9 @@
 
 
   
-    <article id="post-2020082201" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/22/2020082201/">spring cloud 获取 nacos 配置</a>
-    </h1>
-  
-
-        <a href="/2020/08/22/2020082201/" class="archive-article-date">
-  	<time datetime="2020-08-22T11:50:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-22</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>(1) pom 依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;`</span><br></pre></td></tr></table></figure>
-<p>(2) 基本配置</p>
-<p>boostrap.yml 或bootstrap.properties里加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server.port=8060</span><br><span class="line">spring.application.name=consumer</span><br><span class="line">spring.profiles.active=prod </span><br><span class="line">spring.cloud.nacos.discovery.server-addr=127.0.0.1:8848</span><br><span class="line">spring.cloud.nacos.discovery.namespace=public</span><br><span class="line">spring.cloud.nacos.config.server-addr=127.0.0.1:8848 </span><br><span class="line">spring.cloud.nacos.config.namespace=public</span><br><span class="line">spring.cloud.nacos.config.file-extension=yml</span><br></pre></td></tr></table></figure>
-<p>(3) 运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar --spring.profiles.active=prod xxx.jar  &amp;</span><br></pre></td></tr></table></figure>
-<p>(4) 出现的问题<br>1、启动没有找到 profile,即为默认的profile ,default<br>解决方法在启动的时候加入参数： –spring.profiles.active=dev,test,prod<br>2、获取不到配置</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud-nacos/">spring cloud,nacos</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/22/2020082201/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -930,15 +930,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">感悟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术研究</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">技术珠玑</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -954,11 +954,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql</a>
+                <a href="javascript:void(0)">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring</a>
+                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -975,6 +975,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">资讯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">CAP</a>
               </li>
             
             <div class="clearfix"></div>
