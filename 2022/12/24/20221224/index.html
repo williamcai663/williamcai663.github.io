@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://caixw.cn">
-  <title>nginx的proxy_temp目录权限问题 | 发现新大陆</title>
+  <title>arthas的使用 | 发现新大陆</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="且看下面是我这MYPM配的nginx反向代理 location /iot {         root /home/mypmcc/mypm20100914;                    index  index.jhtml index.html login_page.jhtml;         proxy_set_header X-Real-IP $remote_addr;">
-<meta name="keywords" content="技术珠玑">
+  <meta name="description" content="1、安装123wget https://alibaba.github.io/arthas/arthas-boot.jar``` 2、启动 [root@10-90-18-232 ~]# java -jar arthas-boot.jar[INFO] JAVA_HOME: /usr/local/java/jdk1.8/jre[INFO] arthas-boot version: 3.6.7[INFO]">
+<meta name="keywords" content="java ,性能调优">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx的proxy_temp目录权限问题">
-<meta property="og:url" content="http://caixw.cn/2020/03/19/20200319/index.html">
+<meta property="og:title" content="arthas的使用">
+<meta property="og:url" content="http://caixw.cn/2022/12/24/20221224/index.html">
 <meta property="og:site_name" content="发现新大陆">
-<meta property="og:description" content="且看下面是我这MYPM配的nginx反向代理 location /iot {         root /home/mypmcc/mypm20100914;                    index  index.jhtml index.html login_page.jhtml;         proxy_set_header X-Real-IP $remote_addr;">
+<meta property="og:description" content="1、安装123wget https://alibaba.github.io/arthas/arthas-boot.jar``` 2、启动 [root@10-90-18-232 ~]# java -jar arthas-boot.jar[INFO] JAVA_HOME: /usr/local/java/jdk1.8/jre[INFO] arthas-boot version: 3.6.7[INFO]">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-19T14:31:38.806Z">
+<meta property="og:updated_time" content="2022-12-24T09:50:51.778Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx的proxy_temp目录权限问题">
-<meta name="twitter:description" content="且看下面是我这MYPM配的nginx反向代理 location /iot {         root /home/mypmcc/mypm20100914;                    index  index.jhtml index.html login_page.jhtml;         proxy_set_header X-Real-IP $remote_addr;">
+<meta name="twitter:title" content="arthas的使用">
+<meta name="twitter:description" content="1、安装123wget https://alibaba.github.io/arthas/arthas-boot.jar``` 2、启动 [root@10-90-18-232 ~]# java -jar arthas-boot.jar[INFO] JAVA_HOME: /usr/local/java/jdk1.8/jre[INFO] arthas-boot version: 3.6.7[INFO]">
   
     <link rel="alternative" href="/atom.xml" title="发现新大陆" type="application/atom+xml">
   
@@ -153,50 +153,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20200319" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20221224" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      nginx的proxy_temp目录权限问题
+      arthas的使用
     </h1>
   
 
-        <a href="/2020/03/19/20200319/" class="archive-article-date">
-  	<time datetime="2020-03-19T14:20:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
+        <a href="/2022/12/24/20221224/" class="archive-article-date">
+  	<time datetime="2022-12-24T09:30:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-24</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>且看下面是我这MYPM配的nginx反向代理</p>
-<pre><code>location /iot {
-        root /home/mypmcc/mypm20100914;           
-        index  index.jhtml index.html login_page.jhtml;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header   Host $host;
-        proxy_pass http://127.0.0.1:8080;
-        client_max_body_size     100m;
-        client_body_buffer_size  128k;
-        proxy_connect_timeout    600;
-        proxy_read_timeout       600;
-        proxy_send_timeout       6000;
-        proxy_buffer_size        32k;
-        proxy_buffers            4 64k;
-        proxy_busy_buffers_size 128k;
-        proxy_temp_file_write_size 512k;
-      }
-</code></pre><p>   nginx 反向代理参数说明</p>
-<pre><code>proxy_connect_timeout 600;              #nginx跟后端服务器连接超时时间(代理连接超时)
-proxy_read_timeout    600;              #连接成功后，后端服务器响应时间(代理接收超时)
-proxy_send_timeout    600;              #后端服务器数据回传时间(代理发送超时)
-proxy_buffer_size     32k;              #设置代理服务器（nginx）保存用户头信息的缓冲区大小
-proxy_buffers         4 32k;            #proxy_buffers缓冲区，网页平均在32k以下的话，这样设置
-proxy_busy_buffers_size  64k;           #高负荷下缓冲大小（proxy_buffers*2）
-proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这个值，将从upstream服务器传
-</code></pre><p>   问题就出在proxy_temp_file_write_size上，当你的文件超过该参数设置的大小时，nginx会先将文件写入临时目录(缺省为nginx安装目下/proxy_temp目录),缺省nginx是以nobody身份启动的，用ls -al 命令查看proxy_temp目录 nobody是proxy_temp目录的所有者，怪了那为什么没权限呢，接下来我查看proxy_temp的父目录既nginx安装目录。发现nobody竞然没权限，怪不得会出上面的问题然后设置任何人都可以写 proxy_temp目录，再重启示nginx解决;</p>
+        <p>1、安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://alibaba.github.io/arthas/arthas-boot.jar</span><br><span class="line">``` </span><br><span class="line">2、启动</span><br></pre></td></tr></table></figure></p>
+<p>[root@10-90-18-232 ~]# java -jar arthas-boot.jar<br>[INFO] JAVA_HOME: /usr/local/java/jdk1.8/jre<br>[INFO] arthas-boot version: 3.6.7<br>[INFO] Process 26395 already using port 3658<br>[INFO] Process 26395 already using port 8563<br>[INFO] Found existing java process, please choose one and input the serial number of the process, eg : 1. Then hit ENTER.</p>
+<ul>
+<li>[1]: 26395 /opt/yingjibu/service/iot-business-biz.jar<br>[2]: 10407 iot-auth.jar<br>[3]: 10458 iot-admin-biz.jar<br>[4]: 12701 iot-gateway.jar<br>[5]: 12783 iot-upload-biz.jar</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3、使用</span><br><span class="line">3.1 查看加载的类</span><br></pre></td></tr></table></figure>
+<p>[arthas@26395]$ sc  <em>Controller</em><br>com.sun.proxy.$Proxy113<br>com.sun.proxy.$Proxy132<br>com.sun.proxy.$Proxy338<br>com.sun.proxy.$Proxy346<br>com.sun.proxy.$Proxy58<br>com.sun.proxy.$Proxy80<br>com.taobao.arthas.core.shell.system.JobController<br>com.taobao.arthas.core.shell.system.impl.GlobalJobControllerImpl<br>com.taobao.arthas.core.shell.system.impl.GlobalJobControllerImpl$JobTimeoutTask<br>com.taobao.arthas.core.shell.system.impl.JobControllerImpl<br>com.xgit.iot.business.controller.AverageWorkHourController<br>com.xgit.iot.business.controller.AverageWorkHourController$$EnhancerBySpringCGLIB$$bf2e3402<br>com.xgit.iot.business.controller.DbdAccessDeviceController<br>com.xgit.iot.business.controller.DbdAccessDeviceController$$EnhancerBySpringCGLIB$$f25a90d0<br>com.xgit.iot.business.controller.DbdAccessDeviceController$$EnhancerBySpringCGLIB$$f25a90d0$$FastClassBySpringCGLIB$$6dfc72e3<br>com.xgit.iot.business.controller.DbdAccessDeviceController$$FastClassBySpringCGLIB$$4efb2d71<br>com.xgit.iot.business.controller.DbdBranchradiusController</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.2 反编译类</span><br><span class="line"></span><br><span class="line">jad com.xgit.iot.business.controller.VehicleMonitorController</span><br><span class="line"></span><br><span class="line">3.2 监控某个方法</span><br></pre></td></tr></table></figure>
+<p>watch cn.test.mobile.controller.order.OrderController getOrderInfo “{params,returnObj}” -x 2  </p>
+<p>Press Q or Ctrl+C to abort.<br>Affect(class-cnt:1 , method-cnt:1) cost in 456 ms.<br>ts=2019-11-13 15:30:18; [cost=18.48307ms] result=@ArrayList[<br>    @Object[][  # 这个就是出参，params<br>        @RequestFacade[org.apache.catalina.connector.RequestFacade@1d81dbd7],<br>        @LinkedHashMap[isEmpty=false;size=2], # 把遍历深度x改为3就可以查看map里的值了<br>    ],<br>    @ResponseVo[ # 这个就是返回值 returnObj<br>        log=@Logger[Logger[cn.test.db.common.vo.ResponseVo]],<br>        success=@Boolean[true],<br>        message=@String[Ok],<br>        count=@Integer[0],<br>        code=@Integer[1000],<br>        data=@HashMap[isEmpty=false;size=1],<br>    ],<br>]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.3 输出某个方法内部调用路径以及耗时</span><br></pre></td></tr></table></figure></p>
+<p> trace com.xgit.iot.business.controller.VehicleMonitorController getDbdVehiclePage<br>Press Q or Ctrl+C to abort.<br>Affect(class count: 2 , method count: 2) cost in 434 ms, listenerId: 18<br><code>---ts=2022-12-24 17:40:35;thread_name=XNIO-1 task-13;id=87;is_daemon=false;priority=5;TCCL=org.springframework.boot.loader.LaunchedURLClassLoader@5197848c</code>—[4134.269187ms] com.xgit.iot.business.controller.VehicleMonitorController$$EnhancerBySpringCGLIB$$586a0d3c:getDbdVehiclePage()<br>        <code>---[99.99% 4133.974819ms ] org.springframework.cglib.proxy.MethodInterceptor:intercept()</code>—[100.00% 4133.79206ms ] com.xgit.iot.business.controller.VehicleMonitorController:getDbdVehiclePage()<br>                +—[0.00% 0.100898ms ] com.baomidou.mybatisplus.core.toolkit.Wrappers:query() #58<br>                +—[1.25% 51.569103ms ] com.xgit.iot.business.service.DbdVehicleGpsinfoService:page() #58<br>                +—[0.00% 0.008199ms ] com.baomidou.mybatisplus.extension.plugins.pagination.Page:getRecords() #59<br>                +—[0.20% 8.235704ms ] com.xgit.iot.business.service.SysParamConfigService:getEgisConfig() #62<br>                +—[0.00% min=0.002509ms,max=0.010289ms,total=0.06772ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getTotalmileage() #64<br>                +—[0.00% min=0.002001ms,max=0.027995ms,total=0.071221ms,count=19] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getTotalmileage() #65<br>                +—[0.00% min=0.00231ms,max=0.005243ms,total=0.053364ms,count=19] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:setTotalmileage() #65<br>                +—[0.00% min=0.002016ms,max=0.008475ms,total=0.0583ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getTotalaccontime() #67<br>                +—[0.00% min=0.001891ms,max=0.008061ms,total=0.056175ms,count=19] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getTotalaccontime() #68<br>                +—[0.00% min=0.001987ms,max=0.005883ms,total=0.05211ms,count=19] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:setTotalaccontime() #68<br>                +—[0.00% min=0.001911ms,max=0.004836ms,total=0.051223ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getGpstime() #71<br>                +—[0.00% min=0.002885ms,max=0.02807ms,total=0.103068ms,count=20] com.xgit.iot.business.utils.TimeFormat:getDayDiff() #72<br>                +—[0.00% min=0.002068ms,max=0.006267ms,total=0.058516ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:setAccstatus() #73<br>                +—[0.00% min=0.00203ms,max=0.0061ms,total=0.055546ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getLng() #75<br>                +—[0.00% min=0.001927ms,max=0.004282ms,total=0.051896ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getLat() #75<br>                +—[0.00% min=0.001455ms,max=0.003098ms,total=0.038334ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getLng() #76<br>                +—[0.00% min=0.001338ms,max=0.00746ms,total=0.043695ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:getLat() #76<br>                +—[98.09% min=163.261299ms,max=269.781956ms,total=4054.910083ms,count=20] com.xgit.iot.business.service.impl.EgisService:getAddressAndCache() #76<br>                +—[0.00% min=0.003957ms,max=0.031672ms,total=0.132433ms,count=20] com.xgit.iot.business.api.vo.DbdVehicleGpsinfoVO:setFormattedAddress() #77<br>                +—[0.00% 0.02163ms ] com.baomidou.mybatisplus.extension.plugins.pagination.Page:setRecords() #80<br>                +—[0.00% 0.033819ms ] cn.hutool.core.map.MapUtil:builder() #81<br>                +—[0.00% 0.014218ms ] cn.hutool.core.map.MapBuilder:put() #82<br>                +—[0.38% 15.717572ms ] com.xgit.iot.business.service.DbdVehicleGpsinfoService:getSum() #83<br>                +—[0.00% 0.006137ms ] cn.hutool.core.map.MapBuilder:put() #83<br>                +—[0.00% 0.012211ms ] cn.hutool.core.map.MapBuilder:build() #84<br>                `—[0.00% 0.029328ms ] com.xgit.iot.common.core.util.R:ok() #81<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.4 偶现的问题可以使用job</span><br></pre></td></tr></table></figure></p>
+<p>session         : f4fba846-e90b-4234-959e-e78ad0a5db8c (current)  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.5 dashboard监控</span><br><span class="line">dashboard</span><br></pre></td></tr></table></figure>
+<p>ID    NAME                                  GROUP              PRIORITY     STATE        %CPU        DELTA_TIME   TIME         INTERRUPTED DAEMON<br>17    com.alibaba.nacos.client.Worker.fixed main               5            TIMED_WAITIN 0.0         0.000        3:13.484     false       true<br>54    SimplePauseDetectorThread_2           main               5            TIMED_WAITIN 0.0         0.000        2:52.950     false       true<br>52    SimplePauseDetectorThread_0           main               5            TIMED_WAITIN 0.0         0.000        2:52.710     false       true<br>53    SimplePauseDetectorThread_1           main               5            TIMED_WAITIN 0.0         0.000        2:51.328     false       true<br>472   arthas-command-execute                system             5            TIMED_WAITIN 0.0         0.000        1:29.683     false       true<br>-1    C2 CompilerThread0                    -                  -1           -            0.0         0.000        1:10.115     false       true<br>-1    C2 CompilerThread1                    -                  -1           -            0.0         0.000        1:8.627      false       true<br>-1    C2 CompilerThread2                    -                  -1           -            0.0         0.000        1:6.784      false       true<br>-1    VM Periodic Task Thread               -                  -1           -            0.0         0.000        0:44.558     false       true<br>-1    C1 CompilerThread3                    -                  -1           -            0.0         0.000        0:29.458     false       true<br>98    DestroyJavaVM                         main               5            RUNNABLE     0.0         0.000        0:27.484     false       false<br>Memory                           used      total      max        usage      GC<br>heap                             384M      879M       3531M      10.90%     gc.ps_scavenge.count                  743<br>ps_eden_space                    59M       234M       1263M      4.69%      gc.ps_scavenge.time(ms)               9852<br>ps_survivor_space                26M       29M        29M        89.54%     gc.ps_marksweep.count                 6<br>ps_old_gen                       299M      616M       2648M      11.30%     gc.ps_marksweep.time(ms)              1395<br>nonheap                          225M      254M       -1         88.64%<br>code_cache                       60M       78M        240M       25.23%<br>metaspace                        147M      156M       -1         94.29%<br><code>`</code></p>
 
       
 
@@ -228,7 +216,7 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术珠玑/">技术珠玑</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-性能调优/">java ,性能调优</a></li></ul>
 	</div>
 
       
@@ -281,7 +269,7 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2020/03/19/20200319/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://caixw.cn/2022/12/24/20221224/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +283,9 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
   
 <nav id="article-nav">
   
-    <a href="/2020/03/24/2020032401/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          转傅盛演讲《为什么我们要不顾一切的努力》
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/14/2020031402/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">springcloud之feign详解</div>
+    <a href="/2022/10/23/20221022/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CAP理论的理解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -319,7 +298,7 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20200319" data-title="nginx的proxy_temp目录权限问题" data-url="http://caixw.cn/2020/03/19/20200319/"></div>
+	<div class="ds-thread" data-thread-key="20221224" data-title="arthas的使用" data-url="http://caixw.cn/2022/12/24/20221224/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -341,7 +320,7 @@ proxy_temp_file_write_size  64k;      #设定缓存文件夹大小，大于这�
 
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-20200319" data-title="nginx的proxy_temp目录权限问题" data-url="http://caixw.cn/2020/03/19/20200319/"></div>
+    <div class="ds-thread" data-thread-key="post-20221224" data-title="arthas的使用" data-url="http://caixw.cn/2022/12/24/20221224/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
