@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2023-03-25T03:51:22.081Z</updated>
+  <updated>2023-03-25T03:59:48.088Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://caixw.cn/2023/03/25/2023032501/"/>
     <id>http://caixw.cn/2023/03/25/2023032501/</id>
     <published>2023-03-25T02:32:03.000Z</published>
-    <updated>2023-03-25T03:51:22.081Z</updated>
+    <updated>2023-03-25T03:59:48.088Z</updated>
     
     <content type="html"><![CDATA[<p>1、目的<br>   为了解决调试过程中，修改代码，需要手动频繁重启导致效率低下的问题，故引用devtools管理代码热加载<br>2、方法和步骤<br>2.1 pom.xml加入devtools 依赖<br>  <dependency><br>            <groupid>org.springframework.boot</groupid><br>            <artifactid>spring-boot-devtools</artifactid><br>            <optional>true</optional> <!-- 表示依赖不会传递 --><br>        </dependency><br>2.2 打开项目自动编译<br> 击 File -&gt; settings 菜单，打开 settings 页面，在左边的菜单栏依次找到 Build,Execution,Deployment -&gt; Compile，勾选 Build project automatically 如图所示。<br> <img src="/assets/blogImg/2023032501.jpg" alt="build"></p><p>2.3 配置运行时自动构建<br>因为2021版本compiler.automake.allow.when.app.running改到设置-高级设置模块了。所以配置截图如下：</p><p><img src="/assets/blogImg/2023032502.jpg" alt="allow"></p><p>2.3 随便改动一个class ,自动重启效果如下：</p><p><img src="/assets/blogImg/2023032503.jpg" alt="show"></p>]]></content>
     
