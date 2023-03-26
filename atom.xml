@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://caixw.cn/"/>
-  <updated>2022-12-24T09:50:51.778Z</updated>
+  <updated>2023-03-25T03:51:22.081Z</updated>
   <id>http://caixw.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用devtools 管理代码热加载</title>
+    <link href="http://caixw.cn/2023/03/25/2023032501/"/>
+    <id>http://caixw.cn/2023/03/25/2023032501/</id>
+    <published>2023-03-25T02:32:03.000Z</published>
+    <updated>2023-03-25T03:51:22.081Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、目的<br>   为了解决调试过程中，修改代码，需要手动频繁重启导致效率低下的问题，故引用devtools管理代码热加载<br>2、方法和步骤<br>2.1 pom.xml加入devtools 依赖<br>  <dependency><br>            <groupid>org.springframework.boot</groupid><br>            <artifactid>spring-boot-devtools</artifactid><br>            <optional>true</optional> <!-- 表示依赖不会传递 --><br>        </dependency><br>2.2 打开项目自动编译<br> 击 File -&gt; settings 菜单，打开 settings 页面，在左边的菜单栏依次找到 Build,Execution,Deployment -&gt; Compile，勾选 Build project automatically 如图所示。<br> <img src="/assets/blogImg/2023032501.jpg" alt="build"></p><p>2.3 配置运行时自动构建<br>因为2021版本compiler.automake.allow.when.app.running改到设置-高级设置模块了。所以配置截图如下：</p><p><img src="/assets/blogImg/2023032502.jpg" alt="allow"></p><p>2.3 随便改动一个class ,自动重启效果如下：</p><p><img src="/assets/blogImg/2023032503.jpg" alt="show"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、目的&lt;br&gt;   为了解决调试过程中，修改代码，需要手动频繁重启导致效率低下的问题，故引用devtools管理代码热加载&lt;br&gt;2、方法和步骤&lt;br&gt;2.1 pom.xml加入devtools 依赖&lt;br&gt;  &lt;dependency&gt;&lt;br&gt;            &lt;g
+      
+    
+    </summary>
+    
+    
+      <category term="IDEA  工具" scheme="http://caixw.cn/tags/IDEA-%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>arthas的使用</title>
@@ -463,29 +486,6 @@
         &lt;p&gt;1、通过RestTemplate 使用服务名来调用服务，爆出UNKOWN SERVER&lt;/p&gt;
 &lt;p&gt;可以通过在RestTemplate 的bean中加入@LoadBalanced,默认就是Robbin负载的。&lt;/p&gt;
 &lt;p&gt;在SpringCloud中,有两种调用服务时客户
-      
-    
-    </summary>
-    
-    
-      <category term="技术珠玑" scheme="http://caixw.cn/tags/%E6%8A%80%E6%9C%AF%E7%8F%A0%E7%8E%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux遇到的问题总结</title>
-    <link href="http://caixw.cn/2020/03/14/2020031401/"/>
-    <id>http://caixw.cn/2020/03/14/2020031401/</id>
-    <published>2020-03-14T00:56:29.000Z</published>
-    <updated>2020-03-14T01:30:37.374Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied"><a href="#1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied" class="headerlink" title="1、解决Nginx的connect() to 127.0.0.1:8080 failed (13: Permission denied)"></a>1、解决Nginx的connect() to 127.0.0.1:8080 failed (13: Permission denied)</h3><p>  nginx 默认端口是8080，selinux安全默认是enforcing,所以关闭掉就ok了</p><h3 id="2、服务器内存占用过高的问题排查"><a href="#2、服务器内存占用过高的问题排查" class="headerlink" title="2、服务器内存占用过高的问题排查"></a>2、服务器内存占用过高的问题排查</h3><p>   (1).用top 命令查看占用资源最多PID(进程)：<br>   (2).再用 top -H -p  1000 命令查看在这个进程中，消耗 cpu 最多 的线程，如 1003；<br>   (3).最后使用 jstack 1000 &gt; dump_file 把这个进程的堆栈信息 dump 到文件中，<br>   (4).打开 dump_file，找到 id 为1003的线程（要转化为16进制），就能发现是哪个方法占用了 cpu，分析自己的    代码;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied&quot;&gt;&lt;a href=&quot;#1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-
       
     
     </summary>

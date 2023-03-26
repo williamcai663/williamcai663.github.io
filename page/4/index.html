@@ -150,6 +150,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019032402" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/24/2019032402/">springboot调度任务</a>
+    </h1>
+  
+
+        <a href="/2019/03/24/2019032402/" class="archive-article-date">
+  	<time datetime="2019-03-24T08:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>基于注解配置</li>
+</ul>
+<p>-</p>
+<pre><code>@EnableScheduling  开启调度
+@EnableAsync       开启异步线程
+public class EnvironmentTestController {
+
+/@Scheduled(cron = &quot;*/5 * * * * ?&quot;) 单位为毫秒数
+@Scheduled(fixedRate = 5000) 可以设置固定间隔毫秒数
+@Async        开启多个任务的时候，多个线程处理
+public  void printCount(){
+    System.out.println(Thread.currentThread().getName());
+    //System.out.println(&quot;Count:&quot;+Count);
+}
+
+}
+</code></pre><ul>
+<li>cron 表达式</li>
+</ul>
+<p>Cron表达式参数分别表示：</p>
+<p>秒（0~59） 例如0/5表示从零开始，每隔5秒<br>分（0~59）<br>时（0~23）<br>日（0~31）的某天，需计算<br>月（0~11）<br>周几（ 可填1-7 或 SUN/MON/TUE/WED/THU/FRI/SAT）<br><em>表示任意<br>？表示不确定<br>n/m 表示从n开始，每隔m<br>@Scheduled：除了支持灵活的参数表达式cron之外，还支持简单的延时操作，例如 fixedDelay ，fixedRate 填写相应的毫秒数即可。<br>每隔一分钟： </em> 0/1 <em> </em> * ？</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/24/2019032402/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-2019032401" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -710,55 +780,6 @@ $git push -u origin master
 
 
   
-    <article id="post-20180506elasticsearch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/06/20180506elasticsearch/">ubuntu搭建elasticsearch和使用</a>
-    </h1>
-  
-
-        <a href="/2018/05/06/20180506elasticsearch/" class="archive-article-date">
-  	<time datetime="2018-05-06T06:53:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>參考 ：<a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/06/20180506elasticsearch/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -773,7 +794,7 @@ $git push -u origin master
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 William Cai
+    		&copy; 2023 William Cai
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -841,11 +862,11 @@ $git push -u origin master
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring</a>
+                <a href="javascript:void(0)">spring cloud,nacos</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring cloud,nacos</a>
+                <a href="javascript:void(0)">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -857,19 +878,23 @@ $git push -u origin master
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据,spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">大数据 hbase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">心得体会</a>
+                <a href="javascript:void(0)">大数据,spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">IDEA  工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">CAP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">心得体会</a>
               </li>
              
               <li class="article-tag-list-item">

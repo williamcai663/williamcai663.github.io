@@ -150,6 +150,59 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2020082701" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/27/2020082701/">spring cloud对应的spring boot 版本</a>
+    </h1>
+  
+
+        <a href="/2020/08/27/2020082701/" class="archive-article-date">
+  	<time datetime="2020-08-27T14:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-27</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Release Train Boot Version</span><br><span class="line">Hoxton</span><br><span class="line"></span><br><span class="line">2.2.x, 2.3.x (Starting with SR5)</span><br><span class="line"></span><br><span class="line">Greenwich</span><br><span class="line"></span><br><span class="line">2.1.x</span><br><span class="line"></span><br><span class="line">Finchley</span><br><span class="line"></span><br><span class="line">2.0.x</span><br><span class="line"></span><br><span class="line">Edgware</span><br><span class="line"></span><br><span class="line">1.5.x</span><br><span class="line"></span><br><span class="line">Dalston</span><br><span class="line"></span><br><span class="line">1.5.x</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/27/2020082701/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-20200827" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -797,61 +850,6 @@ httpclient:
 
 
   
-    <article id="post-2020031401" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/14/2020031401/">linux遇到的问题总结</a>
-    </h1>
-  
-
-        <a href="/2020/03/14/2020031401/" class="archive-article-date">
-  	<time datetime="2020-03-14T00:56:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied"><a href="#1、解决Nginx的connect-to-127-0-0-1-8080-failed-13-Permission-denied" class="headerlink" title="1、解决Nginx的connect() to 127.0.0.1:8080 failed (13: Permission denied)"></a>1、解决Nginx的connect() to 127.0.0.1:8080 failed (13: Permission denied)</h3><p>  nginx 默认端口是8080，selinux安全默认是enforcing,所以关闭掉就ok了</p>
-<h3 id="2、服务器内存占用过高的问题排查"><a href="#2、服务器内存占用过高的问题排查" class="headerlink" title="2、服务器内存占用过高的问题排查"></a>2、服务器内存占用过高的问题排查</h3><p>   (1).用top 命令查看占用资源最多PID(进程)：<br>   (2).再用 top -H -p  1000 命令查看在这个进程中，消耗 cpu 最多 的线程，如 1003；<br>   (3).最后使用 jstack 1000 &gt; dump_file 把这个进程的堆栈信息 dump 到文件中，<br>   (4).打开 dump_file，找到 id 为1003的线程（要转化为16进制），就能发现是哪个方法占用了 cpu，分析自己的    代码;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术珠玑/">技术珠玑</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/14/2020031401/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -866,7 +864,7 @@ httpclient:
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 William Cai
+    		&copy; 2023 William Cai
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -934,11 +932,11 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring</a>
+                <a href="javascript:void(0)">spring cloud,nacos</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">spring cloud,nacos</a>
+                <a href="javascript:void(0)">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -950,19 +948,23 @@ httpclient:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据,spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">大数据 hbase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">心得体会</a>
+                <a href="javascript:void(0)">大数据,spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">IDEA  工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">CAP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">心得体会</a>
               </li>
              
               <li class="article-tag-list-item">
